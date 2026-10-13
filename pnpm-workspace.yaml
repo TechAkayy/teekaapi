@@ -1,0 +1,7 @@
+packages:
+  # Product code: one folder for each package.
+  - "packages/*"
+  # The agent skills and their tooling.
+  - "tooling/*"
+  # The roadmap renderer.
+  - "plans"

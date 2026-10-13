@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Api And Interface Design"
+  short_description: "Apply the api and interface design method."
+  default_prompt: "Use $api-and-interface-design for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Constraint Driven Development"
+  short_description: "Apply the constraint driven development method."
+  default_prompt: "Use $constraint-driven-development for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

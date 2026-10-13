@@ -1,0 +1,7 @@
+interface:
+  display_name: "Lets Vibe"
+  short_description: "Resume work or define a new slice's scope."
+  default_prompt: "Use $lets-vibe to resume agreed work or help me define the scope of new work."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,4 @@
+node_modules/
+.DS_Store
+# One person's own settings for Claude; see tooling/agents/README.md.
+.claude/settings.local.json

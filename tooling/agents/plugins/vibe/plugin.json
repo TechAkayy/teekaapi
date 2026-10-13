@@ -1,0 +1,10 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "vibe",
+  "version": "1.0.0",
+  "description": "User-invoked skills for slice delivery, assessment, handoff and reporting.",
+  "author": {
+    "name": "Techakayy"
+  },
+  "license": "MIT"
+}

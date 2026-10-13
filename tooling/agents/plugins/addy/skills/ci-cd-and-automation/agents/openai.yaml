@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Ci Cd And Automation"
+  short_description: "Apply the ci cd and automation method."
+  default_prompt: "Use $ci-cd-and-automation for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

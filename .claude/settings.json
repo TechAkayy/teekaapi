@@ -1,0 +1,52 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --disable-warning=ExperimentalWarning \"${CLAUDE_PROJECT_DIR}/tooling/agents/tooling/progress-hook.ts\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  },
+  "skillOverrides": {
+    "api-and-interface-design": "user-invocable-only",
+    "browser-testing-with-devtools": "user-invocable-only",
+    "ci-cd-and-automation": "user-invocable-only",
+    "code-review-and-quality": "user-invocable-only",
+    "code-simplification": "user-invocable-only",
+    "constraint-driven-development": "user-invocable-only",
+    "context-engineering": "user-invocable-only",
+    "debugging-and-error-recovery": "user-invocable-only",
+    "dependency-upgrade": "user-invocable-only",
+    "deprecation-and-migration": "user-invocable-only",
+    "documentation-and-adrs": "user-invocable-only",
+    "doubt-driven-development": "user-invocable-only",
+    "frontend-ui-engineering": "user-invocable-only",
+    "git-workflow-and-versioning": "user-invocable-only",
+    "grill-peers": "user-invocable-only",
+    "handoff": "user-invocable-only",
+    "idea-refine": "user-invocable-only",
+    "incremental-implementation": "user-invocable-only",
+    "interview-me": "user-invocable-only",
+    "lets-vibe": "user-invocable-only",
+    "observability-and-instrumentation": "user-invocable-only",
+    "performance-optimization": "user-invocable-only",
+    "planning-and-task-breakdown": "user-invocable-only",
+    "progress-report": "user-invocable-only",
+    "review-vibe": "user-invocable-only",
+    "roadmap-review": "user-invocable-only",
+    "security-and-hardening": "user-invocable-only",
+    "shipping-and-launch": "user-invocable-only",
+    "source-driven-development": "user-invocable-only",
+    "spec-driven-development": "user-invocable-only",
+    "test-driven-development": "user-invocable-only",
+    "test-vibe": "user-invocable-only",
+    "using-agent-skills": "user-invocable-only",
+    "walkthrough": "user-invocable-only"
+  }
+}

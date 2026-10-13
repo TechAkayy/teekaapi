@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="retro-source-sha256" content="12189a135b2b1be895cf7f9985583eeb869955de3b57cffa08f7184d27e55d64">
+  <title>Teekaapi site roadmap</title>
+  <style>
+:root {
+  color-scheme: light;
+  --ink: #202428; --muted: #626a70; --line: #d8dddf; --soft: #f4f6f5;
+  --paper: #fff; --teal: #0f766e; --teal-dark: #0a5c56;
+  --green-soft: #e9f5ef; --coral: #c4513f; --gold: #8a6408; --gold-soft: #fbf5dd;
+}
+* { box-sizing: border-box; }
+html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0; max-width: 100%; overflow-x: clip; background: var(--paper); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 24px; line-height: 1.62;
+}
+a { color: var(--teal-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--coral); }
+.skip-link {
+  position: fixed; top: 8px; left: 8px; z-index: 20; transform: translateY(-160%);
+  padding: 8px 12px; background: var(--ink); color: #fff;
+}
+.skip-link:focus { transform: none; }
+.report-header { border-bottom: 1px solid var(--line); background: var(--soft); }
+.report-header-inner { max-width: 1240px; margin: 0 auto; padding: 46px 28px 34px; }
+.eyebrow { margin: 0 0 10px; font-size: 18px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.report-header h1 { margin: 0; font-size: 51px; line-height: 1.18; }
+.header-meta { margin: 14px 0 0; color: var(--muted); font-size: 21px; }
+.report-layout {
+  display: grid; grid-template-columns: 250px minmax(0, 900px); gap: 54px;
+  max-width: 1240px; margin: 0 auto; padding: 42px 28px 80px;
+}
+.report-layout.no-toc { grid-template-columns: minmax(0, 1fr); }
+.desktop-toc {
+  align-self: start; position: sticky; top: 24px; max-height: calc(100vh - 48px);
+  overflow-y: auto; padding-right: 8px;
+}
+.desktop-toc h2 { margin: 0 0 14px; font-size: 22.5px; }
+.toc-toggle {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+  padding: 6px 12px; border: 1px solid var(--line); border-radius: 5px;
+  background: var(--paper); color: var(--teal-dark); font: inherit; font-size: 19.5px; cursor: pointer;
+}
+.toc-toggle::before { content: "◀"; font-size: 10px; }
+body[data-toc="collapsed"] .toc-toggle::before { content: "▶"; }
+body[data-toc="collapsed"] .desktop-toc { display: none; }
+body[data-toc="collapsed"] .report-layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.desktop-toc ol { margin: 0; padding: 0; list-style: none; }
+.desktop-toc li { margin: 0; border-top: 1px solid var(--line); }
+.desktop-toc a {
+  display: grid; grid-template-columns: 30px 1fr; gap: 7px;
+  border-left: 3px solid transparent; padding: 8px 8px 8px 12px;
+  color: var(--muted); font-size: 19.5px; line-height: 1.28; text-decoration: none;
+}
+.desktop-toc .toc-level-2-link { padding-left: 22px; font-size: 18.75px; }
+.desktop-toc a[aria-current="location"] {
+  border-left-color: var(--coral); background: #eef6f4; color: var(--teal-dark); font-weight: 750;
+}
+.toc-index { color: var(--teal); font-variant-numeric: tabular-nums; }
+.mobile-toc { display: none; }
+main { min-width: 0; }
+main > section { scroll-margin-top: 24px; margin-top: 70px; }
+main > section:first-child { margin-top: 0; }
+main > section > h2 {
+  margin: 0 0 22px; padding-bottom: 10px; border-bottom: 3px solid var(--teal);
+  font-size: 45px; line-height: 1.2;
+}
+h3 { scroll-margin-top: 24px; margin: 40px 0 14px; color: var(--teal-dark); font-size: 31.5px; line-height: 1.28; }
+h4 { margin: 28px 0 10px; font-size: 24px; }
+p { margin: 14px 0; }
+ul, ol { margin: 14px 0; padding-left: 24px; }
+li { margin: 6px 0; }
+code {
+  background: var(--soft); padding: 1px 5px; border-radius: 3px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .88em;
+  overflow-wrap: anywhere;
+}
+pre {
+  max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere;
+  word-break: normal; overflow-x: auto; background: var(--soft);
+  border: 1px solid var(--line); padding: 16px; border-radius: 6px;
+}
+pre code { background: none; padding: 0; white-space: inherit; overflow-wrap: inherit; }
+blockquote { margin: 22px 0; padding: 14px 18px; background: var(--gold-soft); border-left: 4px solid var(--gold); color: #4a3a10; }
+blockquote p:first-child { margin-top: 0; }
+blockquote p:last-child { margin-bottom: 0; }
+.table-wrap { max-width: 100%; min-width: 0; overflow-x: auto; contain: inline-size; margin: 24px 0 28px; }
+table { width: 100%; max-width: 100%; table-layout: auto; margin: 0; border-collapse: collapse; font-size: 21px; }
+th, td {
+  padding: 9px 11px; border: 1px solid var(--line); text-align: left; vertical-align: top;
+  overflow-wrap: normal; word-break: normal; hyphens: none;
+}
+.whole-word { white-space: nowrap; }
+table.id-first th:first-child,
+table.id-first td:first-child {
+  white-space: nowrap; overflow-wrap: normal; word-break: normal;
+}
+td.slice-route {
+  white-space: nowrap; overflow-wrap: normal; word-break: normal;
+}
+table.dense { font-size: 19.5px; }
+table.dense th, table.dense td { padding: 6px 8px; }
+table.denser { font-size: 18.75px; }
+table.denser th, table.denser td { padding: 5px 6px; }
+th.nowrap {
+  white-space: normal; overflow-wrap: normal; word-break: normal; hyphens: none;
+}
+td.nowrap {
+  white-space: normal; overflow-wrap: anywhere; word-break: break-word; hyphens: none;
+}
+th.nowrap code, td.nowrap code,
+th a, td a, th code, td code {
+  white-space: normal; overflow-wrap: anywhere; word-break: break-word;
+}
+table.id-first th:first-child a,
+table.id-first th:first-child code,
+table.id-first td:first-child a,
+table.id-first td:first-child code {
+  white-space: nowrap; overflow-wrap: normal; word-break: normal;
+}
+th { background: #e8efec; color: #1e302d; }
+tbody tr:nth-child(even) { background: #f8f9f8; }
+tr.table-section-row th {
+  background: var(--green-soft); color: var(--teal-dark); text-align: left;
+  font-size: 22.5px; border-top: 3px solid var(--teal);
+}
+table.id-first tr.table-section-row th,
+table.id-first tr.table-section-row th a,
+table.id-first tr.table-section-row th code {
+  white-space: normal;
+}
+.align-right { text-align: right; }
+.align-center { text-align: center; }
+figure {
+  margin: 24px 0 28px; padding: 20px; background: var(--soft);
+  border: 1px solid var(--line); border-radius: 6px; overflow-x: clip;
+}
+figure svg { display: block; width: auto; max-width: 100%; height: auto; margin: 0 auto; }
+figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-align: center; }
+.mermaid-source { margin: 0 0 28px; font-size: 21px; }
+.mermaid-source summary { cursor: pointer; color: var(--muted); }
+.mermaid-source pre { margin-top: 10px; }
+.dg-box { fill: var(--paper); stroke: var(--line); }
+.dg-accent { fill: var(--green-soft); stroke: var(--teal); }
+.dg-gate { fill: var(--gold-soft); stroke: var(--gold); stroke-dasharray: 4 3; }
+.dg-label { fill: var(--ink); font: 600 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+.dg-sub { fill: var(--teal); font: 10px ui-monospace, SFMono-Regular, Menlo, monospace; }
+.dg-line { stroke: var(--muted); fill: none; }
+.report-footer { border-top: 1px solid var(--line); background: var(--soft); }
+.report-footer-inner { max-width: 1240px; margin: 0 auto; padding: 24px 28px; color: var(--muted); font-size: 21px; }
+@media (max-width: 980px) {
+  .report-header-inner { padding: 36px 20px 28px; }
+  .report-header h1 { font-size: 40.5px; }
+  .report-layout { display: block; padding: 30px 20px 64px; }
+  .desktop-toc, .toc-toggle { display: none; }
+  .mobile-toc {
+    display: block; margin: 0 0 34px; padding: 16px 18px;
+    background: var(--soft); border: 1px solid var(--line); border-radius: 6px;
+  }
+  .mobile-toc h2 { margin: 0 0 10px; font-size: 21px; }
+  .mobile-toc ol { margin: 0; padding: 0; list-style: none; }
+  .mobile-toc .toc-level-2 { display: none; }
+  .mobile-toc li { border-top: 1px solid var(--line); }
+  .mobile-toc a {
+    display: grid; grid-template-columns: 30px 1fr; gap: 6px;
+    padding: 7px 2px; color: var(--muted); font-size: 19.5px; text-decoration: none;
+  }
+  main > section { margin-top: 52px; }
+  main > section > h2 { font-size: 37.5px; }
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#report">Skip to report</a>
+  <header class="report-header">
+    <div class="report-header-inner">
+      <p class="eyebrow">Derived review view</p>
+      <h1 id="teekaapi-site-roadmap">Teekaapi site roadmap</h1>
+      <p class="header-meta">Markdown controls this pair. sha256 <code>12189a135b2b1be895cf7f9985583eeb869955de3b57cffa08f7184d27e55d64</code></p>
+      <button class="toc-toggle" type="button" aria-expanded="true" aria-controls="contents">Hide contents</button>
+    </div>
+  </header>
+  <div class="report-layout">
+    <nav class="desktop-toc" id="contents" aria-label="Contents">
+      <h2>Contents</h2>
+<ol class="toc-level toc-level-1">
+<li class="toc-group">
+<a class="toc-link toc-level-1-link" href="#brief"><span class="toc-index"></span><span class="toc-label">Brief</span></a>
+</li>
+<li class="toc-group">
+<a class="toc-link toc-level-1-link" href="#1-implementation-approach"><span class="toc-index">1</span><span class="toc-label">Implementation approach</span></a>
+</li>
+<li class="toc-group">
+<a class="toc-link toc-level-1-link" href="#2-delivery-catalogue"><span class="toc-index">2</span><span class="toc-label">Delivery catalogue</span></a>
+</li>
+<li class="toc-group">
+<a class="toc-link toc-level-1-link" href="#3-product-scope"><span class="toc-index">3</span><span class="toc-label">Product scope</span></a>
+<ol class="toc-level toc-level-2">
+<li><a class="toc-link toc-level-2-link" href="#choices-that-the-site-brief-leaves-open"><span class="toc-index"></span><span class="toc-label">Choices that the site brief leaves open</span></a></li>
+</ol>
+</li>
+<li class="toc-group">
+<a class="toc-link toc-level-1-link" href="#4-document-maintenance"><span class="toc-index">4</span><span class="toc-label">Document maintenance</span></a>
+</li>
+</ol>
+    </nav>
+    <main id="report">
+      <nav class="mobile-toc" aria-label="Contents">
+        <h2>Contents</h2>
+<ol class="toc-level toc-level-1">
+<li class="toc-group">
+<a class="toc-link toc-level-1-link" href="#brief"><span class="toc-index"></span><span class="toc-label">Brief</span></a>
+</li>
+<li class="toc-group">
+<a class="toc-link toc-level-1-link" href="#1-implementation-approach"><span class="toc-index">1</span><span class="toc-label">Implementation approach</span></a>
+</li>
+<li class="toc-group">
+<a class="toc-link toc-level-1-link" href="#2-delivery-catalogue"><span class="toc-index">2</span><span class="toc-label">Delivery catalogue</span></a>
+</li>
+<li class="toc-group">
+<a class="toc-link toc-level-1-link" href="#3-product-scope"><span class="toc-index">3</span><span class="toc-label">Product scope</span></a>
+<ol class="toc-level toc-level-2">
+<li><a class="toc-link toc-level-2-link" href="#choices-that-the-site-brief-leaves-open"><span class="toc-index"></span><span class="toc-label">Choices that the site brief leaves open</span></a></li>
+</ol>
+</li>
+<li class="toc-group">
+<a class="toc-link toc-level-1-link" href="#4-document-maintenance"><span class="toc-index">4</span><span class="toc-label">Document maintenance</span></a>
+</li>
+</ol>
+      </nav>
+<p><strong>Delivery state:</strong> No slice is closed. S01 is selected in the <a href="project-state.json">project pointer</a>; its specification and plan are agreed and no deliverable is built.</p>
+<p>This roadmap delivers the website of Teekaapi. The <a href="#brief">brief</a> below says what the project is; the numbered sections own the approach, the order of delivery and the acceptance of each slice.</p>
+<section class="report-section" id="brief-section">
+<h2 id="brief">Brief</h2>
+<p>Teekaapi is a South Indian cafe in Melbourne with specialty coffee and a fusion-food menu. Its website presents the cafe as a playful, premium neo-retro experience: bold, welcoming, a little nostalgic and distinctly modern.</p>
+<p>The <a href="../README.md">site brief</a> in the README of the repository owns the design concept, the colour palette, the typography, the page structure, the image rules, the interactions and the theme instruction. This roadmap does not repeat them; each slice reads the parts of the site brief that it builds.</p>
+<p><strong>Where the project is.</strong> The repository holds the site brief, the agent skills and this roadmap. No site code exists: no package, no framework and no page.</p>
+</section>
+<section class="report-section" id="1-implementation-approach-section">
+<h2 id="1-implementation-approach">1. Implementation approach</h2>
+<ul>
+<li><strong>One package.</strong> The site is <code>packages/app</code> in the pnpm workspace of this repository. The folder does not exist yet; S01 creates it.</li>
+<li><strong>Starting choice, confirmed in the specification of S01.</strong> Astro builds the pages and Tailwind CSS holds the theme, as the site brief asks for a Tailwind theme. A small interactive component is added only where a page needs state: the menu tabs, the gallery filters and the booking steps.</li>
+<li><strong>A static site.</strong> It has no server and stores nothing.</li>
+<li><strong>Theme tokens.</strong> The Tailwind theme names each colour and font of the site brief. A page uses those names and no raw colour value.</li>
+<li><strong>Built in from the start.</strong> Mobile-first layout, light and dark mode, reduced motion, focus states and WCAG contrast are part of each slice, not a later pass.</li>
+<li><strong>Placeholder content.</strong> The site uses placeholder photographs with the crops and treatments of the site brief, and placeholder menu items, prices, address and hours, until the cafe supplies its own. The plan of each slice names its placeholders.</li>
+<li><strong>A preview of booking.</strong> The booking steps send nothing and store nothing. The choice of a booking or ordering provider is outside this roadmap.</li>
+</ul>
+</section>
+<section class="report-section" id="2-delivery-catalogue-section">
+<h2 id="2-delivery-catalogue">2. Delivery catalogue</h2>
+<p>Each slice is delivered through Lets Vibe: a specification, a plan, a task list, the build, the checks, one independent review and a close. A slice gets its documents in <code>plans/&lt;slice-id&gt;/</code> when it is selected, and not before.</p>
+<div class="table-wrap">
+<table class="dense columns-6 id-first">
+<thead>
+<tr><th class="align-left nowrap">Slice</th><th class="align-left">Title</th><th class="align-left">Disposition</th><th class="align-left">Builds on</th><th class="align-left">Outcome</th><th class="align-left">Acceptance evidence</th></tr>
+</thead><tbody>
+<tr class="table-section-row"><th scope="colgroup" colspan="6"><strong>Phase 1 — The Teekaapi site</strong></th></tr>
+<tr><td class="align-left nowrap"><a href="S01/SPEC.md">S01</a></td><td class="align-left">Foundation and home page</td><td class="align-left">Selected, planned</td><td class="align-left">The site brief</td><td class="align-left">The Astro and Tailwind project in a new <code>packages/<wbr>app</code>; the theme with the palette and the fonts; the shared layout with the header, the footer, dark mode and reduced motion; the home page with its hero, highlights, signature drinks, fusion food teaser and social band</td><td class="align-left">The build passes; the home page works at phone, tablet and desktop widths in light and dark mode; contrast, focus order and reduced motion checked in a browser</td></tr>
+<tr><td class="align-left nowrap"><span class="whole-word">S02</span></td><td class="align-left">Menu and Our Story</td><td class="align-left">Planned</td><td class="align-left">S01</td><td class="align-left">The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits</td><td class="align-left">The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode</td></tr>
+<tr><td class="align-left nowrap"><span class="whole-word">S03</span></td><td class="align-left">Gallery, Visit Us and Order /<wbr> Book</td><td class="align-left">Planned</td><td class="align-left">S01</td><td class="align-left">The gallery with overlays and filters; the visit page with the address, hours, map, transport notes and action buttons; the order and booking preview in three steps</td><td class="align-left">The build passes; the filters and overlays work by keyboard and by touch; the booking preview states that it sends nothing; each page checked in light and dark mode</td></tr>
+</tbody></table></div>
+</section>
+<section class="report-section" id="3-product-scope-section">
+<h2 id="3-product-scope">3. Product scope</h2>
+<p><strong>In scope.</strong> The seven parts of the structure in the site brief: home, menu, our story, gallery, visit us, order and book, and the footer on each page.</p>
+<p><strong>Not in this roadmap.</strong> A real booking or ordering service, a content management system, a newsletter service behind the signup field, analytics, hosting and deployment, and the final photographs, menu and visit details of the cafe.</p>
+<div class="report-subsection">
+<h3 id="choices-that-the-site-brief-leaves-open">Choices that the site brief leaves open</h3>
+<p>The site brief gives two options in several places. Each one is a user-facing choice, so the agent asks the user under the <a href="../tooling/agents/plugins/vibe/skills/lets-vibe/references/addy-method-gates.md#ui-decision-consultation">UI decision consultation gate</a> and records the answer in the specification of the slice:</p>
+<ul>
+<li>the heading font, Space Grotesk or League Spartan; the body font, Inter or DM Sans; the script font, Pacifico or Dancing Script;</li>
+<li>segmented controls or tabs for the menu categories;</li>
+<li>a grid or a masonry layout for the gallery;</li>
+<li>a page or a modal for order and book;</li>
+<li>the provider of the embedded map on the visit page, which loads content from an outside service.</li>
+</ul>
+</div>
+</section>
+<section class="report-section" id="4-document-maintenance-section">
+<h2 id="4-document-maintenance">4. Document maintenance</h2>
+<p>The Markdown owns this roadmap; <code>roadmap.html</code> is generated from it. From the repository root:</p>
+<pre><code>
+pnpm roadmap
+
+pnpm roadmap:check
+
+</code></pre>
+<p><code>pnpm check</code> runs the checks of the agent skills and then the roadmap check. The site has no commands yet; S01 adds its build and its checks to the <code>check</code> script.</p>
+<p>Keep the brief at the top and the four numbered sections. A new slice gets its row at its place in the order of delivery. The project pointer owns the selection of the current slice; this roadmap does not start a slice, and it records no task, no commit and no evidence of a slice that has not run.</p>
+</section>
+    </main>
+  </div>
+  <footer class="report-footer">
+    <div class="report-footer-inner">Derived from the Markdown source. Regenerate after every change.</div>
+  </footer>
+  <script>
+(() => {
+  const headings = [...document.querySelectorAll('#report > .report-section > h2[id], #report .report-subsection > h3[id]')]
+  const toc = document.querySelector('.desktop-toc')
+  const links = [...document.querySelectorAll('.desktop-toc a[href^="#"], .mobile-toc a[href^="#"]')]
+  if (!headings.length || !links.length) return
+  let activeId = ''
+  let pending = false
+
+  const update = () => {
+    pending = false
+    let nextId = headings[0].id
+    const readingLine = Math.min(160, Math.max(96, window.innerHeight * 0.2))
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+      nextId = headings[headings.length - 1].id
+    } else {
+      for (const heading of headings) {
+        if (heading.getBoundingClientRect().top > readingLine) break
+        nextId = heading.id
+      }
+    }
+    if (nextId === activeId) return
+    activeId = nextId
+    for (const link of links) {
+      const matches = link.getAttribute('href') === '#' + activeId
+      if (matches) {
+        link.setAttribute('aria-current', 'location')
+        if (toc && toc.contains(link)) link.scrollIntoView({ block: 'nearest' })
+      } else link.removeAttribute('aria-current')
+    }
+  }
+  const schedule = () => {
+    if (pending) return
+    pending = true
+    requestAnimationFrame(update)
+  }
+  addEventListener('scroll', schedule, { passive: true })
+  addEventListener('resize', schedule)
+  update()
+
+  const toggle = document.querySelector('.toc-toggle')
+  if (!toggle) return
+  const key = 'retro-toc-collapsed'
+  const apply = (collapsed) => {
+    document.body.dataset.toc = collapsed ? 'collapsed' : 'expanded'
+    toggle.setAttribute('aria-expanded', String(!collapsed))
+    toggle.textContent = collapsed ? 'Show contents' : 'Hide contents'
+  }
+  let stored = null
+  try { stored = localStorage.getItem(key) } catch {}
+  apply(stored === '1')
+  toggle.addEventListener('click', () => {
+    const collapsed = document.body.dataset.toc !== 'collapsed'
+    apply(collapsed)
+    try { localStorage.setItem(key, collapsed ? '1' : '0') } catch {}
+    schedule()
+  })
+})()
+</script>
+</body>
+</html>

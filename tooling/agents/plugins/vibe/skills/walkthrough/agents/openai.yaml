@@ -1,0 +1,7 @@
+interface:
+  display_name: "Walkthrough"
+  short_description: "Explain a chosen subject in simple steps and visuals."
+  default_prompt: "Use $walkthrough to ask me what I want to be walked through, then explain it in Simplified Technical English with a small number of visuals."
+
+policy:
+  allow_implicit_invocation: false

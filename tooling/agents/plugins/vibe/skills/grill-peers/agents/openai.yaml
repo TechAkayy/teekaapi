@@ -1,0 +1,7 @@
+interface:
+  display_name: "Grill Peers"
+  short_description: "Investigate peer mechanisms with source evidence."
+  default_prompt: "Use $grill-peers to assess this peer and question against this project."
+
+policy:
+  allow_implicit_invocation: false

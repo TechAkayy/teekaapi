@@ -1,0 +1,20 @@
+{
+  "currentSlice": {
+    "id": "S01",
+    "parent": null,
+    "status": "in-progress"
+  },
+  "documents": {
+    "roadmap": "plans/roadmap.md",
+    "readingMap": null,
+    "spec": "plans/S01/SPEC.md",
+    "plan": "plans/S01/tasks/plan.md",
+    "tasks": "plans/S01/tasks/todo.md"
+  },
+  "execution": {
+    "mode": "supervised",
+    "scope": {
+      "slice": "S01"
+    }
+  }
+}

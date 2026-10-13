@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Vibe"
+  short_description: "Independently assess existing work with Addy."
+  default_prompt: "Use $review-vibe to independently review this work against its supplied spec and accepted instructions."
+
+policy:
+  allow_implicit_invocation: false

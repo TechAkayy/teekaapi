@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Planning And Task Breakdown"
+  short_description: "Apply the planning and task breakdown method."
+  default_prompt: "Use $planning-and-task-breakdown for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dependency Upgrade"
+  short_description: "Update dependencies with compatibility evidence."
+  default_prompt: "Use $dependency-upgrade for this bounded dependency update."
+
+policy:
+  allow_implicit_invocation: false

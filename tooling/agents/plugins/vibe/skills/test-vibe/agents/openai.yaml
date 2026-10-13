@@ -1,0 +1,7 @@
+interface:
+  display_name: "Test Vibe"
+  short_description: "Independently test existing behavior with Addy."
+  default_prompt: "Use $test-vibe to independently test this behavior against its supplied spec and accepted instructions."
+
+policy:
+  allow_implicit_invocation: false

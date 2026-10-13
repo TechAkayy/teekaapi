@@ -1,0 +1,15 @@
+{
+  "name": "teekaapi",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.10.0",
+  "engines": {
+    "node": "^22.18.0 || ^24.11.0"
+  },
+  "scripts": {
+    "check": "pnpm --dir tooling/agents run check && pnpm roadmap:check",
+    "roadmap": "node plans/render-roadmap.mjs --source plans/roadmap.md --output plans/roadmap.html",
+    "roadmap:check": "node plans/render-roadmap.mjs --source plans/roadmap.md --output plans/roadmap.html --check"
+  }
+}

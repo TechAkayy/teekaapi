@@ -1,0 +1,7 @@
+{
+  "outsideCommands": [
+    "git push\\b",
+    "gh (pr|release) (create|merge)\\b",
+    "(npm|pnpm|yarn) publish\\b"
+  ]
+}

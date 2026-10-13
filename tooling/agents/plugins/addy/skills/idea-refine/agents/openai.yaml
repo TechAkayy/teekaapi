@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Idea Refine"
+  short_description: "Apply the idea refine method."
+  default_prompt: "Use $idea-refine for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

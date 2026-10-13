@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Observability And Instrumentation"
+  short_description: "Apply the observability and instrumentation method."
+  default_prompt: "Use $observability-and-instrumentation for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

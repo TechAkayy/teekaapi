@@ -1,0 +1,7 @@
+interface:
+  display_name: "Handoff"
+  short_description: "Update records, check them, give a short prompt."
+  default_prompt: "Use $handoff to bring the records up to date, have an independent reviewer confirm a cold reader can continue, and give me a short prompt for the next session."
+
+policy:
+  allow_implicit_invocation: false

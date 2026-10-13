@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Security And Hardening"
+  short_description: "Apply the security and hardening method."
+  default_prompt: "Use $security-and-hardening for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

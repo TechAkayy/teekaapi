@@ -1,0 +1,3 @@
+# Paths that the record rules do not check, one for each line. A line that ends
+# with "/" covers a folder. List here only material from before the rules; see
+# the record rules in AGENTS.md. Only the owner of the repository adds a path.

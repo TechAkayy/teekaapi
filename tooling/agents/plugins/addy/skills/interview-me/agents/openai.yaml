@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Interview Me"
+  short_description: "Apply the interview me method."
+  default_prompt: "Use $interview-me for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

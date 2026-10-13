@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Code Simplification"
+  short_description: "Apply the code simplification method."
+  default_prompt: "Use $code-simplification for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

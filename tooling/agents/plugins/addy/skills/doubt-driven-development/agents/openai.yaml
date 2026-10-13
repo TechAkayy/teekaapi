@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Doubt Driven Development"
+  short_description: "Apply the doubt driven development method."
+  default_prompt: "Use $doubt-driven-development for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Frontend Ui Engineering"
+  short_description: "Apply the frontend ui engineering method."
+  default_prompt: "Use $frontend-ui-engineering for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

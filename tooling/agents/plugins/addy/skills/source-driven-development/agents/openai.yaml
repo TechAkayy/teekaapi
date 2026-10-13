@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Source Driven Development"
+  short_description: "Apply the source driven development method."
+  default_prompt: "Use $source-driven-development for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

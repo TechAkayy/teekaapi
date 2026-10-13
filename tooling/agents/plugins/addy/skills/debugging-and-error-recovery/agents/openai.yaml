@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Debugging And Error Recovery"
+  short_description: "Apply the debugging and error recovery method."
+  default_prompt: "Use $debugging-and-error-recovery for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

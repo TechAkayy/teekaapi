@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Incremental Implementation"
+  short_description: "Apply the incremental implementation method."
+  default_prompt: "Use $incremental-implementation for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

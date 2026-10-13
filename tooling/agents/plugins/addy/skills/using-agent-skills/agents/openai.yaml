@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Using Agent Skills"
+  short_description: "Apply the using agent skills method."
+  default_prompt: "Use $using-agent-skills for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

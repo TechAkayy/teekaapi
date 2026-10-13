@@ -1,0 +1,7 @@
+interface:
+  display_name: "Progress Report"
+  short_description: "Report current task progress and next steps."
+  default_prompt: "Use $progress-report to report current progress from structured task treatments and recorded evidence with uppercase status prefixes."
+
+policy:
+  allow_implicit_invocation: false

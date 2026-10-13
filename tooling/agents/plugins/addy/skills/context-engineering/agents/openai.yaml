@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Context Engineering"
+  short_description: "Apply the context engineering method."
+  default_prompt: "Use $context-engineering for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

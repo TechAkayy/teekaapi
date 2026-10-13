@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Git Workflow And Versioning"
+  short_description: "Apply the git workflow and versioning method."
+  default_prompt: "Use $git-workflow-and-versioning for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false

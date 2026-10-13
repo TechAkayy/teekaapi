@@ -1,0 +1,7 @@
+interface:
+  display_name: "Addy Test Driven Development"
+  short_description: "Apply the test driven development method."
+  default_prompt: "Use $test-driven-development for the relevant part of this task."
+
+policy:
+  allow_implicit_invocation: false
