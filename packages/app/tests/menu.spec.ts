@@ -85,6 +85,19 @@ test('the category bar stays in view, and each category is reached by pointer an
     await expect.poll(current).toBe(only(index));
   }
 
+  // After a choice, a scroll to the end of the page marks the last category, and a scroll back
+  // to the start marks the first one: an earlier choice does not hold the mark.
+  for (const index of [0, 1, 2]) {
+    await links.nth(index).click();
+    await expect.poll(current).toBe(only(index));
+    // The End key and the Home key are real scrolls by the visitor.
+    await page.keyboard.press('End');
+    await expect.poll(current).toBe(only(3));
+    await page.keyboard.press('Home');
+    await expect.poll(current).toBe(only(0));
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  }
+
   // By keyboard: Tab from the top of the page reaches each link, and Enter opens its category.
   // After Enter the browser moves the keyboard position into the category, so each link gets a fresh start.
   for (const [index, id] of ids.entries()) {
@@ -182,5 +195,29 @@ test.describe('with reduced motion', () => {
     const card = page.locator('[data-menu-special]');
     expect(await card.evaluate((el) => el.getAnimations().length)).toBe(0);
     await expect(card).not.toHaveCSS('box-shadow', 'none');
+  });
+});
+
+test.describe('in a window that is taller than the last categories', () => {
+  test.use({ viewport: { width: 1080, height: 1920 } });
+
+  test('the chosen category is marked, and a later scroll gives the mark back to the page', async ({ page }) => {
+    await page.goto('/menu/');
+    const links = page.locator('[data-category-link]');
+    const current = () => links.evaluateAll((all) => all.map((link) => (link.getAttribute('aria-current') === 'true' ? '1' : '0')).join(''));
+    for (const [index, mark] of [[2, '0010'], [1, '0100'], [3, '0001'], [2, '0010']] as const) {
+      await links.nth(index).click();
+      await expect.poll(current).toBe(mark);
+    }
+    await page.keyboard.press('Home');
+    await expect.poll(current).toBe('1000');
+    await page.keyboard.press('End');
+    await expect.poll(current).toBe('0001');
+  });
+
+  test('an address that names a category marks it', async ({ page }) => {
+    await page.goto('/menu/#bites');
+    const marks = () => page.locator('[data-category-link]').evaluateAll((all) => all.map((link) => (link.getAttribute('aria-current') === 'true' ? '1' : '0')).join(''));
+    await expect.poll(marks).toBe('0010');
   });
 });

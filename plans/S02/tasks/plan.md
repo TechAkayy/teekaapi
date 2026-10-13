@@ -69,11 +69,12 @@ The reviewer returned FIX on the candidate of the final proof, with nothing bloc
 
 - **S2-R1, should fix.** On a phone, a category link that took the keyboard focus could stay outside the bar, so its focus ring was not in view. A link that takes the keyboard focus is now brought into the middle of the bar. A test reaches each link with Tab and with Shift+Tab and checks that it is whole inside the bar.
 - **S2-R2, should fix.** The portraits had no offset shadow, and the task list said that they had. Each portrait frame now has an offset shadow, mint and orange in turn, and a test checks it.
-- **S2-R3, minor.** In a very tall window the page cannot scroll far enough, and the bar marked the last category in place of the chosen one. At the end of the page the chosen category now wins while it is in view.
+- **S2-R3, minor.** In a very tall window the page cannot scroll far enough, and the bar marked the last category in place of the chosen one. At the end of the page the category that the visitor has just chosen now wins while it is in view. S2-R6 below corrects the first form of this rule.
 - **S2-R4, minor.** Without scripts the first link stayed marked wherever the page was. No link is marked until the script runs.
 - **S2-R5, minor.** A stale comment in the header is corrected.
 - **Weak tests.** The bar test now presses each of the four links by pointer, more than one time and in a mixed order, reaches each one with Tab and opens it with Enter, and reads the mark at every 120 pixels of a scroll through the page. A test shows that the glow of the special card runs when motion is allowed. The test of the timeline line reads its length and its thickness.
 - **A fault of the first correction, found by the agent's own probe.** The first answer to S2-R1 moved a link on every focus. A press with a pointer also gives the focus, so a half-hidden link moved away under the pointer and the press missed it. The link now moves only for a keyboard focus, and the pointer test presses a half-hidden link.
+- **S2-R6, should fix, found at the second assessment.** The first correction of S2-R3 kept an old choice for too long: after a press of any link, a scroll to the end of the page no longer marked the last category. A choice now ends when the visitor scrolls by wheel, by finger or by key, and the page decides the mark again. The line that decides which category is in view also moved a little lower, clear of the place where a link puts a category; it had been on that place exactly. The tests press a link and then scroll to each end with the End and Home keys, and two tests run in a window taller than the last categories. A probe on 2026-10-13 with a real wheel at seven window sizes, from 375 by 812 to 1440 by 2560, gave the right mark after each press and at each end.
 - **Suggestions taken.** The heading over the portraits is “The craft and the room”, because no portrait shows a person. The text alternative of the room photograph says what the crop shows.
 - **Suggestions not taken.** The script lines and the headings of the two pages stay in their components; they state no fact about the cafe. When the first category is chosen from the top of the page, the bar rests a little below the top of the window.
 
@@ -87,7 +88,7 @@ All checks ran on Node 24.20.0 against the real local build, with no mock and no
 |---|---|
 | `pnpm check` from the root | Passed |
 | Type and template check of the site | Passed, with 0 errors, 0 warnings and 0 hints |
-| Browser tests: 52 tests, each at 375, 768 and 1280 pixels | 156 passed after the corrections of the review, 5 runs in a row. Before them, 144 of 144 passed in 4 runs. |
+| Browser tests: 54 tests, each at 375, 768 and 1280 pixels | 162 passed after the corrections of both assessments, 4 runs in a row. Before the review, 144 of 144 passed in 4 runs. |
 
 How the success criteria of the specification are proven:
 

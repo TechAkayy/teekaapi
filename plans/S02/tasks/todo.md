@@ -16,7 +16,7 @@ remaining:
 blockers:
   - None.
 verification:
-  - The build, the type check and 156 browser tests of the site pass.
+  - The build, the type check and 162 browser tests of the site pass.
 candidate:
   - The slice with D1 to D3 complete and the corrections of the review.
 steps:

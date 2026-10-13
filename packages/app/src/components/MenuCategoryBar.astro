@@ -47,6 +47,9 @@ import { categories } from '../content/menu';
 
   if (bar && scroller && links.length > 0) {
     let shown = -1;
+    // The category that the visitor chose with a link or with an address that names it.
+    // A scroll by the visitor ends the choice.
+    let chosen: number | null = null;
 
     // Brings a link into the middle of the bar, without a scroll of the page.
     const show = (link: HTMLElement): void => {
@@ -56,21 +59,21 @@ import { categories } from '../content/menu';
 
     // The category in view is the last one whose top has reached the bar.
     const sync = (): void => {
-      const line = bar.getBoundingClientRect().bottom + 24;
+      // The line sits a little below the place where a link puts the top of a category, so that
+      // a category that a link has just brought up counts as in view.
+      const line = bar.getBoundingClientRect().bottom + 48;
       let current = 0;
       sections.forEach((section, index) => {
         if (section.getBoundingClientRect().top <= line) current = index;
       });
-      // At the end of the page more than one category can be in view. The category that the
-      // visitor chose wins while it is in view; without a choice it is the last category.
+      // At the end of the page more than one category can be in view, and the page cannot scroll
+      // far enough to bring a late category up to the bar. The last category is then the one in
+      // view, unless the visitor has just chosen another one and has not scrolled since.
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
         const inView = (section: HTMLElement | undefined): boolean =>
           !!section && section.getBoundingClientRect().top < window.innerHeight;
-        const chosen = sections.findIndex((section) => `#${section.id}` === window.location.hash);
-        if (chosen > current && inView(sections[chosen])) current = chosen;
-        else if (chosen < 0 || chosen <= current) {
-          if (chosen < 0 && inView(sections.at(-1))) current = sections.length - 1;
-        }
+        if (chosen !== null && inView(sections[chosen])) current = Math.max(current, chosen);
+        else if (inView(sections.at(-1))) current = sections.length - 1;
       }
       if (current === shown) return;
       shown = current;
@@ -87,9 +90,26 @@ import { categories } from '../content/menu';
         if (link.matches(':focus-visible')) show(link);
       }),
     );
-    window.addEventListener('hashchange', () => {
+    // A move to a category by its link, or by an address that names it, is a choice.
+    const choose = (): void => {
+      const index = sections.findIndex((section) => `#${section.id}` === window.location.hash);
+      chosen = index < 0 ? null : index;
       shown = -1;
-      sync();
+      // The browser moves the page first; the place is read in the next frame.
+      requestAnimationFrame(sync);
+    };
+    window.addEventListener('hashchange', choose);
+    links.forEach((link) => link.addEventListener('click', () => requestAnimationFrame(choose)));
+    if (window.location.hash) choose();
+
+    // A scroll by wheel, by finger or by key ends the choice, and the page decides the mark again.
+    const release = (): void => {
+      chosen = null;
+    };
+    window.addEventListener('wheel', release, { passive: true });
+    window.addEventListener('touchmove', release, { passive: true });
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) release();
     });
 
     let waiting = false;
