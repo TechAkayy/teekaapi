@@ -26,7 +26,7 @@ The [site brief](../README.md) in the README of the repository owns the design c
 
 Each slice is delivered through Lets Vibe: a specification, a plan, a task list, the build, the checks, one independent review and a close. A slice gets its documents in `plans/<slice-id>/` when it is selected, and not before.
 
-**A chain of two slices.** On 2026-10-13 the owner authorized the delivery of S02 and then S03 in autonomous mode, with the user-facing choices given to the agent. By the word of the owner both slices are delivered in the session that delivered S01, one after the other, and not in a new session for each slice. Each slice is its own run with its own documents, checks, independent review and close. A slice outside this range does not inherit the mode.
+**The autonomous run of S02.** On 2026-10-13 the owner authorized the delivery of S02 and then S03 in autonomous mode, with the user-facing choices given to the agent, in the session that delivered S01. Later on the same day, during S02, the owner ended that run at the close of S02. S03 is therefore not started and does not inherit the mode: it needs a new word of the owner. The choices that the owner made for S03 on that day stand and are recorded in the scope section below.
 
 | Slice | Title | Disposition | Builds on | Outcome | Acceptance evidence |
 |---|---|---|---|---|---|
@@ -40,6 +40,14 @@ Each slice is delivered through Lets Vibe: a specification, a plan, a task list,
 **In scope.** The seven parts of the structure in the site brief: home, menu, our story, gallery, visit us, order and book, and the footer on each page.
 
 **Not in this roadmap.** A real booking or ordering service, a content management system, a newsletter service behind the signup field, analytics, hosting and deployment, and the final photographs, menu and visit details of the cafe.
+
+### Choices that the owner made for S03
+
+The owner made these choices on 2026-10-13, before S03 was planned. The specification of S03 takes them up when the slice starts.
+
+- **Map.** The visit page gets a map card that the site draws itself, with the Teekaapi marker and a button that opens the maps application of the visitor. No map is embedded, and nothing loads from another host.
+- **Facts of the cafe.** The address, the hours and the phone number are shown as “to be confirmed” until the cafe supplies them. No value is invented.
+- **Other content.** Sample content, marked as samples in the content files.
 
 ### Choices that the site brief leaves open
 

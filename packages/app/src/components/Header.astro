@@ -104,7 +104,7 @@ import ThemeToggle from './ThemeToggle.astro';
 
     button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
 
-    // A link in the panel goes to its section and closes the panel.
+    // A link in the panel goes to its page and closes the panel.
     nav.addEventListener('click', (event) => {
       if (event.target instanceof Element && event.target.closest('a')) setOpen(false);
     });

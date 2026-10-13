@@ -43,7 +43,7 @@ The agent adds each choice here as it makes it, and gives the list to the owner 
 - **Sample menu.** Twenty-two items in four categories, with prices in dollars, and the special “Ghee Roast Dosa Waffle”. All of it is sample content.
 - **Story narrative.** Three short parts side by side from the tablet width: where it comes from, why Melbourne, how we cook and pour. All of it is sample text, with no year, no founder and no named person.
 - **Timeline.** Four milestones without years, each with a two-tone Phosphor icon in an orange disc, joined by a dotted line: down the side on a phone, across from the tablet width.
-- **Portraits.** Three square photographs with one square corner, a dark border and grain, with a script caption: a hand that holds a cup, a steel tumbler, and a bright corner of a room. No portrait shows a face.
+- **Portraits.** Three square photographs with one square corner, a dark border, an offset shadow and grain, under the heading “The craft and the room”, with a script caption: a hand that holds a cup, a steel tumbler, and a bright corner of a room. No portrait shows a face.
 - **Navigation.** The header and the footer list Menu and Our Story. The three links to the sections of the home page are gone from both; the logo leads home. The link of the current page keeps its Fusion Pink underline.
 - **“View Menu”.** The button of the home page now opens the menu page. The signature drinks stay on the home page as a taste of it.
 - **Page words.** The script line “Pull up a chair” and the line “Specialty coffee and fusion food, from the first cup to the last bite.”
@@ -63,6 +63,20 @@ The agent adds each choice here as it makes it, and gives the list to the owner 
 - **A test that measures a layout waits for the entry animation.** A part slides into place as it enters the view, so a test reads positions only after the entry marks are gone.
 - **The tests of the first slice that named the old links were changed** to the new links, with the same assertions.
 
+## Findings of the independent review, and their corrections
+
+The reviewer returned FIX on the candidate of the final proof, with nothing blocking. Each finding keeps its identifier.
+
+- **S2-R1, should fix.** On a phone, a category link that took the keyboard focus could stay outside the bar, so its focus ring was not in view. A link that takes the keyboard focus is now brought into the middle of the bar. A test reaches each link with Tab and with Shift+Tab and checks that it is whole inside the bar.
+- **S2-R2, should fix.** The portraits had no offset shadow, and the task list said that they had. Each portrait frame now has an offset shadow, mint and orange in turn, and a test checks it.
+- **S2-R3, minor.** In a very tall window the page cannot scroll far enough, and the bar marked the last category in place of the chosen one. At the end of the page the chosen category now wins while it is in view.
+- **S2-R4, minor.** Without scripts the first link stayed marked wherever the page was. No link is marked until the script runs.
+- **S2-R5, minor.** A stale comment in the header is corrected.
+- **Weak tests.** The bar test now presses each of the four links by pointer, more than one time and in a mixed order, reaches each one with Tab and opens it with Enter, and reads the mark at every 120 pixels of a scroll through the page. A test shows that the glow of the special card runs when motion is allowed. The test of the timeline line reads its length and its thickness.
+- **A fault of the first correction, found by the agent's own probe.** The first answer to S2-R1 moved a link on every focus. A press with a pointer also gives the focus, so a half-hidden link moved away under the pointer and the press missed it. The link now moves only for a keyboard focus, and the pointer test presses a half-hidden link.
+- **Suggestions taken.** The heading over the portraits is “The craft and the room”, because no portrait shows a person. The text alternative of the room photograph says what the crop shows.
+- **Suggestions not taken.** The script lines and the headings of the two pages stay in their components; they state no fact about the cafe. When the first category is chosen from the top of the page, the bar rests a little below the top of the window.
+
 ## Verification record
 
 ### Final proof, 2026-10-13
@@ -73,7 +87,7 @@ All checks ran on Node 24.20.0 against the real local build, with no mock and no
 |---|---|
 | `pnpm check` from the root | Passed |
 | Type and template check of the site | Passed, with 0 errors, 0 warnings and 0 hints |
-| Browser tests: 48 tests, each at 375, 768 and 1280 pixels | 144 passed, and 144 passed again in 3 more runs |
+| Browser tests: 52 tests, each at 375, 768 and 1280 pixels | 156 passed after the corrections of the review, 5 runs in a row. Before them, 144 of 144 passed in 4 runs. |
 
 How the success criteria of the specification are proven:
 
@@ -81,7 +95,7 @@ How the success criteria of the specification are proven:
 |---|---|
 | 1. The check passes with the tests of both slices | The first row above |
 | 2. The menu page and its parts | `tests/menu.spec.ts` |
-| 3. The category bar | `tests/menu.spec.ts`: by pointer, by keyboard, the mark after a scroll to each end. Touch was not tested with a real finger; the bar is plain links. |
+| 3. The category bar | `tests/menu.spec.ts`: each of the four links by pointer and by Tab and Enter, the mark at every 120 pixels of a scroll, and the keyboard focus inside the bar. A probe on 2026-10-13 tapped each link with an emulated touch at 320, 375, 414 and 600 pixels, and each tap marked its category. No real finger tested it. |
 | 4. The story page and its parts | `tests/story.spec.ts` |
 | 5. No sideways scroll; both modes | `tests/menu.spec.ts`, `tests/story.spec.ts`, `tests/a11y.spec.ts` |
 | 6. No accessibility violation in either mode | `tests/a11y.spec.ts` |

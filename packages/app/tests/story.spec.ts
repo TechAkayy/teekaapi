@@ -54,6 +54,8 @@ test('the portraits are three or four square photographs with captions and text 
     await expect(figure.locator('figcaption')).toHaveText(/.+/);
     const box = await image.evaluate((el) => el.getBoundingClientRect().toJSON());
     expect(Math.abs(box.width - box.height)).toBeLessThan(1);
+    // The frame has the offset shadow of the site brief.
+    await expect(figure.locator('[data-portrait-frame]')).not.toHaveCSS('box-shadow', 'none');
   }
 });
 
@@ -66,9 +68,18 @@ test('the joining line of the timeline can be seen in light and in dark mode', a
       const section = step?.closest('section');
       if (!step || !section) return null;
       const line = getComputedStyle(step, '::before');
-      return { line: line.borderLeftWidth !== '0px' ? line.borderLeftColor : line.borderTopColor, surface: getComputedStyle(section).backgroundColor };
+      const down = line.borderLeftWidth !== '0px';
+      return {
+        line: down ? line.borderLeftColor : line.borderTopColor,
+        surface: getComputedStyle(section).backgroundColor,
+        // The length of the line: its height when it runs down, its width when it runs across.
+        length: parseFloat(down ? line.height : line.width),
+        thickness: parseFloat(down ? line.borderLeftWidth : line.borderTopWidth),
+      };
     });
     expect(colours).not.toBeNull();
+    expect(colours?.length).toBeGreaterThan(20);
+    expect(colours?.thickness).toBeGreaterThanOrEqual(2);
     expect(colours?.line).not.toBe(colours?.surface);
     // Light mode has a dark line on a light surface; dark mode has a light line on a dark surface.
     expect(colours?.line).toBe(scheme === 'light' ? 'rgb(27, 21, 18)' : 'rgb(250, 250, 250)');

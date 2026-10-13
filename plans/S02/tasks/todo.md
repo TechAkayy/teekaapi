@@ -4,8 +4,8 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S02
-current: The final proof is done. An independent reviewer assesses the slice.
-next: The agent corrects the findings of the review. Then it closes the slice and gives the owner its choices.
+current: The corrections of the review are done. The reviewer assesses them now.
+next: If the reviewer passes the slice, the agent closes it and stops. S03 is not started.
 completed:
   - The owner chose the mode, the content and the user-facing choices for this slice.
   - D1 is done. The menu page shows the sample menu, the special card and the category bar.
@@ -16,9 +16,9 @@ remaining:
 blockers:
   - None.
 verification:
-  - The build, the type check and 144 browser tests of the site pass.
+  - The build, the type check and 156 browser tests of the site pass.
 candidate:
-  - The slice with D1 to D3 complete.
+  - The slice with D1 to D3 complete and the corrections of the review.
 steps:
   - id: 1
     name: Slice preflight
@@ -75,7 +75,7 @@ steps:
     name: Material corrections and contract updates
     class: substantive
     weight: 0
-    status: pending
+    status: complete
   - id: 8
     name: Final proof and freeze
     class: substantive

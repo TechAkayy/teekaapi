@@ -2,7 +2,8 @@
 import { categories } from '../content/menu';
 ---
 
-{/* The bar stays at the top of the window during scroll. It is a list of links, so it works without scripts. */}
+{/* The bar stays at the top of the window during scroll. It is a list of links, so it works without scripts.
+    The script marks the category in view; without scripts no link is marked. */}
 <nav
   data-category-bar
   aria-label="Menu categories"
@@ -11,12 +12,11 @@ import { categories } from '../content/menu';
   <div class="mx-auto max-w-6xl px-4 md:px-6">
     <ul data-category-scroller class="category-scroller -mx-4 flex gap-2 overflow-x-auto px-4 py-3 md:mx-0 md:px-0">
       {
-        categories.map((category, index) => (
+        categories.map((category) => (
           <li class="shrink-0">
             <a
               href={`#${category.id}`}
               data-category-link
-              aria-current={index === 0 ? 'true' : 'false'}
               class="category-link block rounded-full border-2 border-espresso-noir px-4 py-2 font-heading font-semibold text-espresso-noir no-underline dark:border-text-light dark:text-text-light"
             >
               {category.name}
@@ -48,6 +48,12 @@ import { categories } from '../content/menu';
   if (bar && scroller && links.length > 0) {
     let shown = -1;
 
+    // Brings a link into the middle of the bar, without a scroll of the page.
+    const show = (link: HTMLElement): void => {
+      const target = link.offsetLeft - scroller.offsetLeft - (scroller.clientWidth - link.offsetWidth) / 2;
+      scroller.scrollTo({ left: Math.max(0, target), behavior: 'instant' });
+    };
+
     // The category in view is the last one whose top has reached the bar.
     const sync = (): void => {
       const line = bar.getBoundingClientRect().bottom + 24;
@@ -55,21 +61,36 @@ import { categories } from '../content/menu';
       sections.forEach((section, index) => {
         if (section.getBoundingClientRect().top <= line) current = index;
       });
-      // At the end of the page the last category is the one in view.
+      // At the end of the page more than one category can be in view. The category that the
+      // visitor chose wins while it is in view; without a choice it is the last category.
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
-        const last = sections.at(-1);
-        if (last && last.getBoundingClientRect().top < window.innerHeight) current = sections.length - 1;
+        const inView = (section: HTMLElement | undefined): boolean =>
+          !!section && section.getBoundingClientRect().top < window.innerHeight;
+        const chosen = sections.findIndex((section) => `#${section.id}` === window.location.hash);
+        if (chosen > current && inView(sections[chosen])) current = chosen;
+        else if (chosen < 0 || chosen <= current) {
+          if (chosen < 0 && inView(sections.at(-1))) current = sections.length - 1;
+        }
       }
       if (current === shown) return;
       shown = current;
       links.forEach((link, index) => link.setAttribute('aria-current', String(index === current)));
-      // The marked link stays in view inside the bar, without a scroll of the page.
+      // The marked link stays in view inside the bar, unless the keyboard focus is in the bar.
       const link = links[current];
-      if (link) {
-        const target = link.offsetLeft - scroller.offsetLeft - (scroller.clientWidth - link.offsetWidth) / 2;
-        scroller.scrollTo({ left: Math.max(0, target), behavior: 'instant' });
-      }
+      if (link && !scroller.contains(document.activeElement)) show(link);
     };
+
+    // A link that takes the keyboard focus is brought into view, so that its focus ring can be seen.
+    // A link that a pointer presses stays where it is: if it moved under the pointer, the press would miss it.
+    links.forEach((link) =>
+      link.addEventListener('focus', () => {
+        if (link.matches(':focus-visible')) show(link);
+      }),
+    );
+    window.addEventListener('hashchange', () => {
+      shown = -1;
+      sync();
+    });
 
     let waiting = false;
     window.addEventListener(

@@ -8,14 +8,22 @@ const positions = { center: 'object-center', top: 'object-top', bottom: 'object-
 
 <section class="py-16 md:py-24" aria-labelledby="portraits-heading">
   <div class="mx-auto max-w-6xl px-4 md:px-6">
-    <SectionHeading id="portraits-heading" flourish="Behind the counter">The people and the place</SectionHeading>
+    <SectionHeading id="portraits-heading" flourish="Behind the counter">The craft and the room</SectionHeading>
 
     <ul data-portraits class="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
       {
         portraits.map((portrait, index) => (
           <li data-reveal>
             <figure>
-              <div class="relative mb-3 mr-3 overflow-hidden rounded-[2rem] rounded-tr-none border-4 border-espresso-noir dark:border-text-light">
+              <div
+                data-portrait-frame
+                class:list={[
+                  'relative mb-5 mr-3 overflow-hidden rounded-[2rem] rounded-tr-none border-4 border-espresso-noir dark:border-text-light',
+                  index % 2 === 0
+                    ? 'shadow-[10px_10px_0_0_var(--color-mint-kulfi)]'
+                    : 'shadow-[10px_10px_0_0_var(--color-teekaapi-orange)]',
+                ]}
+              >
                 <Image
                   src={portrait.image}
                   alt={portrait.alt}

@@ -61,5 +61,5 @@ export interface Portrait {
 export const portraits: Portrait[] = [
   { image: storyHands, alt: 'A hand holds a cup while milk is poured into the coffee.', caption: 'Every cup poured by hand', position: 'center', sample: true },
   { image: storyTumbler, alt: 'A steel tumbler of filter coffee on a dark counter.', caption: 'The tumbler that started it', position: 'center', sample: true },
-  { image: storyRoom, alt: 'Green vines hang over a bright wall above a timber bench.', caption: 'A room made for staying', position: 'top', sample: true },
+  { image: storyRoom, alt: 'Green vines hang from timber shelves over a bright wall.', caption: 'A room made for staying', position: 'top', sample: true },
 ];

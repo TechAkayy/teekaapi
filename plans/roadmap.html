@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="retro-source-sha256" content="e9c6ecebfed7528a5e9ec67b7834676810b613dd0006d1fd11dfd8d18c3f9f02">
+  <meta name="retro-source-sha256" content="34f2d9eeb77d9c18fc3a44f234b5e7bbbd57da5ffef88dd462a43a22b188d18a">
   <title>Teekaapi site roadmap</title>
   <style>
 :root {
@@ -182,7 +182,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
     <div class="report-header-inner">
       <p class="eyebrow">Derived review view</p>
       <h1 id="teekaapi-site-roadmap">Teekaapi site roadmap</h1>
-      <p class="header-meta">Markdown controls this pair. sha256 <code>e9c6ecebfed7528a5e9ec67b7834676810b613dd0006d1fd11dfd8d18c3f9f02</code></p>
+      <p class="header-meta">Markdown controls this pair. sha256 <code>34f2d9eeb77d9c18fc3a44f234b5e7bbbd57da5ffef88dd462a43a22b188d18a</code></p>
       <button class="toc-toggle" type="button" aria-expanded="true" aria-controls="contents">Hide contents</button>
     </div>
   </header>
@@ -202,6 +202,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 <li class="toc-group">
 <a class="toc-link toc-level-1-link" href="#3-product-scope"><span class="toc-index">3</span><span class="toc-label">Product scope</span></a>
 <ol class="toc-level toc-level-2">
+<li><a class="toc-link toc-level-2-link" href="#choices-that-the-owner-made-for-s03"><span class="toc-index"></span><span class="toc-label">Choices that the owner made for S03</span></a></li>
 <li><a class="toc-link toc-level-2-link" href="#choices-that-the-site-brief-leaves-open"><span class="toc-index"></span><span class="toc-label">Choices that the site brief leaves open</span></a></li>
 </ol>
 </li>
@@ -226,6 +227,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 <li class="toc-group">
 <a class="toc-link toc-level-1-link" href="#3-product-scope"><span class="toc-index">3</span><span class="toc-label">Product scope</span></a>
 <ol class="toc-level toc-level-2">
+<li><a class="toc-link toc-level-2-link" href="#choices-that-the-owner-made-for-s03"><span class="toc-index"></span><span class="toc-label">Choices that the owner made for S03</span></a></li>
 <li><a class="toc-link toc-level-2-link" href="#choices-that-the-site-brief-leaves-open"><span class="toc-index"></span><span class="toc-label">Choices that the site brief leaves open</span></a></li>
 </ol>
 </li>
@@ -257,7 +259,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 <section class="report-section" id="2-delivery-catalogue-section">
 <h2 id="2-delivery-catalogue">2. Delivery catalogue</h2>
 <p>Each slice is delivered through Lets Vibe: a specification, a plan, a task list, the build, the checks, one independent review and a close. A slice gets its documents in <code>plans/&lt;slice-id&gt;/</code> when it is selected, and not before.</p>
-<p><strong>A chain of two slices.</strong> On 2026-10-13 the owner authorized the delivery of S02 and then S03 in autonomous mode, with the user-facing choices given to the agent. By the word of the owner both slices are delivered in the session that delivered S01, one after the other, and not in a new session for each slice. Each slice is its own run with its own documents, checks, independent review and close. A slice outside this range does not inherit the mode.</p>
+<p><strong>The autonomous run of S02.</strong> On 2026-10-13 the owner authorized the delivery of S02 and then S03 in autonomous mode, with the user-facing choices given to the agent, in the session that delivered S01. Later on the same day, during S02, the owner ended that run at the close of S02. S03 is therefore not started and does not inherit the mode: it needs a new word of the owner. The choices that the owner made for S03 on that day stand and are recorded in the scope section below.</p>
 <div class="table-wrap">
 <table class="dense columns-6 id-first">
 <thead>
@@ -273,6 +275,15 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 <h2 id="3-product-scope">3. Product scope</h2>
 <p><strong>In scope.</strong> The seven parts of the structure in the site brief: home, menu, our story, gallery, visit us, order and book, and the footer on each page.</p>
 <p><strong>Not in this roadmap.</strong> A real booking or ordering service, a content management system, a newsletter service behind the signup field, analytics, hosting and deployment, and the final photographs, menu and visit details of the cafe.</p>
+<div class="report-subsection">
+<h3 id="choices-that-the-owner-made-for-s03">Choices that the owner made for S03</h3>
+<p>The owner made these choices on 2026-10-13, before S03 was planned. The specification of S03 takes them up when the slice starts.</p>
+<ul>
+<li><strong>Map.</strong> The visit page gets a map card that the site draws itself, with the Teekaapi marker and a button that opens the maps application of the visitor. No map is embedded, and nothing loads from another host.</li>
+<li><strong>Facts of the cafe.</strong> The address, the hours and the phone number are shown as “to be confirmed” until the cafe supplies them. No value is invented.</li>
+<li><strong>Other content.</strong> Sample content, marked as samples in the content files.</li>
+</ul>
+</div>
 <div class="report-subsection">
 <h3 id="choices-that-the-site-brief-leaves-open">Choices that the site brief leaves open</h3>
 <p>The site brief gives two options in several places. Each one is a user-facing choice, so the agent asks the user under the <a href="../tooling/agents/plugins/vibe/skills/lets-vibe/references/addy-method-gates.md#ui-decision-consultation">UI decision consultation gate</a> and records the answer in the specification of the slice:</p>
