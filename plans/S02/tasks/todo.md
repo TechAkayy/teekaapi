@@ -4,19 +4,20 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S02
-current: The slice is started. No deliverable is in work.
+current: I am building D2. I write the sample story and choose its photographs.
 next: The agent builds D1 to D3 and closes the slice. The owner gets the list of choices at the close.
 completed:
   - The owner chose the mode, the content and the user-facing choices for this slice.
+  - D1 is done. The menu page shows the sample menu, the special card and the category bar.
 remaining:
-  - The 3 deliverables, D1 to D3.
+  - The 2 deliverables D2 and D3.
   - The final proof, the independent review and the close.
 blockers:
   - None.
 verification:
-  - The checks of the repository pass before the first change of this slice.
+  - The build, the type check and 102 browser tests of the site pass.
 candidate:
-  - The slice start. It holds the specification, the plan, the task list and this report.
+  - D1 is committed. The changes of D2 are not committed.
 steps:
   - id: 1
     name: Slice preflight
@@ -52,15 +53,15 @@ steps:
         name: "Menu page"
         weight: 40
         children:
-          - { id: d1-t1, task: 1, weight: 8, status: pending }
-          - { id: d1-t2, task: 2, weight: 14, status: pending }
-          - { id: d1-t3, task: 3, weight: 12, status: pending }
-          - { id: d1-t4, task: 4, weight: 6, status: pending }
+          - { id: d1-t1, task: 1, weight: 8, status: complete }
+          - { id: d1-t2, task: 2, weight: 14, status: complete }
+          - { id: d1-t3, task: 3, weight: 12, status: complete }
+          - { id: d1-t4, task: 4, weight: 6, status: complete }
       - id: D2
         name: "Story page"
         weight: 25
         children:
-          - { id: d2-t5, task: 5, weight: 8, status: pending }
+          - { id: d2-t5, task: 5, weight: 8, status: active }
           - { id: d2-t6, task: 6, weight: 10, status: pending }
           - { id: d2-t7, task: 7, weight: 7, status: pending }
       - id: D3
@@ -100,18 +101,18 @@ The owner gave the agent the weights with the user-facing choices on 2026-10-13;
 
 ## Task 1 — Write the sample menu as data
 
-- [ ] Add `src/content/menu.ts`: typed categories, groups and items with a name, a description, a price, dietary marks and the sample field; the special; the dietary key.
-- [ ] Give each of the four categories of the site brief at least two groups.
+- [x] Add `src/content/menu.ts`: typed categories, groups and items with a name, a description, a price, dietary marks and the sample field; the special; the dietary key.
+- [x] Give each of the four categories of the site brief at least two groups.
 
 **Acceptance:** the data type-checks; each entry is marked as a sample.
 **Verify:** `pnpm --dir packages/app check`.
 
 ## Task 2 — Build the menu page with its categories and items
 
-- [ ] Add `src/pages/menu.astro` on the shared layout with a title and a description.
-- [ ] Add components for a category, a group and an item, with the dotted leader between the name and the price.
-- [ ] Add the dietary marks with a letter and a text alternative, and the key.
-- [ ] Add browser tests of the content at the three widths.
+- [x] Add `src/pages/menu.astro` on the shared layout with a title and a description.
+- [x] Add components for a category, a group and an item, with the dotted leader between the name and the price.
+- [x] Add the dietary marks with a letter and a text alternative, and the key.
+- [x] Add browser tests of the content at the three widths.
 
 **Acceptance:** success criterion 2 without the bar and the special; no sideways scroll.
 **Verify:** `pnpm --dir packages/app test`.
@@ -119,10 +120,10 @@ The owner gave the agent the weights with the user-facing choices on 2026-10-13;
 
 ## Task 3 — Add the category bar that stays in view
 
-- [ ] Add the bar as a list of links to the categories, fixed to the top of the window during scroll, with a sideways scroll of its own on a narrow screen.
-- [ ] Mark the category in view with `aria-current`, from the scroll position.
-- [ ] Keep a category clear of the bar when the page moves to it.
-- [ ] Add browser tests: the bar stays in view; a choice by keyboard and by pointer brings its category into view; the mark follows the scroll.
+- [x] Add the bar as a list of links to the categories, fixed to the top of the window during scroll, with a sideways scroll of its own on a narrow screen.
+- [x] Mark the category in view with `aria-current`, from the scroll position.
+- [x] Keep a category clear of the bar when the page moves to it.
+- [x] Add browser tests: the bar stays in view; a choice by keyboard and by pointer brings its category into view; the mark follows the scroll.
 
 **Acceptance:** success criterion 3.
 **Verify:** the browser tests.
@@ -130,8 +131,8 @@ The owner gave the agent the weights with the user-facing choices on 2026-10-13;
 
 ## Task 4 — Add the special card
 
-- [ ] Add the card at the top of the page from the data, with the glow under `motion-safe`.
-- [ ] Add a browser test that the card comes before the first category and that the glow does not run with reduced motion.
+- [x] Add the card at the top of the page from the data, with the glow under `motion-safe`.
+- [x] Add a browser test that the card comes before the first category and that the glow does not run with reduced motion.
 
 **Acceptance:** the card is first; the glow is decoration and is off for reduced motion.
 **Verify:** the browser tests.

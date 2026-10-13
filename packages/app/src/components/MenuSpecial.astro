@@ -1,0 +1,38 @@
+---
+import { formatPrice, special } from '../content/menu';
+import DietaryMarks from './DietaryMarks.astro';
+---
+
+<aside
+  data-menu-special
+  aria-labelledby="special-heading"
+  class="special relative rounded-[2rem] border-4 border-espresso-noir bg-teekaapi-orange p-6 text-espresso-noir md:p-8"
+>
+  <p class="font-script text-2xl">{special.label}</p>
+  <div class="mt-1 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+    <h2 id="special-heading" class="text-3xl tracking-tight text-espresso-noir md:text-4xl">{special.name}</h2>
+    <p class="font-heading text-2xl font-bold">{formatPrice(special.price)}</p>
+  </div>
+  <p class="mt-2 max-w-prose text-lg">{special.description}</p>
+  <div class="mt-3"><DietaryMarks marks={special.marks} /></div>
+</aside>
+
+<style>
+  /* A soft glow that breathes slowly. It is decoration, and it is off for reduced motion. */
+  .special {
+    box-shadow: 0 0 2.5rem 0 color-mix(in srgb, var(--color-teekaapi-orange) 55%, transparent);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .special {
+      animation: special-glow 3.2s ease-in-out infinite alternate;
+    }
+  }
+  @keyframes special-glow {
+    from {
+      box-shadow: 0 0 1.5rem 0 color-mix(in srgb, var(--color-teekaapi-orange) 45%, transparent);
+    }
+    to {
+      box-shadow: 0 0 3.5rem 0.5rem color-mix(in srgb, var(--color-fusion-pink) 55%, transparent);
+    }
+  }
+</style>

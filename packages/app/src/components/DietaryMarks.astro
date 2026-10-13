@@ -1,0 +1,29 @@
+---
+import { dietaryKey, type DietaryMark } from '../content/menu';
+
+interface Props {
+  marks: DietaryMark[];
+}
+
+const { marks } = Astro.props;
+const meaning = (mark: DietaryMark): string => dietaryKey.find((entry) => entry.mark === mark)?.meaning ?? mark;
+---
+
+{
+  marks.length > 0 && (
+    <ul class="flex flex-wrap gap-1" aria-label="Dietary marks">
+      {marks.map((mark) => (
+        <li>
+          <span
+            role="img"
+            aria-label={meaning(mark)}
+            title={meaning(mark)}
+            class="inline-grid h-6 min-w-6 place-items-center rounded-full bg-mint-kulfi px-1.5 text-xs font-bold text-espresso-noir"
+          >
+            {mark}
+          </span>
+        </li>
+      ))}
+    </ul>
+  )
+}

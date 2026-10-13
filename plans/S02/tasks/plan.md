@@ -36,6 +36,13 @@ The owner gave the agent the weights with the user-facing choices on 2026-10-13.
 
 The agent adds each choice here as it makes it, and gives the list to the owner at the close.
 
+- **Menu categories.** A segmented bar of four pills, not tabs. Every category is on one long page; a pill moves the page to its category, and the pill of the category in view is filled. On a phone the bar scrolls sideways inside itself.
+- **Menu layout.** Each category has two groups, side by side from the tablet width. Every second category sits on the alternate surface. An item has its name, a dotted leader, its price, one line of description and its dietary marks.
+- **Dietary marks.** Mint Kulfi discs with a letter: V, VG, GF and S, with a key at the foot of the page.
+- **Special card.** A Teekaapi Orange card with a dark border above the bar, with a glow that moves between orange and pink.
+- **Sample menu.** Twenty-two items in four categories, with prices in dollars, and the special “Ghee Roast Dosa Waffle”. All of it is sample content.
+- **Page words.** The script line “Pull up a chair” and the line “Specialty coffee and fusion food, from the first cup to the last bite.”
+
 ## Risks
 
 | Risk | Effect | Answer |

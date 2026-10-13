@@ -1,0 +1,20 @@
+---
+import { formatPrice, type MenuItem } from '../content/menu';
+import DietaryMarks from './DietaryMarks.astro';
+
+interface Props {
+  item: MenuItem;
+}
+
+const { item } = Astro.props;
+---
+
+<li data-menu-item data-reveal class="lift rounded-2xl px-3 py-3 md:px-4">
+  <div class="flex items-baseline gap-3">
+    <h4 class="font-heading text-lg font-semibold text-espresso-noir dark:text-text-light">{item.name}</h4>
+    <span class="mb-1 min-w-6 flex-1 border-b-2 border-dotted border-espresso-noir/60 dark:border-text-light/60" aria-hidden="true"></span>
+    <span data-price class="font-heading text-lg font-semibold">{formatPrice(item.price)}</span>
+  </div>
+  <p class="mt-1 max-w-prose">{item.description}</p>
+  <div class="mt-2"><DietaryMarks marks={item.marks} /></div>
+</li>
