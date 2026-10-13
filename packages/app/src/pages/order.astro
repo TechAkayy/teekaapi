@@ -1,0 +1,18 @@
+---
+import BookingPreview from '../components/BookingPreview.astro';
+import { booking } from '../content/booking';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={booking.heading} description={booking.line}>
+  <div class="mx-auto max-w-6xl px-4 pb-16 pt-10 md:px-6 md:pb-24 md:pt-16">
+    <div class="grid gap-10 lg:grid-cols-[2fr_3fr] lg:gap-12">
+      <div class="min-w-0">
+        <p class="font-script text-2xl text-espresso-noir dark:text-mint-kulfi">{booking.flourish}</p>
+        <h1 class="text-5xl md:text-7xl">{booking.heading}</h1>
+        <p class="mt-5 max-w-prose text-xl">{booking.line}</p>
+      </div>
+      <BookingPreview />
+    </div>
+  </div>
+</BaseLayout>

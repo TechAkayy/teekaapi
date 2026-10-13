@@ -2,7 +2,7 @@
 
 The website of Teekaapi, built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com). The [site brief](../../README.md) owns the design; the [roadmap](../../plans/roadmap.md) owns the order of delivery.
 
-The output is a static site in `dist/`. It has no server and stores nothing.
+The output is a static site in `dist/`, with no application server. The theme switch stores only the visitor's theme preference in local storage; the page interactions save no choices.
 
 ## Commands
 
@@ -22,6 +22,8 @@ pnpm --dir packages/app test    # build, then run the browser tests
 The gallery at `/gallery/` uses local, credited sample photographs. Its category filters keep the source order and close open captions. Native caption disclosures also work without scripts; filters appear only after initialization. No gallery choice is saved or sent.
 
 The visit page at `/visit/` derives its unknown facts from `src/content/visit.ts`. The map is a local illustration, not a confirmed location. Directions, telephone and calendar buttons stay disabled with an explanation until the cafe supplies real details and those actions are implemented.
+
+The three steps at `/order/` are a local preview. They collect no contact or payment details, submit no request, and make no order or booking. Date validation uses the current date in Melbourne, including when the page stays open over midnight; times do not claim opening hours or availability. Back keeps choices in the current page, while Start again and a new page visit clear them. The notice and explanation remain when scripts cannot initialize. Tests use isolated browsers, fixed clocks and touch emulation, not a live booking service or a physical phone.
 
 The tests in `tests/` run the built site in Chromium through [Playwright](https://playwright.dev), at a phone, a tablet and a desktop width. Download the browser once on each machine:
 

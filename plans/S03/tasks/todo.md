@@ -4,8 +4,8 @@ The [specification](../SPEC.md) owns released scope and acceptance. The [plan](p
 
 ```vibe-progress
 unit: S03
-current: The visit page passed its checks. The developer builds the preview steps.
-next: Verify the preview, then link and inspect all pages.
+current: The preview passed its checks. The developer links the pages and adapts the header.
+next: Run the shared checks and show the built screens.
 completed:
   - The delivery checks passed, including the host interrupt and continue test.
   - The developer read the settled choices and the existing pages.
@@ -15,7 +15,6 @@ completed:
   - The replacement reviewer resolved the required finding with no new finding.
   - The developer established the slice start with the released records.
 remaining:
-  - Build and prove the booking preview.
   - Link the pages, prove their behaviour and show the real screens.
   - Complete independent review, close and local integration.
 blockers:
@@ -24,8 +23,9 @@ verification:
   - The baseline root check passed on Node 24.20.0 with 64 tooling tests and 162 browser tests.
   - The gallery passed type checking, a five-page build and 18 browser tests.
   - The visit page passed type checking, a six-page build and nine browser tests.
+  - All 30 preview cases passed across the full run and the six-case correction run.
 candidate:
-  - Gallery and visit are built. Preview and shared links remain.
+  - All three pages are built. Shared links and the complete screen review remain.
 steps:
   - id: 1
     name: Slice preflight
@@ -74,14 +74,14 @@ steps:
         name: Booking preview
         weight: 30
         children:
-          - { id: d3-t6, task: 6, weight: 12, status: active }
-          - { id: d3-t7, task: 7, weight: 10, status: pending }
-          - { id: d3-t8, task: 8, weight: 8, status: pending }
+          - { id: d3-t6, task: 6, weight: 12, status: complete }
+          - { id: d3-t7, task: 7, weight: 10, status: complete }
+          - { id: d3-t8, task: 8, weight: 8, status: complete }
       - id: D4
         name: Site links and screen checks
         weight: 15
         children:
-          - { id: d4-t9, task: 9, weight: 5, status: pending }
+          - { id: d4-t9, task: 9, weight: 5, status: active }
           - { id: d4-t10, task: 10, weight: 5, status: pending }
           - { id: d4-t11, task: 11, weight: 5, status: pending }
   - id: 7
@@ -170,9 +170,9 @@ The accepted weights are in the plan and applied above. The structured state and
 
 ## Task 6 — Choose a preview time and service
 
-- [ ] Build `/order/` with the persistent notice, sample explanations and no-script fallback.
-- [ ] Add date/time and native service choices with local required-field validation; reuse the one date validation on every Next and Finish, with one fixed-clock Melbourne boundary test.
-- [ ] Test invalid-to-valid changes, keyboard/touch progression, Back retention and focus on the current step.
+- [x] Build `/order/` with the persistent notice, sample explanations and no-script fallback.
+- [x] Add date/time and native service choices with local required-field validation; reuse the one date validation on every Next and Finish, with one fixed-clock Melbourne boundary test. Next is proved here; Task 7 connects Finish to the same validation.
+- [x] Test invalid-to-valid changes, keyboard/touch progression, Back retention and focus on the current step.
 
 **Acceptance:** first two steps of A5, with A6's warning visible and no submitting form.
 **Verify:** type check, current build and `playwright test tests/booking.spec.ts`; use fixed test clocks and synthetic values.
@@ -181,9 +181,9 @@ The accepted weights are in the plan and applied above. The structured state and
 
 ## Task 7 — Review choices and finish the preview
 
-- [ ] Add the third-step summary, Back and Finish preview; reveal and focus the described “Preview complete” heading in that same step, with the standing notice and no extra live region.
-- [ ] Add Start again and empty-state initialization without persistence.
-- [ ] Test both service paths, changes after Back, repeated Finish, result-heading focus/description and full reset with first-step focus; prove one midnight recovery from Review to the date error/input while retaining time/service.
+- [x] Add the third-step summary, Back and Finish preview; reveal and focus the described “Preview complete” heading in that same step, with the standing notice and no extra live region.
+- [x] Add Start again and empty-state initialization without persistence.
+- [x] Test both service paths, changes after Back, repeated Finish, result-heading focus/description and full reset with first-step focus; prove one midnight recovery from Review to the date error/input while retaining time/service. Task 8 also covers double-click Finish while observing requests.
 
 **Acceptance:** remaining A5 and visible-notice parts of A6; no state claims a real booking or order.
 **Verify:** current build and `playwright test tests/booking.spec.ts` through actual user operations.
@@ -192,9 +192,9 @@ The accepted weights are in the plan and applied above. The structured state and
 
 ## Task 8 — Prove that the preview sends and saves nothing
 
-- [ ] Observe network and browser storage through both full service paths, Enter, repeated Finish and reset.
-- [ ] Reload and verify empty preview fields and an unchanged URL, while preserving the existing theme preference.
-- [ ] Prove the no-script/failed-initialization fallback and update package documentation about preview limits.
+- [x] Observe network and browser storage through both full service paths, Enter, repeated Finish and reset.
+- [x] Reload and verify empty preview fields and an unchanged URL, while preserving the existing theme preference.
+- [x] Prove the no-script/failed-initialization fallback and update package documentation about preview limits.
 
 **Acceptance:** A6/A7/A10 for the preview; evidence is from the real local browser, with no provider mocked into a success.
 **Verify:** current build and focused booking/privacy tests; inspect that controls cannot submit without scripts.
