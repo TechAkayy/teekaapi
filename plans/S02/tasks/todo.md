@@ -4,8 +4,8 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S02
-current: All 3 deliverables are done. I make the final proof of the whole slice.
-next: An independent reviewer assesses the slice. Then the agent closes it and gives the owner its choices.
+current: The final proof is done. An independent reviewer assesses the slice.
+next: The agent corrects the findings of the review. Then it closes the slice and gives the owner its choices.
 completed:
   - The owner chose the mode, the content and the user-facing choices for this slice.
   - D1 is done. The menu page shows the sample menu, the special card and the category bar.
@@ -80,12 +80,12 @@ steps:
     name: Final proof and freeze
     class: substantive
     weight: 4
-    status: active
+    status: complete
   - id: 9
     name: Independent assessments
     class: substantive
     weight: 4
-    status: pending
+    status: active
   - id: 10
     name: Slice close
     class: supporting
