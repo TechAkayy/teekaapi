@@ -4,7 +4,7 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S01
-current: D3 is done. No deliverable is in work.
+current: D4 is done. No deliverable is in work.
 next: The agent builds D4 to D6 and closes the slice. The owner gets the list of choices at the close.
 completed:
   - The owner accepted the specification.
@@ -14,16 +14,17 @@ completed:
   - D1 is done. The site package builds, and its checks run with the checks of the repository.
   - D2 is done. The theme has the colours and the fonts of the site brief.
   - D3 is done. Each page has the header, the footer and the light and dark button.
+  - D4 is done. The home page has its hero and its highlights.
 remaining:
-  - The 3 deliverables D4 to D6.
+  - The 2 deliverables D5 and D6.
   - The final proof, the independent review and the close.
 blockers:
   - None.
 verification:
-  - The build, the type check and 36 browser tests of the site pass.
+  - The build, the type check and 42 browser tests of the site pass.
   - The check of the repository passes with the site included.
 candidate:
-  - The slice with D1 to D3 complete.
+  - The slice with D1 to D4 complete.
 steps:
   - id: 1
     name: Slice preflight
@@ -81,14 +82,14 @@ steps:
         name: "Home: hero and highlights"
         weight: 16
         children:
-          - { id: d4-photos, task: 11, weight: 4, status: pending }
-          - { id: d4-hero, task: 12, weight: 7, status: pending }
-          - { id: d4-highlights, task: 13, weight: 5, status: pending }
+          - { id: d4-photos, task: 11, weight: 4, status: complete }
+          - { id: d4-hero, task: 12, weight: 7, status: complete }
+          - { id: d4-highlights, task: 13, weight: 5, status: complete }
       - id: D5
         name: "Home: drinks, food and social band"
         weight: 20
         children:
-          - { id: d5-photos, task: 14, weight: 4, status: pending }
+          - { id: d5-photos, task: 14, weight: 4, status: complete }
           - { id: d5-drinks, task: 15, weight: 7, status: pending }
           - { id: d5-food, task: 16, weight: 5, status: pending }
           - { id: d5-social, task: 17, weight: 4, status: pending }
@@ -241,9 +242,9 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 11 — Choose and add the hero photograph
 
-- [ ] Find 2 or 3 candidate photographs on Unsplash that fit the coffee imagery rules of the site brief, with no recognisable face and no other brand.
-- [ ] Show the candidates with their source pages to the owner; download only the one that the owner approves.
-- [ ] Store the file in `src/assets/images` and add its line to `CREDITS.md`: the photographer, the source page, the part that uses it.
+- [x] Find 2 or 3 candidate photographs on Unsplash that fit the coffee imagery rules of the site brief, with no recognisable face and no other brand.
+- [x] Show the candidates with their source pages to the owner; download only the one that the owner approves.
+- [x] Store the file in `src/assets/images` and add its line to `CREDITS.md`: the photographer, the source page, the part that uses it.
 
 **Acceptance:** one approved hero photograph is in the package with its credit line.
 **Verify:** the file and the credit line exist; the owner approved the choice.
@@ -251,11 +252,11 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 12 — Build the hero
 
-- [ ] Verify the image component of Astro for local files against its documentation.
-- [ ] Add `src/components/Hero.astro`: the full-width photograph with the gradient overlay and the grain, the `h1` headline, the supporting line, and the “View Menu” button that goes to the signature drinks section.
-- [ ] Add the background shapes as decorative elements that assistive technology ignores.
-- [ ] Give the button the hover scale and gradient of the site brief under `motion-safe`, and a visible focus ring.
-- [ ] Extend the home browser test: the hero is visible at the three widths and the button moves to the drinks section.
+- [x] Verify the image component of Astro for local files against its documentation.
+- [x] Add `src/components/Hero.astro`: the full-width photograph with the gradient overlay and the grain, the `h1` headline, the supporting line, and the “View Menu” button that goes to the signature drinks section.
+- [x] Add the background shapes as decorative elements that assistive technology ignores.
+- [x] Give the button the hover scale and gradient of the site brief under `motion-safe`, and a visible focus ring.
+- [x] Extend the home browser test: the hero is visible at the three widths and the button moves to the drinks section.
 
 **Acceptance:** the headline and the line pass contrast over the photograph in both modes; the photograph has a text alternative; the page has one `h1`.
 **Verify:** the browser test; by inspection with the owner at the three widths.
@@ -264,9 +265,9 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 13 — Build the quick highlights
 
-- [ ] Add the highlights as typed data in `src/content/home.ts`, with a Phosphor icon name each.
-- [ ] Add `src/components/Highlights.astro` and a card component: the icon, the title, one line of text; the lift on hover and on focus under `motion-safe`.
-- [ ] Lay the cards out as one column on a phone, two at tablet width and one row at desktop width.
+- [x] Add the highlights as typed data in `src/content/home.ts`, with a Phosphor icon name each.
+- [x] Add `src/components/Highlights.astro` and a card component: the icon, the title, one line of text; the lift on hover and on focus under `motion-safe`.
+- [x] Lay the cards out as one column on a phone, two at tablet width and one row at desktop width.
 
 **Acceptance:** three or four cards render from the data; the layout matches at the three widths; no card states an unconfirmed fact as true.
 **Verify:** the home browser test; by inspection with the owner.
@@ -275,9 +276,9 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 14 — Choose and add the drink, food and social photographs
 
-- [ ] List the photographs that tasks 15 to 17 need, by part, and find candidates on Unsplash under the same rules as Task 11.
-- [ ] Show the list with the source pages to the owner; download only the approved ones.
-- [ ] Store the files and add the credit lines.
+- [x] List the photographs that tasks 15 to 17 need, by part, and find candidates on Unsplash under the same rules as Task 11.
+- [x] Show the list with the source pages to the owner; download only the approved ones.
+- [x] Store the files and add the credit lines.
 
 **Acceptance:** each photograph that tasks 15 to 17 use is approved, stored and credited.
 **Verify:** each file has its credit line; the owner approved the list.

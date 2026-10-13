@@ -1,0 +1,13 @@
+---
+import { highlights } from '../content/home';
+import HighlightCard from './HighlightCard.astro';
+---
+
+<section class="bg-filter-beige py-12 dark:bg-charcoal-steam md:py-16" aria-labelledby="highlights-heading">
+  <div class="mx-auto max-w-6xl px-4 md:px-6">
+    <h2 id="highlights-heading" class="sr-only">Why Teekaapi</h2>
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {highlights.map((highlight) => <HighlightCard highlight={highlight} />)}
+    </ul>
+  </div>
+</section>

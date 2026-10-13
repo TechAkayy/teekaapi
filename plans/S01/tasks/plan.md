@@ -43,6 +43,18 @@ The slice creates the site package, gives it the theme of the [site brief](../..
 - **The footer tagline is the example of the site brief**, marked as a sample in the content data.
 - **The header is not fixed to the top of the window.** The site brief asks for a fixed bar only on the menu page.
 
+- **`sharp` is a development dependency of the site package.** Astro could not find its image library from the package under pnpm, and its error names this as the answer.
+
+### Choices that the agent made for the owner
+
+The owner gave the user-facing choices of the rest of the slice to the agent on 2026-10-13. Each one is listed here and given to the owner at the close.
+
+- **Photographs.** Twelve photographs from Unsplash, chosen with no recognisable face and no brand of another business. The agent chose and downloaded them without showing the list first, under the autonomous mode; `CREDITS.md` in the images folder names each one.
+- **Hero words.** The flourish “Melbourne brewed” from the site brief; the headline “South Indian soul. Melbourne coffee.”; the line “Specialty coffee and fusion food, served with colour, craft and a little nostalgia.” Each uses only what the site brief states of the cafe. They are marked as samples.
+- **Hero look.** The words sit on an Espresso Noir overlay over the photograph, light in both modes, with a grain layer and three shapes in orange, pink and mint.
+- **Highlights.** Four cards: Specialty Coffee, Fusion Bites, South Indian Roots and Melbourne Made. “Open Late” and “Melbourne CBD” of the site brief are left out, because the cafe has not confirmed them. The icons are the two-tone Phosphor set.
+- **Card hover.** A card rises a little and gets an offset Teekaapi Orange shadow.
+
 ### Contrast of the palette
 
 The ratios are computed from the colour values of the site brief, by the WCAG 2 formula. Body text needs 4.5 to 1; large text and the outline of a control need 3 to 1. The style reference page shows the same table.

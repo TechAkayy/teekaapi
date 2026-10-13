@@ -61,3 +61,17 @@
     @apply font-semibold tracking-wide;
   }
 }
+
+@layer components {
+  /* The film grain of the site brief, drawn in CSS so that no photograph carries it. */
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* A card lifts a little under the pointer and under the keyboard focus. */
+  .lift {
+    @apply motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[6px_6px_0_0_var(--color-teekaapi-orange)] motion-safe:focus-within:-translate-y-1;
+  }
+}

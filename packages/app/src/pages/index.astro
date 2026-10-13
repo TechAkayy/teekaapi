@@ -1,10 +1,13 @@
 ---
+import Hero from '../components/Hero.astro';
+import Highlights from '../components/Highlights.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
+  <Hero />
+  <Highlights />
   <div class="mx-auto max-w-6xl space-y-16 px-4 py-12 md:px-6">
-    <h1 class="text-4xl md:text-6xl">Teekaapi</h1>
     <!-- These three sections are stand-ins, so that each link of the header has a target. -->
     <section id="drinks"><h2 class="text-2xl">Signature drinks</h2></section>
     <section id="food"><h2 class="text-2xl">Fusion food</h2></section>
