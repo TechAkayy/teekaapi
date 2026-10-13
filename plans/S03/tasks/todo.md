@@ -4,8 +4,8 @@ The [specification](../SPEC.md) owns released scope and acceptance. The [plan](p
 
 ```vibe-progress
 unit: S03
-current: The slice is closed. Local integration waits for the orchestrator.
-next: The orchestrator verifies the close and gives the separate integration release.
+current: The slice is closed and locally integrated. This run is complete.
+next: No successor is planned. Later work needs a new scope.
 completed:
   - The start records, specification, plan and weights were released. The draft review finding was resolved.
   - The gallery, visit page and booking preview are built and linked.
@@ -13,18 +13,18 @@ completed:
   - The first candidate read found no required defect and resolved the focus finding.
   - The orchestrator accepted the zoom substitute and every candidate screen, including the eight corrected captures.
   - The two screen corrections passed 54 focused tests and the root check. The replacement correction read passed with no required finding.
-  - The orchestrator released the close after reading its acceptance, owed work and records.
+  - The orchestrator released the close and integration. The accepted close was joined and its root check passed.
 remaining:
-  - Obtain the separate local integration release, then join and verify the result.
+  - The owed-work table names the cafe facts, live actions and sample-content work left for later authorization.
 blockers:
-  - No technical blocker remains. Integration needs a separate orchestrator release.
+  - None for this completed run. Owed work remains explicit in the plan.
 verification:
-  - The close-preparation root check passed on Node 24.20.0 with 64 tooling tests and 285 browser tests.
+  - The integration root check passed on Node 24.20.0 with 64 tooling tests and 285 browser tests.
   - Type checking and the seven-page build passed. No check timed out.
   - Native browser zoom, physical-device and screen-reader checks remain unexecuted.
   - The three live visit actions remain unmet and owed to the user.
 candidate:
-  - The reviewed product is unchanged. The pointer and completion records say closed; integration remains pending.
+  - The integrated product and tests equal the accepted close. Only completion records changed afterward.
 steps:
   - id: 1
     name: Slice preflight
@@ -107,7 +107,7 @@ steps:
     name: Final state and successor handoff
     class: supporting
     weight: 1
-    status: pending
+    status: complete
 ```
 
 The accepted weights are in the plan and applied above. The structured state and action boxes show the implementation status. Paths in the file lists are relative to `packages/app`. Use the selected Node and bounded commands from the plan. A focused browser run needs a fresh build and must execute the named tests, not an empty filter.

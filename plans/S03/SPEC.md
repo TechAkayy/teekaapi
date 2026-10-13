@@ -1,6 +1,6 @@
 # Specification: S03 Gallery, Visit Us and Order / Book
 
-**Status:** closed on 2026-10-13 with the orchestrator's release. Local integration awaits its separate release. The [plan](tasks/plan.md#completion) holds the acceptance disposition, close decision and limits, alongside the start record, sources and review results; the [task list](tasks/todo.md) owns progress.
+**Status:** closed and locally integrated on 2026-10-13 with the orchestrator's separate releases. The [plan](tasks/plan.md#completion) holds acceptance, close and integration decisions and limits, alongside the start record, sources and review results; the [task list](tasks/todo.md) owns progress.
 
 ## Objective and baseline
 
@@ -179,4 +179,4 @@ On **2026-10-13**, the orchestrator inspected and accepted all eight developer c
 - **Never in this run:** collect or submit booking data, invent cafe facts, change reusable instructions/checks, publish, push, open a pull request, or implement a provider.
 - **Out of scope:** real booking/ordering, payments, catering promises, CMS, analytics, newsletter/social accounts without supplied details, geolocation, real-content replacement and launch. Existing theme storage remains the owner's accepted exception to the site's broad “stores nothing” wording; booking choices add no storage.
 
-The [accepted weights](tasks/plan.md#deliverables-and-accepted-weights) govern progress. The cafe's missing facts and the blocked live actions are named in the [owed-work table](tasks/plan.md#owed-to-the-user). The next required stop is the separate integration release after the orchestrator verifies the close. The unavailable live actions remain owed at close.
+The [accepted weights](tasks/plan.md#deliverables-and-accepted-weights) govern progress. The cafe's missing facts and the blocked live actions are named in the [owed-work table](tasks/plan.md#owed-to-the-user). Close and local integration are complete; this one-slice run ends without a successor or Handoff. The unavailable live actions remain not met and owed.
