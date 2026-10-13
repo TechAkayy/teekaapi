@@ -4,26 +4,28 @@ The [specification](../SPEC.md) owns released scope and acceptance. The [plan](p
 
 ```vibe-progress
 unit: S03
-current: The candidate passed the root check. Its independent assessment is in progress.
-next: Receive the independent assessment and the orchestrator's screen decision.
+current: The correction is ready for its independent read.
+next: Present the correction read and captures for screen acceptance.
 completed:
   - The start records, specification, plan and weights were released.
   - The replacement draft review resolved the required finding.
   - The gallery, visit page and booking preview are built and linked.
   - The released text-size corrections passed their checks.
-  - The real screens were captured. All task-owned servers and tabs are stopped.
+  - The first candidate read found no required defect and resolved the focus finding.
+  - The orchestrator accepted the zoom substitute and the other candidate screens.
+  - The two screen corrections passed 54 focused tests and the root check.
 remaining:
-  - Receive the screen review and the independent candidate assessment.
-  - Resolve any findings, then obtain close and local integration releases.
+  - Receive the independent correction read and present the new captures.
+  - Obtain screen acceptance, then close and local integration releases.
 blockers:
-  - Screen acceptance and the zoom evidence decision remain with the orchestrator.
+  - The corrected screens still need orchestrator acceptance before close.
 verification:
-  - The final root check passed on Node 24.20.0 with 64 tooling tests and 276 browser tests.
+  - The correction root check passed on Node 24.20.0 with 64 tooling tests and 285 browser tests.
   - Type checking and the seven-page build passed. No check timed out.
   - Native browser zoom, physical-device and screen-reader checks remain unexecuted.
   - The three live visit actions remain unmet and owed to the user.
 candidate:
-  - The pages and shared links are built. The real screens await acceptance.
+  - The corrected controls and errors passed their tests and have new captures.
 steps:
   - id: 1
     name: Slice preflight
@@ -81,7 +83,7 @@ steps:
         children:
           - { id: d4-t9, task: 9, weight: 5, status: complete }
           - { id: d4-t10, task: 10, weight: 5, status: complete }
-          - { id: d4-t11, task: 11, weight: 5, status: awaiting-review, reason: The orchestrator must accept the screens and decide the zoom evidence gap. }
+          - { id: d4-t11, task: 11, weight: 5, status: awaiting-review, reason: The orchestrator must accept the corrected visit and error captures. }
   - id: 7
     name: Material corrections and contract updates
     class: substantive
@@ -92,7 +94,7 @@ steps:
     class: substantive
     weight: 4
     status: awaiting-review
-    reason: The orchestrator must accept the screens and decide the native zoom evidence gap.
+    reason: The corrected screens still need orchestrator acceptance.
   - id: 9
     name: Independent assessments
     class: substantive

@@ -41,6 +41,43 @@ test('the map word stays inside the drawing and below the pin when text is enlar
   }
 });
 
+for (const colorScheme of ['light', 'dark'] as const) {
+  test.describe(`unavailable appearance in ${colorScheme}`, () => {
+    test.use({ colorScheme });
+    test('the explanation precedes unfilled dashed actions that do not react to hover or press', async ({ page }) => {
+      await page.goto('/visit/');
+      const notice = page.locator('#visit-actions-notice');
+      const textColor = await notice.evaluate((el) => getComputedStyle(el).color);
+      const buttons = page.locator('[data-visit-actions] button');
+      await expect(buttons).toHaveText(['Get Directions', 'Call', 'Add to Calendar']);
+      for (const button of await buttons.all()) {
+        await expect(button).toBeDisabled();
+        await button.scrollIntoViewIfNeeded();
+        const box = (await button.boundingBox())!;
+        const noticeBox = (await notice.boundingBox())!;
+        expect(noticeBox.y + noticeBox.height).toBeLessThanOrEqual(box.y);
+        expect(await button.evaluate((el) => Boolean(document.querySelector('#visit-actions-notice')!.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+        expect(box.height).toBeGreaterThanOrEqual(44);
+        await expect(button).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+        await expect(button).toHaveCSS('border-style', 'dashed');
+        await expect(button).toHaveCSS('color', textColor);
+        await expect(button).toHaveCSS('opacity', '1');
+        await expect(button).toHaveCSS('cursor', 'not-allowed');
+        const appearance = () => button.evaluate((el) => {
+          const style = getComputedStyle(el);
+          return [style.backgroundColor, style.color, style.borderColor, style.borderStyle, style.boxShadow, style.transform, style.opacity];
+        });
+        const before = await appearance();
+        await button.hover();
+        expect(await appearance()).toEqual(before);
+        await page.mouse.down();
+        expect(await appearance()).toEqual(before);
+        await page.mouse.up();
+      }
+    });
+  });
+}
+
 for (const javaScriptEnabled of [true, false]) {
   test.describe(javaScriptEnabled ? 'with scripts' : 'without scripts', () => {
     test.use({ javaScriptEnabled });

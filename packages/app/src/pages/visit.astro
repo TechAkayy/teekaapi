@@ -28,12 +28,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           ))}
         </dl>
         <div class="mt-10" data-visit-actions>
-          <div class="flex flex-wrap gap-3">
+          <p id="visit-actions-notice">{actionsNotice}</p>
+          <div class="mt-4 flex flex-wrap gap-3">
             {['Get Directions', 'Call', 'Add to Calendar'].map((label) => (
-              <button type="button" disabled aria-describedby="visit-actions-notice" class="min-h-11 rounded-full border-2 border-espresso-noir bg-filter-beige px-5 py-3 font-heading font-semibold text-espresso-noir">{label}</button>
+              <button type="button" disabled aria-describedby="visit-actions-notice" class="min-h-11 cursor-not-allowed rounded-full border-2 border-dashed border-current bg-transparent px-5 py-3 font-heading font-semibold">{label}</button>
             ))}
           </div>
-          <p id="visit-actions-notice" class="mt-4">{actionsNotice}</p>
         </div>
       </div>
       <VisitMap />

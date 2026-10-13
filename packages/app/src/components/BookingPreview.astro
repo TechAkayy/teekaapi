@@ -1,4 +1,5 @@
 ---
+import Warning from '@phosphor-icons/core/bold/warning-bold.svg';
 import { booking, services } from '../content/booking';
 ---
 
@@ -18,12 +19,12 @@ import { booking, services } from '../content/booking';
         <div class="min-w-0">
           <label for="preview-date" class="block font-heading font-semibold">Date</label>
           <input id="preview-date" type="date" required autocomplete="off" aria-describedby="preview-time-note preview-date-error" />
-          <p id="preview-date-error" hidden class="mt-2 font-semibold"></p>
+          <p id="preview-date-error" hidden class="mt-2 font-semibold"><Warning class="mr-2 inline size-5 align-text-bottom" fill="currentColor" aria-hidden="true" /><span data-error-message></span></p>
         </div>
         <div class="min-w-0">
           <label for="preview-time" class="block font-heading font-semibold">Time</label>
           <input id="preview-time" type="time" required step="60" autocomplete="off" aria-describedby="preview-time-note preview-time-error" />
-          <p id="preview-time-error" hidden class="mt-2 font-semibold"></p>
+          <p id="preview-time-error" hidden class="mt-2 font-semibold"><Warning class="mr-2 inline size-5 align-text-bottom" fill="currentColor" aria-hidden="true" /><span data-error-message></span></p>
         </div>
       </div>
       <button type="button" data-next class="preview-primary mt-6">Next</button>
@@ -41,7 +42,7 @@ import { booking, services } from '../content/booking';
           </label>
         ))}
       </fieldset>
-      <p id="preview-service-error" hidden class="mt-3 font-semibold"></p>
+      <p id="preview-service-error" hidden class="mt-3 font-semibold"><Warning class="mr-2 inline size-5 align-text-bottom" fill="currentColor" aria-hidden="true" /><span data-error-message></span></p>
       <div class="mt-6 flex flex-wrap gap-3">
         <button type="button" data-back class="preview-secondary">Back</button>
         <button type="button" data-next class="preview-primary">Next</button>

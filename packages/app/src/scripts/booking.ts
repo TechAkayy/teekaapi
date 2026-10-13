@@ -39,9 +39,12 @@ function initialize(root: HTMLElement): void {
     });
     if (focus) steps[index].querySelector('h2')?.focus();
   };
-  const setError = (input: HTMLInputElement, output: HTMLElement, message: string): void => {
-    output.textContent = message;
+  const setErrorMessage = (output: HTMLElement, message: string): void => {
+    output.querySelector<HTMLElement>('[data-error-message]')!.textContent = message;
     output.hidden = !message;
+  };
+  const setError = (input: HTMLInputElement, output: HTMLElement, message: string): void => {
+    setErrorMessage(output, message);
     if (message) input.setAttribute('aria-invalid', 'true');
     else input.removeAttribute('aria-invalid');
   };
@@ -58,8 +61,7 @@ function initialize(root: HTMLElement): void {
   };
   const validateService = (): boolean => {
     const valid = radios.some((radio) => radio.checked);
-    serviceError.textContent = valid ? '' : errors.service;
-    serviceError.hidden = valid;
+    setErrorMessage(serviceError, valid ? '' : errors.service);
     radios.forEach((radio) => {
       if (valid) radio.removeAttribute('aria-invalid');
       else radio.setAttribute('aria-invalid', 'true');
@@ -81,8 +83,7 @@ function initialize(root: HTMLElement): void {
     radios.forEach((radio) => { radio.checked = false; radio.removeAttribute('aria-invalid'); });
     setError(date, dateError, '');
     setError(time, timeError, '');
-    serviceError.textContent = '';
-    serviceError.hidden = true;
+    setErrorMessage(serviceError, '');
     reviewDate.textContent = '';
     reviewTime.textContent = '';
     reviewService.textContent = '';
