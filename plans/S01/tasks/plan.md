@@ -8,7 +8,7 @@ The slice creates the site package, gives it the theme of the [site brief](../..
 
 ## Execution
 
-- **Mode.** Supervised, for this slice, by the word of the owner on 2026-10-13. The agent stops before each method group and before each commit. The [project pointer](../../project-state.json) holds the current selection.
+- **Mode.** Supervised from the start of the slice through D1, then copilot from D2, each by the word of the owner on 2026-10-13. In copilot mode the agent selects its methods without a pause and stops for the review of the owner before each commit. The [project pointer](../../project-state.json) holds the current selection.
 - **Where the slice is worked and joined.** The slice is worked on a line of its own and is joined into the main line of the repository at its close. The main line starts with the workflow adaptation, which the owner committed; the slice start follows it.
 - **Independent review.** One Review Vibe assessment of the complete candidate before the close. Independent testing is not selected.
 
@@ -33,6 +33,39 @@ The slice creates the site package, gives it the theme of the [site brief](../..
 - **`wasm32` in `supportedArchitectures`.** The type check loads a WebAssembly module (`@astrojs/astro2tsx`). pnpm skipped the WebAssembly runtime that the module needs, because other packages name that runtime as optional. The entry in `pnpm-workspace.yaml` makes pnpm install it.
 - **The test server runs with `--ignore-lock` on port 4329.** `astro preview` moves to the background when an agent starts it, and Playwright needs a foreground process. The flag gives a foreground server; the port leaves the default port free for a person.
 - **No install script was held back.** pnpm reported no ignored build after the install.
+
+- **Space Grotesk stops at weight 700.** The site brief asks for an extra-bold first heading. The font has no heavier weight, so the first heading uses 700.
+- **Only the Latin subset and the normal style of each font are loaded.** DM Sans carries the weights 400 to 700 and Pacifico its one weight.
+
+### Contrast of the palette
+
+The ratios are computed from the colour values of the site brief, by the WCAG 2 formula. Body text needs 4.5 to 1; large text and the outline of a control need 3 to 1. The style reference page shows the same table.
+
+| Text | Surface | Ratio | Use |
+|---|---|---|---|
+| Text Dark | Cream Foam | 17.07 | Body text in light mode |
+| Espresso Noir | Cream Foam | 16.73 | Headings in light mode |
+| Text Dark | Filter Beige | 11.18 | Alternate sections in light mode |
+| Text Light | Charcoal Steam | 14.04 | Body text in dark mode |
+| Text Light | Espresso Noir | 17.31 | Alternate sections in dark mode |
+| Espresso Noir | Teekaapi Orange | 6.97 | Button text |
+| Text Light | Teekaapi Orange | 2.48 | Fails; not used |
+| Espresso Noir | Fusion Pink | 6.02 | Chip text |
+| Text Light | Fusion Pink | 2.88 | Fails; not used |
+| Espresso Noir | Mint Kulfi | 11.43 | Chip text |
+| Teekaapi Orange | Cream Foam | 2.40 | Fails as text and as an outline |
+| Fusion Pink | Cream Foam | 2.78 | Fails as text and as an outline |
+| Mint Kulfi | Cream Foam | 1.46 | Fails as text and as an outline |
+| Teekaapi Orange | Charcoal Steam | 5.65 | Accent text in dark mode |
+| Fusion Pink | Charcoal Steam | 4.88 | Accent text in dark mode |
+| Mint Kulfi | Charcoal Steam | 9.28 | Accent text and focus ring in dark mode |
+
+The owner decided the two consequences on 2026-10-13, and the specification records them:
+
+1. A button on Teekaapi Orange carries Espresso Noir text.
+2. The focus ring is Mint Kulfi with an Espresso Noir edge in light mode, and Mint Kulfi alone in dark mode.
+
+In light mode the three accents are fills, underlines and decoration only; they are never the colour of text.
 
 ## Sources
 
@@ -67,7 +100,6 @@ Preflight, inputs, scope, the start candidate and the slice start are supporting
 
 ## Review checkpoints
 
-- Before each of the `build`, `test`, `webperf`, `code-simplify`, `review` and `ship` method groups, as supervised mode asks.
 - Before each commit: the slice start, each of D1 to D6, each correction after an accepted commit, and the close.
 - Before each download of photographs: the owner sees the list with the source pages.
 - Before any text that states a fact about the cafe.
@@ -80,7 +112,6 @@ Preflight, inputs, scope, the start candidate and the slice start are supporting
 | The browser of Playwright is about 100 MB and is downloaded once | The first test run is slow; a machine without it fails | Task 2 asks before the download and writes the install command in the README of the package |
 | The session Node is outside the declared range | A check runs on the wrong Node | An `.nvmrc` at the root in Task 1; each check is run with a declared version |
 | A fitting Unsplash photograph without a face or another brand is hard to find | A part waits for its picture | The part is built with a neutral cropped still life first; the owner can supply a file at any time |
-| The palette fails contrast in one pairing, for example orange with light text | The scan fails in D6 | D2 checks each text and surface pairing on the style reference page, so a failing pair is found early and brought to the owner |
 | Scroll-driven animation is not in every browser | The hero shapes do not move there | The movement is an extra; the page is complete without it |
 | Sample text is taken for a fact of the cafe | A wrong claim on a real site | The sample field in the data, the open questions of the specification, and no launch in this roadmap |
 
@@ -90,4 +121,6 @@ The [open questions of the specification](../SPEC.md#open-questions) stand. Task
 
 ## Verification record
 
-Nothing has run for this slice yet. The checks that run, their results and the checks that were omitted are recorded here at the final proof.
+The checks of the whole slice, their results and the checks that were omitted are recorded here at the final proof. Checks by inspection so far:
+
+- On 2026-10-13 the owner accepted the style reference page from screenshots at a desktop and a phone width, in light and in dark mode.

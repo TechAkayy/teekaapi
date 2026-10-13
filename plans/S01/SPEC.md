@@ -30,6 +30,12 @@ The owner made these choices for this slice on 2026-10-13. A later slice may add
 | Newsletter field | Left out of the footer until a newsletter service is chosen. |
 | Signature drinks on a phone | A row that the visitor swipes, where each card snaps into place, with dots that show the position. On a desktop it is a grid, as the site brief says. |
 | Photographs | Photographs from Unsplash that fit the image rules of the site brief. |
+| Test tool | Playwright with the axe accessibility scanner. |
+| Icons | Phosphor. |
+| Style reference page | Kept at `/styleguide`, linked from no page and hidden from search engines. |
+| Button text | Espresso Noir on Teekaapi Orange. Light text on orange fails contrast. |
+| Focus ring | Mint Kulfi with an Espresso Noir edge in light mode; Mint Kulfi alone in dark mode. Mint alone cannot be seen on Cream Foam. |
+| Accent colours in light mode | Orange, pink and mint are fills and decoration, never the colour of text. |
 
 ### Assumptions
 
@@ -102,7 +108,7 @@ The text of the cards is kept as data in `src/content`, apart from the markup, s
 - A colour or a font is always a theme token. A raw colour value appears only in `global.css`, where the tokens are defined.
 - Dark mode is written with the `dark:` variant at the place of use.
 - Motion is added with the `motion-safe:` variant, so that a visitor who asks for reduced motion gets none of the nonessential animation.
-- Each interactive element has a visible focus ring, drawn with the Mint Kulfi token as the site brief says.
+- Each interactive element has a visible focus ring, as the decision of the owner on the focus ring says.
 
 The tokens take their names from the site brief:
 

@@ -1,1 +1,48 @@
 @import "tailwindcss";
+
+/* Dark mode follows a class on the root element, so that a visitor can choose it.
+   https://tailwindcss.com/docs/dark-mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* The palette of the site brief. A page uses these names and no raw colour value.
+   https://tailwindcss.com/docs/theme */
+@theme {
+  --color-espresso-noir: #1b1512;
+  --color-cream-foam: #fff5e6;
+  --color-teekaapi-orange: #ff7a3c;
+  --color-fusion-pink: #f95e8a;
+  --color-mint-kulfi: #7be0c3;
+  --color-filter-beige: #e2c5a3;
+  --color-charcoal-steam: #2a2731;
+  --color-text-dark: #141414;
+  --color-text-light: #fafafa;
+}
+
+/* The fonts come from the Fonts API of Astro, as CSS variables.
+   https://docs.astro.build/en/guides/fonts/ */
+@theme inline {
+  --font-heading: var(--font-space-grotesk);
+  --font-body: var(--font-dm-sans);
+  --font-script: var(--font-pacifico);
+}
+
+@layer base {
+  body {
+    @apply bg-cream-foam font-body text-text-dark leading-relaxed antialiased dark:bg-charcoal-steam dark:text-text-light;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-heading text-espresso-noir dark:text-text-light;
+  }
+
+  h1 {
+    @apply font-bold tracking-tight;
+  }
+
+  h2,
+  h3 {
+    @apply font-semibold tracking-wide;
+  }
+}

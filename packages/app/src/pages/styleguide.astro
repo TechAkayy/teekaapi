@@ -1,0 +1,173 @@
+---
+// A reference page for the theme. No page links to it, and search engines are told to skip it.
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+
+const colours = [
+  { name: 'Espresso Noir', token: 'espresso-noir', hex: '#1B1512', swatch: 'bg-espresso-noir' },
+  { name: 'Cream Foam', token: 'cream-foam', hex: '#FFF5E6', swatch: 'bg-cream-foam' },
+  { name: 'Teekaapi Orange', token: 'teekaapi-orange', hex: '#FF7A3C', swatch: 'bg-teekaapi-orange' },
+  { name: 'Fusion Pink', token: 'fusion-pink', hex: '#F95E8A', swatch: 'bg-fusion-pink' },
+  { name: 'Mint Kulfi', token: 'mint-kulfi', hex: '#7BE0C3', swatch: 'bg-mint-kulfi' },
+  { name: 'Filter Beige', token: 'filter-beige', hex: '#E2C5A3', swatch: 'bg-filter-beige' },
+  { name: 'Charcoal Steam', token: 'charcoal-steam', hex: '#2A2731', swatch: 'bg-charcoal-steam' },
+  { name: 'Text Dark', token: 'text-dark', hex: '#141414', swatch: 'bg-text-dark' },
+  { name: 'Text Light', token: 'text-light', hex: '#FAFAFA', swatch: 'bg-text-light' },
+];
+
+const hexOf = Object.fromEntries(colours.map((colour) => [colour.token, colour.hex]));
+
+// Contrast ratio of two colours, as WCAG 2 defines it.
+function luminance(hex: string): number {
+  const channels = [1, 3, 5].map((start) => parseInt(hex.slice(start, start + 2), 16) / 255);
+  const [r = 0, g = 0, b = 0] = channels.map((c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+function contrast(a: string, b: string): number {
+  const [light = 0, dark = 0] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (light + 0.05) / (dark + 0.05);
+}
+
+// Each pairing of a text colour and a surface that the site brief implies.
+const pairings = [
+  { text: 'text-dark', surface: 'cream-foam', classes: 'bg-cream-foam text-text-dark' },
+  { text: 'espresso-noir', surface: 'cream-foam', classes: 'bg-cream-foam text-espresso-noir' },
+  { text: 'text-dark', surface: 'filter-beige', classes: 'bg-filter-beige text-text-dark' },
+  { text: 'text-light', surface: 'charcoal-steam', classes: 'bg-charcoal-steam text-text-light' },
+  { text: 'text-light', surface: 'espresso-noir', classes: 'bg-espresso-noir text-text-light' },
+  { text: 'espresso-noir', surface: 'teekaapi-orange', classes: 'bg-teekaapi-orange text-espresso-noir' },
+  { text: 'text-light', surface: 'teekaapi-orange', classes: 'bg-teekaapi-orange text-text-light' },
+  { text: 'espresso-noir', surface: 'fusion-pink', classes: 'bg-fusion-pink text-espresso-noir' },
+  { text: 'text-light', surface: 'fusion-pink', classes: 'bg-fusion-pink text-text-light' },
+  { text: 'espresso-noir', surface: 'mint-kulfi', classes: 'bg-mint-kulfi text-espresso-noir' },
+  { text: 'teekaapi-orange', surface: 'cream-foam', classes: 'bg-cream-foam text-teekaapi-orange' },
+  { text: 'fusion-pink', surface: 'cream-foam', classes: 'bg-cream-foam text-fusion-pink' },
+  { text: 'mint-kulfi', surface: 'cream-foam', classes: 'bg-cream-foam text-mint-kulfi' },
+  { text: 'teekaapi-orange', surface: 'charcoal-steam', classes: 'bg-charcoal-steam text-teekaapi-orange' },
+  { text: 'fusion-pink', surface: 'charcoal-steam', classes: 'bg-charcoal-steam text-fusion-pink' },
+  { text: 'mint-kulfi', surface: 'charcoal-steam', classes: 'bg-charcoal-steam text-mint-kulfi' },
+].map((pairing) => {
+  const ratio = contrast(hexOf[pairing.text] ?? '', hexOf[pairing.surface] ?? '');
+  const verdict = ratio >= 4.5 ? 'Passes for all text' : ratio >= 3 ? 'Large text only' : 'Fails for text';
+  return { ...pairing, ratio: ratio.toFixed(2), verdict };
+});
+
+const modes = [
+  { label: 'Light mode', wrapper: '' },
+  { label: 'Dark mode', wrapper: 'dark' },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <Font cssVariable="--font-space-grotesk" preload />
+    <Font cssVariable="--font-dm-sans" preload />
+    <Font cssVariable="--font-pacifico" />
+    <title>Style reference · Teekaapi</title>
+  </head>
+  <body>
+    <main class="mx-auto max-w-6xl space-y-12 p-6">
+      <header>
+        <h1 class="text-4xl md:text-6xl">Style reference</h1>
+        <p class="mt-2 max-w-2xl">
+          The colours and the fonts of the Teekaapi theme. This page is a reference for the people who build the site.
+        </p>
+      </header>
+
+      <section aria-labelledby="colours">
+        <h2 id="colours" class="text-sm uppercase tracking-widest">Colours</h2>
+        <ul class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          {
+            colours.map((colour) => (
+              <li>
+                <div class:list={['h-20 rounded-2xl border border-espresso-noir/20 dark:border-text-light/20', colour.swatch]} />
+                <p class="mt-2 font-heading font-semibold">{colour.name}</p>
+                <p class="text-sm">
+                  <code>{colour.token}</code> · {colour.hex}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="contrast">
+        <h2 id="contrast" class="text-sm uppercase tracking-widest">Text on surfaces</h2>
+        <p class="mt-2 max-w-2xl text-sm">
+          Body text needs a ratio of 4.5 to 1. Large text needs 3 to 1. The site uses only the pairings that pass for
+          their text size.
+        </p>
+        <ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            pairings.map((pairing) => (
+              <li class:list={['rounded-2xl border border-espresso-noir/20 p-4', pairing.classes]}>
+                <p class="font-heading text-lg font-semibold">{pairing.ratio} to 1</p>
+                <p class="text-sm">
+                  {pairing.text} on {pairing.surface}
+                </p>
+                <p class="text-sm font-semibold">{pairing.verdict}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      {
+        modes.map((mode) => (
+          <section class:list={[mode.wrapper]} aria-label={mode.label}>
+            <div class="space-y-8 rounded-3xl bg-cream-foam p-6 text-text-dark dark:bg-charcoal-steam dark:text-text-light md:p-10">
+              <p class="text-sm uppercase tracking-widest">{mode.label}</p>
+
+              <div class="space-y-3">
+                <p class="font-heading text-5xl font-bold tracking-tight text-espresso-noir dark:text-text-light md:text-7xl">
+                  Coffee, fusion, repeat
+                </p>
+                <p class="font-heading text-2xl font-semibold tracking-wide text-espresso-noir dark:text-text-light">
+                  Heading two, in Space Grotesk
+                </p>
+                <p class="font-heading text-sm font-semibold uppercase tracking-widest text-espresso-noir dark:text-text-light">
+                  Section label
+                </p>
+                <p class="max-w-prose">
+                  Body text in DM Sans. Filter coffee meets flat white, and a dosa meets a toastie. This paragraph shows
+                  the line height and the letter spacing of ordinary text on the main surface.
+                </p>
+                <p class="max-w-prose text-sm tracking-wide">
+                  Small text has a little more letter spacing, so that it stays easy to read.
+                </p>
+                <p class="font-script text-2xl text-espresso-noir dark:text-mint-kulfi">Melbourne brewed</p>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-4">
+                <a
+                  href="#colours"
+                  class="rounded-full bg-teekaapi-orange px-6 py-3 font-heading font-semibold text-espresso-noir"
+                >
+                  Primary button
+                </a>
+                <a
+                  href="#colours"
+                  class="rounded-full border-2 border-espresso-noir px-6 py-3 font-heading font-semibold text-espresso-noir dark:border-text-light dark:text-text-light"
+                >
+                  Secondary button
+                </a>
+                <span class="rounded-full bg-mint-kulfi px-3 py-1 text-sm font-semibold text-espresso-noir">New</span>
+                <span class="rounded-full bg-fusion-pink px-3 py-1 text-sm font-semibold text-espresso-noir">
+                  Seasonal
+                </span>
+              </div>
+
+              <div class="rounded-2xl bg-filter-beige p-6 text-text-dark dark:bg-espresso-noir dark:text-text-light">
+                <p class="font-heading font-semibold">Alternate surface</p>
+                <p>Filter Beige in light mode and Espresso Noir in dark mode, for every second section.</p>
+              </div>
+            </div>
+          </section>
+        ))
+      }
+    </main>
+  </body>
+</html>

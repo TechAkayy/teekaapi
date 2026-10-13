@@ -4,24 +4,25 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S01
-current: D1 is done and accepted. No deliverable is in work.
-next: The agent builds D2, the theme and the fonts. The owner reviews D2 before its commit.
+current: D2 is done and accepted. No deliverable is in work.
+next: The agent builds D3, the shared layout. The owner reviews D3 before its commit.
 completed:
   - The owner accepted the specification.
   - The owner chose the framework, the fonts, the test tool and the icons.
   - The owner agreed the plan, the task list and the weights.
   - The owner committed the workflow adaptation. The slice start follows it.
   - D1 is done. The site package builds, and its checks run with the checks of the repository.
+  - D2 is done. The theme has the colours and the fonts of the site brief.
 remaining:
-  - The 5 deliverables D2 to D6.
+  - The 4 deliverables D3 to D6.
   - The final proof, the independent review and the close.
 blockers:
   - None.
 verification:
-  - The build, the type check and 3 browser tests of the site pass.
+  - The build, the type check and 9 browser tests of the site pass.
   - The check of the repository passes with the site included.
 candidate:
-  - The slice with D1 complete.
+  - The slice with D1 and D2 complete.
 steps:
   - id: 1
     name: Slice preflight
@@ -64,9 +65,9 @@ steps:
         name: Theme and fonts
         weight: 12
         children:
-          - { id: d2-tokens, task: 4, weight: 4, status: pending }
-          - { id: d2-fonts, task: 5, weight: 4, status: pending }
-          - { id: d2-reference, task: 6, weight: 4, status: pending }
+          - { id: d2-tokens, task: 4, weight: 4, status: complete }
+          - { id: d2-fonts, task: 5, weight: 4, status: complete }
+          - { id: d2-reference, task: 6, weight: 4, status: complete }
       - id: D3
         name: Shared layout
         weight: 18
@@ -164,10 +165,10 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 4 — Define the colours and the dark mode switch in the theme
 
-- [ ] Define the nine colour tokens of the site brief in `@theme` in `global.css`, with the names of the specification.
-- [ ] Declare the class-based `dark` variant as the Tailwind documentation gives it.
-- [ ] Set the base surface and text colours of `body` for both modes.
-- [ ] Compute the contrast of each text and surface pairing that the site brief implies, in both modes; bring each pair below 4.5 to 1 for body text, or 3 to 1 for large text, to the owner.
+- [x] Define the nine colour tokens of the site brief in `@theme` in `global.css`, with the names of the specification.
+- [x] Declare the class-based `dark` variant as the Tailwind documentation gives it.
+- [x] Set the base surface and text colours of `body` for both modes.
+- [x] Compute the contrast of each text and surface pairing that the site brief implies, in both modes; bring each pair below 4.5 to 1 for body text, or 3 to 1 for large text, to the owner.
 
 **Acceptance:** utilities such as `bg-cream-foam` and `dark:bg-charcoal-steam` exist in the built CSS; no failing pairing is used without a decision of the owner.
 **Verify:** build; the contrast table in the plan.
@@ -175,10 +176,10 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 5 — Add the three fonts, served from the site
 
-- [ ] Verify the entry shape of `fonts` and the import of the Fontsource provider against the configuration reference of Astro.
-- [ ] Configure Space Grotesk, DM Sans and Pacifico with CSS variables, the Latin subset and only the weights that the site brief needs.
-- [ ] Map the variables to `--font-heading`, `--font-body` and `--font-script` in `@theme inline`.
-- [ ] Set the heading and body treatments of the site brief: weights, letter spacing and a body line height between 1.5 and 1.7.
+- [x] Verify the entry shape of `fonts` and the import of the Fontsource provider against the configuration reference of Astro.
+- [x] Configure Space Grotesk, DM Sans and Pacifico with CSS variables, the Latin subset and only the weights that the site brief needs.
+- [x] Map the variables to `--font-heading`, `--font-body` and `--font-script` in `@theme inline`.
+- [x] Set the heading and body treatments of the site brief: weights, letter spacing and a body line height between 1.5 and 1.7.
 
 **Acceptance:** the built site holds the font files under its own output folder; the built HTML and CSS name no font host; `font-heading`, `font-body` and `font-script` work.
 **Verify:** build; search `dist/` for `fonts.googleapis`, `gstatic` and `fontsource.org` and find none.
@@ -186,9 +187,9 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 6 — Build the hidden style reference page
 
-- [ ] Add `src/pages/styleguide.astro`: a swatch with the name of each colour token, each font with its heading, body and script treatments, a button and a chip in each state.
-- [ ] Give the page `noindex` and link it from no page.
-- [ ] Show the page to the owner in light and in dark mode.
+- [x] Add `src/pages/styleguide.astro`: a swatch with the name of each colour token, each font with its heading, body and script treatments, a button and a chip in each state.
+- [x] Give the page `noindex` and link it from no page.
+- [x] Show the page to the owner in light and in dark mode.
 
 **Acceptance:** `/styleguide` builds; it shows each token of the theme; the home page does not link to it.
 **Verify:** build; by inspection with the owner, recorded as one dated sentence.
