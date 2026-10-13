@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="retro-source-sha256" content="05adb4ca29ca00312ea6bab4b1b5a26cc8bd53ec1fcb280ba5896880e436fc6a">
+  <meta name="retro-source-sha256" content="e9c6ecebfed7528a5e9ec67b7834676810b613dd0006d1fd11dfd8d18c3f9f02">
   <title>Teekaapi site roadmap</title>
   <style>
 :root {
@@ -182,7 +182,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
     <div class="report-header-inner">
       <p class="eyebrow">Derived review view</p>
       <h1 id="teekaapi-site-roadmap">Teekaapi site roadmap</h1>
-      <p class="header-meta">Markdown controls this pair. sha256 <code>05adb4ca29ca00312ea6bab4b1b5a26cc8bd53ec1fcb280ba5896880e436fc6a</code></p>
+      <p class="header-meta">Markdown controls this pair. sha256 <code>e9c6ecebfed7528a5e9ec67b7834676810b613dd0006d1fd11dfd8d18c3f9f02</code></p>
       <button class="toc-toggle" type="button" aria-expanded="true" aria-controls="contents">Hide contents</button>
     </div>
   </header>
@@ -234,7 +234,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 </li>
 </ol>
       </nav>
-<p><strong>Delivery state:</strong> S01 is closed. It is the last selected slice in the <a href="project-state.json">project pointer</a>. No other slice is started; S02 is the next planned slice.</p>
+<p><strong>Delivery state:</strong> S01 is closed. S02 is selected in the <a href="project-state.json">project pointer</a> and is started. S03 is planned.</p>
 <p>This roadmap delivers the website of Teekaapi. The <a href="#brief">brief</a> below says what the project is; the numbered sections own the approach, the order of delivery and the acceptance of each slice.</p>
 <section class="report-section" id="brief-section">
 <h2 id="brief">Brief</h2>
@@ -257,6 +257,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 <section class="report-section" id="2-delivery-catalogue-section">
 <h2 id="2-delivery-catalogue">2. Delivery catalogue</h2>
 <p>Each slice is delivered through Lets Vibe: a specification, a plan, a task list, the build, the checks, one independent review and a close. A slice gets its documents in <code>plans/&lt;slice-id&gt;/</code> when it is selected, and not before.</p>
+<p><strong>A chain of two slices.</strong> On 2026-10-13 the owner authorized the delivery of S02 and then S03 in autonomous mode, with the user-facing choices given to the agent. By the word of the owner both slices are delivered in the session that delivered S01, one after the other, and not in a new session for each slice. Each slice is its own run with its own documents, checks, independent review and close. A slice outside this range does not inherit the mode.</p>
 <div class="table-wrap">
 <table class="dense columns-6 id-first">
 <thead>
@@ -264,7 +265,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 </thead><tbody>
 <tr class="table-section-row"><th scope="colgroup" colspan="6"><strong>Phase 1 — The Teekaapi site</strong></th></tr>
 <tr><td class="align-left nowrap"><a href="S01/SPEC.md">S01</a></td><td class="align-left">Foundation and home page</td><td class="align-left">Closed; the <a href="S01/tasks/plan.md#completion">plan</a> records the result and what waits for the owner</td><td class="align-left">The site brief</td><td class="align-left">The Astro and Tailwind project in a new <code>packages/<wbr>app</code>; the theme with the palette and the fonts; the shared layout with the header, the footer, dark mode and reduced motion; the home page with its hero, highlights, signature drinks, fusion food teaser and social band</td><td class="align-left">The build passes; the home page works at phone, tablet and desktop widths in light and dark mode; contrast, focus order and reduced motion checked in a browser</td></tr>
-<tr><td class="align-left nowrap"><span class="whole-word">S02</span></td><td class="align-left">Menu and Our Story</td><td class="align-left">Planned</td><td class="align-left">S01</td><td class="align-left">The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits</td><td class="align-left">The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode</td></tr>
+<tr><td class="align-left nowrap"><a href="S02/SPEC.md">S02</a></td><td class="align-left">Menu and Our Story</td><td class="align-left">Selected, started</td><td class="align-left">S01</td><td class="align-left">The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits</td><td class="align-left">The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode</td></tr>
 <tr><td class="align-left nowrap"><span class="whole-word">S03</span></td><td class="align-left">Gallery, Visit Us and Order /<wbr> Book</td><td class="align-left">Planned</td><td class="align-left">S01</td><td class="align-left">The gallery with overlays and filters; the visit page with the address, hours, map, transport notes and action buttons; the order and booking preview in three steps</td><td class="align-left">The build passes; the filters and overlays work by keyboard and by touch; the booking preview states that it sends nothing; each page checked in light and dark mode</td></tr>
 </tbody></table></div>
 </section>

@@ -1,20 +1,20 @@
 {
   "currentSlice": {
-    "id": "S01",
+    "id": "S02",
     "parent": null,
-    "status": "closed"
+    "status": "in-progress"
   },
   "documents": {
     "roadmap": "plans/roadmap.md",
     "readingMap": null,
-    "spec": "plans/S01/SPEC.md",
-    "plan": "plans/S01/tasks/plan.md",
-    "tasks": "plans/S01/tasks/todo.md"
+    "spec": "plans/S02/SPEC.md",
+    "plan": "plans/S02/tasks/plan.md",
+    "tasks": "plans/S02/tasks/todo.md"
   },
   "execution": {
     "mode": "autonomous",
     "scope": {
-      "slice": "S01"
+      "slice": "S02"
     }
   }
 }

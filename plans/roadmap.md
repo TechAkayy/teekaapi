@@ -1,6 +1,6 @@
 # Teekaapi site roadmap
 
-**Delivery state:** S01 is closed. It is the last selected slice in the [project pointer](project-state.json). No other slice is started; S02 is the next planned slice.
+**Delivery state:** S01 is closed. S02 is selected in the [project pointer](project-state.json) and is started. S03 is planned.
 
 This roadmap delivers the website of Teekaapi. The [brief](#brief) below says what the project is; the numbered sections own the approach, the order of delivery and the acceptance of each slice.
 
@@ -26,11 +26,13 @@ The [site brief](../README.md) in the README of the repository owns the design c
 
 Each slice is delivered through Lets Vibe: a specification, a plan, a task list, the build, the checks, one independent review and a close. A slice gets its documents in `plans/<slice-id>/` when it is selected, and not before.
 
+**A chain of two slices.** On 2026-10-13 the owner authorized the delivery of S02 and then S03 in autonomous mode, with the user-facing choices given to the agent. By the word of the owner both slices are delivered in the session that delivered S01, one after the other, and not in a new session for each slice. Each slice is its own run with its own documents, checks, independent review and close. A slice outside this range does not inherit the mode.
+
 | Slice | Title | Disposition | Builds on | Outcome | Acceptance evidence |
 |---|---|---|---|---|---|
 | **Phase 1 — The Teekaapi site** | | | | | |
 | [S01](S01/SPEC.md) | Foundation and home page | Closed; the [plan](S01/tasks/plan.md#completion) records the result and what waits for the owner | The site brief | The Astro and Tailwind project in a new `packages/app`; the theme with the palette and the fonts; the shared layout with the header, the footer, dark mode and reduced motion; the home page with its hero, highlights, signature drinks, fusion food teaser and social band | The build passes; the home page works at phone, tablet and desktop widths in light and dark mode; contrast, focus order and reduced motion checked in a browser |
-| S02 | Menu and Our Story | Planned | S01 | The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits | The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode |
+| [S02](S02/SPEC.md) | Menu and Our Story | Selected, started | S01 | The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits | The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode |
 | S03 | Gallery, Visit Us and Order / Book | Planned | S01 | The gallery with overlays and filters; the visit page with the address, hours, map, transport notes and action buttons; the order and booking preview in three steps | The build passes; the filters and overlays work by keyboard and by touch; the booking preview states that it sends nothing; each page checked in light and dark mode |
 
 ## 3. Product scope
