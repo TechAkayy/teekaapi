@@ -5,3 +5,10 @@ packages:
   - "tooling/*"
   # The roadmap renderer.
   - "plans"
+
+# The type check of the site (astro check) runs a WebAssembly module. Without
+# wasm32 here, pnpm skips the WebAssembly runtime that the module needs.
+supportedArchitectures:
+  cpu:
+    - current
+    - wasm32

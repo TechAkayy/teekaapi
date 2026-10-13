@@ -27,6 +27,13 @@ The slice creates the site package, gives it the theme of the [site brief](../..
 11. **Style reference page.** `/styleguide` shows each colour and font token in both modes. It is not linked from the site and carries a `noindex` instruction, by the choice of the owner.
 12. **Browser tests.** Playwright with the axe scanner, by the choice of the owner, on Chromium only. The tests start `astro preview` on the built site through the web-server setting of Playwright, with a time limit, and stop it at the end.
 
+## Decisions made during delivery
+
+- **TypeScript 6 in the site package.** `astro check` refuses TypeScript 7 and names TypeScript 6 as the supported version. The agents package keeps its own TypeScript 7.
+- **`wasm32` in `supportedArchitectures`.** The type check loads a WebAssembly module (`@astrojs/astro2tsx`). pnpm skipped the WebAssembly runtime that the module needs, because other packages name that runtime as optional. The entry in `pnpm-workspace.yaml` makes pnpm install it.
+- **The test server runs with `--ignore-lock` on port 4329.** `astro preview` moves to the background when an agent starts it, and Playwright needs a foreground process. The flag gives a foreground server; the port leaves the default port free for a person.
+- **No install script was held back.** pnpm reported no ignored build after the install.
+
 ## Sources
 
 | Subject | Source | Consequence |
@@ -70,8 +77,7 @@ Preflight, inputs, scope, the start candidate and the slice start are supporting
 
 | Risk | Effect | Answer |
 |---|---|---|
-| pnpm does not run the install scripts of a dependency, such as the image library, until they are approved | The build or the image step fails | Task 1 lists the scripts that ask for approval and brings the list to the owner |
-| The browser of Playwright is about 150 MB and is downloaded once | The first test run is slow; a machine without it fails | Task 2 asks before the download and writes the install command in the README of the package |
+| The browser of Playwright is about 100 MB and is downloaded once | The first test run is slow; a machine without it fails | Task 2 asks before the download and writes the install command in the README of the package |
 | The session Node is outside the declared range | A check runs on the wrong Node | An `.nvmrc` at the root in Task 1; each check is run with a declared version |
 | A fitting Unsplash photograph without a face or another brand is hard to find | A part waits for its picture | The part is built with a neutral cropped still life first; the owner can supply a file at any time |
 | The palette fails contrast in one pairing, for example orange with light text | The scan fails in D6 | D2 checks each text and surface pairing on the style reference page, so a failing pair is found early and brought to the owner |

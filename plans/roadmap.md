@@ -58,6 +58,6 @@ pnpm roadmap
 pnpm roadmap:check
 ```
 
-`pnpm check` runs the checks of the agent skills and then the roadmap check. The site has no commands yet; S01 adds its build and its checks to the `check` script.
+`pnpm check` runs the checks of the agent skills, the roadmap check, the freshness check of the progress report, and the type check and the browser tests of the site. The [README of the site package](../packages/app/README.md) lists the commands of the site.
 
 Keep the brief at the top and the four numbered sections. A new slice gets its row at its place in the order of delivery. The project pointer owns the selection of the current slice; this roadmap does not start a slice, and it records no task, no commit and no evidence of a slice that has not run.

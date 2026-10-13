@@ -2,3 +2,10 @@ node_modules/
 .DS_Store
 # One person's own settings for Claude; see tooling/agents/README.md.
 .claude/settings.local.json
+# Build output and generated types of the site.
+dist/
+.astro/
+
+# Output of the browser tests.
+test-results/
+playwright-report/

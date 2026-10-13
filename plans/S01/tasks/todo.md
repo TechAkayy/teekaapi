@@ -4,22 +4,24 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S01
-current: The slice is started. No deliverable is in work.
-next: The owner approves the build methods for D1. Then the agent creates the site package.
+current: D1 is done and accepted. No deliverable is in work.
+next: The agent builds D2, the theme and the fonts. The owner reviews D2 before its commit.
 completed:
   - The owner accepted the specification.
   - The owner chose the framework, the fonts, the test tool and the icons.
   - The owner agreed the plan, the task list and the weights.
   - The owner committed the workflow adaptation. The slice start follows it.
+  - D1 is done. The site package builds, and its checks run with the checks of the repository.
 remaining:
-  - The 6 deliverables, D1 to D6.
+  - The 5 deliverables D2 to D6.
   - The final proof, the independent review and the close.
 blockers:
   - None.
 verification:
-  - No check of the site has run. The site does not exist yet.
+  - The build, the type check and 3 browser tests of the site pass.
+  - The check of the repository passes with the site included.
 candidate:
-  - The slice start. It holds the specification, the plan, the task list and this report.
+  - The slice with D1 complete.
 steps:
   - id: 1
     name: Slice preflight
@@ -55,9 +57,9 @@ steps:
         name: Project and checks
         weight: 12
         children:
-          - { id: d1-package, task: 1, weight: 5, status: pending }
-          - { id: d1-tests, task: 2, weight: 5, status: pending }
-          - { id: d1-check, task: 3, weight: 2, status: pending }
+          - { id: d1-package, task: 1, weight: 5, status: complete }
+          - { id: d1-tests, task: 2, weight: 5, status: complete }
+          - { id: d1-check, task: 3, weight: 2, status: complete }
       - id: D2
         name: Theme and fonts
         weight: 12
@@ -129,10 +131,10 @@ All paths below are in `packages/app` unless they start at the root. Run each co
 
 Manual Astro setup inside the workspace, as the Astro documentation describes, with Tailwind added.
 
-- [ ] Verify the current setup steps against the Astro and Tailwind documentation named in the plan, and pin the exact versions.
-- [ ] Add `package.json` (private, `type: module`, scripts `dev`, `build`, `preview`), `astro.config.mjs` with the Tailwind Vite plugin, a strict `tsconfig.json`, `src/pages/index.astro` with one heading, `src/styles/global.css` with the Tailwind import, and `public/robots.txt`.
-- [ ] Add `dist/` and `.astro/` to the root `.gitignore`, and an `.nvmrc` at the root with a declared Node version.
-- [ ] Run `pnpm install`; list each dependency whose install script pnpm holds back and bring the list to the owner before approving any.
+- [x] Verify the current setup steps against the Astro and Tailwind documentation named in the plan, and pin the exact versions.
+- [x] Add `package.json` (private, `type: module`, scripts `dev`, `build`, `preview`), `astro.config.mjs` with the Tailwind Vite plugin, a strict `tsconfig.json`, `src/pages/index.astro` with one heading, `src/styles/global.css` with the Tailwind import, and `public/robots.txt`.
+- [x] Add `dist/` and `.astro/` to the root `.gitignore`, and an `.nvmrc` at the root with a declared Node version.
+- [x] Run `pnpm install`; list each dependency whose install script pnpm holds back and bring the list to the owner before approving any.
 
 **Acceptance:** `pnpm --dir packages/app build` ends without an error and writes `dist/index.html`; a Tailwind utility on the heading is present in the built CSS.
 **Verify:** the build command; inspect `dist/`.
@@ -140,11 +142,11 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 2 — Add the type check and the first browser test
 
-- [ ] Add `@astrojs/check` and `typescript`, and a `check` script that runs `astro check`.
-- [ ] Add `@playwright/test` and `@axe-core/playwright`; ask the owner before the download of the Chromium browser.
-- [ ] Add `playwright.config.ts`: Chromium only, a web server that runs `astro preview` on the built site with a time limit, and three projects or viewports of 375, 768 and 1280 pixels wide.
-- [ ] Add `tests/home.spec.ts` with one test: the page loads, has one `h1`, and has no sideways scroll at each width.
-- [ ] Add a `test` script that builds and then runs Playwright with a time limit for the suite.
+- [x] Add `@astrojs/check` and `typescript`, and a `check` script that runs `astro check`.
+- [x] Add `@playwright/test` and `@axe-core/playwright`; ask the owner before the download of the Chromium browser.
+- [x] Add `playwright.config.ts`: Chromium only, a web server that runs `astro preview` on the built site with a time limit, and three projects or viewports of 375, 768 and 1280 pixels wide.
+- [x] Add `tests/home.spec.ts` with one test: the page loads, has one `h1`, and has no sideways scroll at each width.
+- [x] Add a `test` script that builds and then runs Playwright with a time limit for the suite.
 
 **Acceptance:** `check` and `test` pass; the test report shows that the test ran at the three widths, not zero tests.
 **Verify:** `pnpm --dir packages/app check`; `pnpm --dir packages/app test`.
@@ -152,9 +154,9 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 3 — Join the site to the checks of the repository
 
-- [ ] Extend the `check` script of the root `package.json` with the check and the test of the site, and with the freshness check of the progress report.
-- [ ] Add `README.md` to the package: what it is, the commands, the browser install command. No slice number in it.
-- [ ] Update the commands paragraph in section 4 of the roadmap and regenerate `roadmap.html`.
+- [x] Extend the `check` script of the root `package.json` with the check and the test of the site, and with the freshness check of the progress report.
+- [x] Add `README.md` to the package: what it is, the commands, the browser install command. No slice number in it.
+- [x] Update the commands paragraph in section 4 of the roadmap and regenerate `roadmap.html`.
 
 **Acceptance:** `pnpm check` from the root runs the agent checks, the roadmap check, the progress check, the type check and the browser tests, and passes.
 **Verify:** `pnpm check`.
