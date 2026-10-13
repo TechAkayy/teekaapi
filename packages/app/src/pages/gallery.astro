@@ -1,0 +1,15 @@
+---
+import Gallery from '../components/Gallery.astro';
+import { gallery } from '../content/gallery';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={gallery.heading} description={gallery.line}>
+  <div class="mx-auto max-w-6xl px-4 pb-16 pt-10 md:px-6 md:pb-24 md:pt-16">
+    <p class="font-script text-2xl text-espresso-noir dark:text-mint-kulfi">{gallery.flourish}</p>
+    <h1 class="text-5xl md:text-7xl">{gallery.heading}</h1>
+    <p class="mt-3 max-w-prose text-xl">{gallery.line}</p>
+    <p class="mt-4 max-w-prose">{gallery.note}</p>
+    <div class="mt-10"><Gallery /></div>
+  </div>
+</BaseLayout>
