@@ -78,6 +78,8 @@ What the owner does next:
 
 A change that the owner asks for after the close is new work.
 
+**Integration.** On 2026-10-13 the slice was joined into the main line of the repository by a fast-forward, with its close included, and the check of the repository passed there. Nothing was pushed or published; the repository has no remote.
+
 ## Findings of the independent review, and their corrections
 
 The reviewer returned FIX on the candidate of the final proof, with nothing blocking. Each finding keeps its identifier.

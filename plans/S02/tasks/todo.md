@@ -4,7 +4,7 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S02
-current: The slice is closed. I join it into the main line.
+current: The slice is closed and joined into the main line. No work is open.
 next: The owner looks at the menu page and the story page and reads the choices of the agent in the plan.
 completed:
   - The owner chose the mode, the content and the user-facing choices for this slice.
@@ -12,7 +12,7 @@ completed:
   - D2 is done. The story page shows the sample story, the timeline and the portraits.
   - D3 is done. The header and the footer link to both pages, and both pages pass their checks.
 remaining:
-  - The join into the main line.
+  - Nothing in this slice. S03 is planned, and it is not started.
 blockers:
   - None.
 verification:
@@ -20,7 +20,7 @@ verification:
   - The independent reviewer passed the slice after 2 rounds of corrections.
   - The owner has not looked at either page. The plan lists this limitation.
 candidate:
-  - The closed slice, with D1 to D3 and the corrections of the review.
+  - The main line of the repository, which holds the closed slice.
 steps:
   - id: 1
     name: Slice preflight
@@ -97,7 +97,7 @@ steps:
     name: Final state and successor handoff
     class: supporting
     weight: 1
-    status: active
+    status: complete
 ```
 
 The owner gave the agent the weights with the user-facing choices on 2026-10-13; the [plan](plan.md) lists them. All paths below are in `packages/app` unless they start at the root. Run each command with a Node version of the declared range.
