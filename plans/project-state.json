@@ -1,20 +1,41 @@
 {
   "currentSlice": {
-    "id": "S02",
+    "id": "S03",
     "parent": null,
-    "status": "closed"
+    "status": "in-progress"
   },
   "documents": {
     "roadmap": "plans/roadmap.md",
     "readingMap": null,
-    "spec": "plans/S02/SPEC.md",
-    "plan": "plans/S02/tasks/plan.md",
-    "tasks": "plans/S02/tasks/todo.md"
+    "spec": "plans/S03/SPEC.md",
+    "plan": "plans/S03/tasks/plan.md",
+    "tasks": "plans/S03/tasks/todo.md"
   },
   "execution": {
-    "mode": "autonomous",
+    "mode": "orchestrated",
     "scope": {
-      "slice": "S02"
+      "slice": "S03"
+    },
+    "sessions": {
+      "developer": {
+        "provider": "codex",
+        "model": "gpt-6-astra",
+        "effort": "xhigh",
+        "conversation": "mcp:8ded5bc7-6d2b-4474-9964-6dacc40038b9",
+        "session": "01a13442-ab1d-7da3-9b55-4c0010d15b9c"
+      },
+      "orchestrator": {
+        "provider": "claude",
+        "model": "claude-opus-5-5",
+        "effort": "high",
+        "conversation": "c8685f41-f258-4a9f-85fe-c64def0c51e8",
+        "session": "a6c743c4-03b5-4112-8a47-017c8bc7ac8f"
+      },
+      "reviewer": {
+        "provider": "codex",
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      }
     }
   }
 }

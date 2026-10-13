@@ -1,6 +1,6 @@
 # Teekaapi site roadmap
 
-**Delivery state:** S01 and S02 are closed. S02 is the last selected slice in the [project pointer](project-state.json). S03 is planned and is not started.
+**Delivery state:** S01 and S02 are closed. S03 is selected in the [project pointer](project-state.json) and is in preparation in orchestrated mode. Its specification and plan are released, and the corrected draft passed independent review; the slice start and build are authorized.
 
 This roadmap delivers the website of Teekaapi. The [brief](#brief) below says what the project is; the numbered sections own the approach, the order of delivery and the acceptance of each slice.
 
@@ -33,7 +33,7 @@ Each slice is delivered through Lets Vibe: a specification, a plan, a task list,
 | **Phase 1 — The Teekaapi site** | | | | | |
 | [S01](S01/SPEC.md) | Foundation and home page | Closed; the [plan](S01/tasks/plan.md#completion) records the result and what waits for the owner | The site brief | The Astro and Tailwind project in a new `packages/app`; the theme with the palette and the fonts; the shared layout with the header, the footer, dark mode and reduced motion; the home page with its hero, highlights, signature drinks, fusion food teaser and social band | The build passes; the home page works at phone, tablet and desktop widths in light and dark mode; contrast, focus order and reduced motion checked in a browser |
 | [S02](S02/SPEC.md) | Menu and Our Story | Closed; the [plan](S02/tasks/plan.md#completion) records the result and what waits for the owner | S01 | The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits | The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode |
-| S03 | Gallery, Visit Us and Order / Book | Planned | S01 | The gallery with overlays and filters; the visit page with the address, hours, map, transport notes and action buttons; the order and booking preview in three steps | The build passes; the filters and overlays work by keyboard and by touch; the booking preview states that it sends nothing; each page checked in light and dark mode |
+| [S03](S03/SPEC.md) | Gallery, Visit Us and Order / Book | In preparation; the [plan](S03/tasks/plan.md) holds the start record and proposed delivery | S01 | The gallery with overlays and filters; the visit page with the address, hours, map, transport notes and action buttons; the order and booking preview in three steps | The build passes; the filters and overlays work by keyboard and by touch; the booking preview states that it sends nothing; each page checked in light and dark mode |
 
 ## 3. Product scope
 
@@ -56,8 +56,7 @@ The site brief gives two options in several places. Each one is a user-facing ch
 - the heading font, Space Grotesk or League Spartan; the body font, Inter or DM Sans; the script font, Pacifico or Dancing Script;
 - segmented controls or tabs for the menu categories;
 - a grid or a masonry layout for the gallery;
-- a page or a modal for order and book;
-- the provider of the embedded map on the visit page, which loads content from an outside service.
+- a page or a modal for order and book.
 
 ## 4. Document maintenance
 
