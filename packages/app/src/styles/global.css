@@ -75,3 +75,43 @@
     @apply motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[6px_6px_0_0_var(--color-teekaapi-orange)] motion-safe:focus-within:-translate-y-1;
   }
 }
+
+/* Entry animation. The `js` class comes from the head script of the layout, so that a page
+   without scripts shows everything. The whole block is off for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+      opacity 220ms ease-out,
+      transform 220ms ease-out;
+    transition-delay: calc(var(--reveal-index, 0) * 60ms);
+  }
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* The shapes of the hero move a little as the page scrolls, where the browser supports it. */
+  @supports (animation-timeline: scroll()) {
+    .hero-shape {
+      animation: hero-drift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 40rem;
+    }
+    .hero-shape-slow {
+      animation-name: hero-drift-slow;
+    }
+  }
+}
+
+@keyframes hero-drift {
+  to {
+    translate: 0 3rem;
+  }
+}
+@keyframes hero-drift-slow {
+  to {
+    translate: 0 -1.5rem;
+  }
+}

@@ -10,7 +10,7 @@ import SectionHeading from './SectionHeading.astro';
   aria-labelledby="food-heading"
 >
   <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-    <div class="relative mb-3 mr-3">
+    <div data-reveal class="relative mb-3 mr-3">
       <Image
         src={food.image}
         alt={food.alt}
@@ -27,7 +27,7 @@ import SectionHeading from './SectionHeading.astro';
       <ul class="mt-8 space-y-5">
         {
           food.dishes.map((dish) => (
-            <li>
+            <li data-reveal>
               <div class="flex items-baseline gap-3">
                 <h3 class="text-xl">{dish.name}</h3>
                 <span class="leader mb-1 flex-1 border-b-2 border-dotted border-espresso-noir/60 dark:border-text-light/60" aria-hidden="true" />

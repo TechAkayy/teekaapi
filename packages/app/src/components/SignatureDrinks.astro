@@ -9,10 +9,12 @@ import SectionHeading from './SectionHeading.astro';
     <SectionHeading id="drinks-heading" flourish="House favourites">Signature drinks</SectionHeading>
 
     <!-- On a phone this is a row that the visitor swipes. From the tablet width it is a grid. -->
+    <!-- The row enters as one piece. A card that waits outside a swipe row would stay hidden. -->
     <div
       data-drinks-row
-      role="region"
-      aria-labelledby="drinks-heading"
+      data-reveal
+      role="group"
+      aria-label="Signature drinks, in a row"
       tabindex="0"
       class="drinks-row -mx-4 mt-8 overflow-x-auto px-4 pb-4 pt-1 md:mx-0 md:overflow-visible md:px-0"
     >

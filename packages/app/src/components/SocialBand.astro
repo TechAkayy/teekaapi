@@ -11,7 +11,7 @@ import SectionHeading from './SectionHeading.astro';
     <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
       {
         moments.tiles.map((tile) => (
-          <li>
+          <li data-reveal>
             <figure class="tile group relative overflow-hidden rounded-3xl">
               <Image
                 src={tile.image}

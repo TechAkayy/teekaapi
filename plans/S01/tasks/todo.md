@@ -4,7 +4,7 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S01
-current: I am building D6. I add the entry animations and the scroll movement.
+current: I am building D6. I prove accessibility and privacy over the whole page.
 next: The agent builds D4 to D6 and closes the slice. The owner gets the list of choices at the close.
 completed:
   - The owner agreed the specification, the plan and the weights. The slice is started.
@@ -95,8 +95,8 @@ steps:
         name: Motion and accessibility
         weight: 12
         children:
-          - { id: d6-motion, task: 18, weight: 6, status: active }
-          - { id: d6-access, task: 19, weight: 6, status: pending }
+          - { id: d6-motion, task: 18, weight: 6, status: complete }
+          - { id: d6-access, task: 19, weight: 6, status: active }
   - id: 7
     name: Material corrections and contract updates
     class: substantive
@@ -319,10 +319,10 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 18 — Add the entry animations and the scroll movement
 
-- [ ] Add one reveal script and its classes: a section fades and slides up when it enters the view, its cards staggered, each transition between 150 and 250 milliseconds.
-- [ ] Keep the content visible when scripts do not run and when reduced motion is asked for.
-- [ ] Add the light scroll movement of the hero shapes with CSS scroll-driven animation, inside a support query and under `motion-safe`.
-- [ ] Add browser tests with reduced motion emulated: no element of the page has a running animation or a transition longer than zero, and each section is visible.
+- [x] Add one reveal script and its classes: a section fades and slides up when it enters the view, its cards staggered, each transition between 150 and 250 milliseconds.
+- [x] Keep the content visible when scripts do not run and when reduced motion is asked for.
+- [x] Add the light scroll movement of the hero shapes with CSS scroll-driven animation, inside a support query and under `motion-safe`.
+- [x] Add browser tests with reduced motion emulated: no element of the page has a running animation or a transition longer than zero, and each section is visible.
 
 **Acceptance:** with motion allowed, the sections animate once on entry; with reduced motion, nothing nonessential moves and nothing is hidden.
 **Verify:** the browser tests; by inspection with the owner.

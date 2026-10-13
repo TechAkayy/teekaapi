@@ -100,3 +100,27 @@ test('the social band shows square photographs with text alternatives and links 
   }
   await expect(section.getByRole('link')).toHaveCount(0);
 });
+
+test('the words of the hero do not sit on its coloured shapes', async ({ page }) => {
+  await page.goto('/');
+  const overlaps = await page.evaluate(() => {
+    const hero = document.querySelector('section.hero');
+    if (!hero) return ['no hero'];
+    // The boxes of the lines of text, not of their full-width blocks.
+    const words = [...hero.querySelectorAll('h1, p, a')].flatMap((el) => {
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      return [...range.getClientRects()];
+    });
+    const shapes = [...hero.querySelectorAll<HTMLElement>('.hero-shape')].filter((el) => getComputedStyle(el).display !== 'none');
+    const found: string[] = [];
+    for (const shape of shapes) {
+      const s = shape.getBoundingClientRect();
+      for (const w of words) {
+        if (w.left < s.right && w.right > s.left && w.top < s.bottom && w.bottom > s.top) found.push(shape.className);
+      }
+    }
+    return found;
+  });
+  expect(overlaps).toEqual([]);
+});

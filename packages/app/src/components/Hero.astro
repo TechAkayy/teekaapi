@@ -23,13 +23,14 @@ import Button from './Button.astro';
   <div class="grain absolute inset-0 -z-10" aria-hidden="true"></div>
 
   <!-- Background shapes. They are decoration only. -->
-  <div class="hero-shape absolute -right-16 -top-16 -z-10 size-56 rounded-full bg-teekaapi-orange/80 md:size-80" aria-hidden="true"></div>
+  <!-- A quarter disc in the corner. It stays inside the hero, so that it never sits behind the header. -->
+  <div class="hero-shape absolute right-0 top-0 -z-10 size-32 rounded-bl-full bg-teekaapi-orange/80 md:size-36 lg:size-64" aria-hidden="true"></div>
   <div class="hero-shape hero-shape-slow absolute -bottom-10 right-1/4 -z-10 hidden h-40 w-80 rounded-t-full bg-fusion-pink/70 md:block" aria-hidden="true"></div>
   <div class="hero-shape absolute bottom-24 right-10 -z-10 hidden size-24 rounded-3xl border-4 border-mint-kulfi md:block" aria-hidden="true"></div>
 
   <div class="mx-auto flex min-h-[34rem] max-w-6xl flex-col justify-end gap-5 px-4 pb-14 pt-40 md:min-h-[40rem] md:justify-center md:px-6 md:py-24">
     <p class="font-script text-2xl text-mint-kulfi md:text-3xl">{hero.flourish}</p>
-    <h1 id="hero-heading" class="max-w-3xl text-5xl leading-[0.95] text-text-light md:text-7xl lg:text-8xl">
+    <h1 id="hero-heading" class="max-w-xl text-5xl leading-[0.95] text-text-light md:text-7xl lg:max-w-3xl lg:text-8xl">
       {hero.headline}
     </h1>
     <p class="max-w-xl text-lg text-text-light md:text-xl">{hero.line}</p>
