@@ -35,7 +35,7 @@ The owner made these choices for this slice on 2026-10-13. A later slice may add
 | Style reference page | Kept at `/styleguide`, linked from no page and hidden from search engines. |
 | Button text | Espresso Noir on Teekaapi Orange. Light text on orange fails contrast. |
 | Focus ring | Mint Kulfi with an Espresso Noir edge in light mode; Mint Kulfi alone in dark mode. Mint alone cannot be seen on Cream Foam. |
-| Accent colours in light mode | Orange, pink and mint are fills and decoration, never the colour of text. |
+| Accent colours | On a light surface, orange, pink and mint are fills and decoration, never the colour of text. On a dark surface they may be the colour of text, in either mode, where the contrast table of the plan shows that they pass. |
 
 ### Assumptions
 

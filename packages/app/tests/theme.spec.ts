@@ -12,6 +12,25 @@ test.describe('with the device in dark mode', () => {
   });
 });
 
+test.describe('with the device in dark mode and no script file', () => {
+  test.use({ colorScheme: 'dark' });
+
+  test('the script in the head alone sets the dark mode, before any other script runs', async ({ page }) => {
+    // Each script file is refused, so only the script that is written into the head can run.
+    await page.route('**/*.js', (route) => route.abort());
+    await page.goto('/');
+    expect(await page.evaluate(isDark)).toBe(true);
+    const inHead = await page.evaluate(() => {
+      const inline = [...document.head.querySelectorAll('script:not([src])')].find((script) =>
+        script.textContent?.includes('prefers-color-scheme'),
+      );
+      const firstStyle = document.head.querySelector('link[rel="stylesheet"], style');
+      return !!inline && (!firstStyle || !!(inline.compareDocumentPosition(firstStyle) & Node.DOCUMENT_POSITION_FOLLOWING));
+    });
+    expect(inHead).toBe(true);
+  });
+});
+
 test.describe('with the device in light mode', () => {
   test.use({ colorScheme: 'light' });
 

@@ -56,8 +56,37 @@ test('the phone menu opens and closes by keyboard, and a link in it reaches its 
   await expect(nav).toBeHidden();
   await expect(button).toBeFocused();
 
+  // After the menu opens, the next stop of the keyboard is its first link.
   await page.keyboard.press('Enter');
-  await nav.getByRole('link', { name: 'Food' }).click();
+  await page.keyboard.press('Tab');
+  await expect(nav.getByRole('link', { name: 'Drinks' })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(nav.getByRole('link', { name: 'Food' })).toBeFocused();
+  await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#food$/);
   await expect(nav).toBeHidden();
+
+  // The panel closes when the focus leaves it.
+  await button.focus();
+  await page.keyboard.press('Enter');
+  await expect(nav).toBeVisible();
+  await page.getByRole('link', { name: 'View Menu' }).focus();
+  await expect(nav).toBeHidden();
+});
+
+test.describe('without scripts', () => {
+  test.use({ javaScriptEnabled: false });
+
+  test('the links of the header are in view, and no control that needs scripts is shown', async ({ page }) => {
+    await page.goto('/');
+    const nav = page.getByRole('navigation', { name: 'Main' });
+    for (const name of ['Drinks', 'Food', 'Moments']) await expect(nav.getByRole('link', { name })).toBeVisible();
+    await expect(page.locator('[data-menu-button]')).toBeHidden();
+    await expect(page.locator('[data-theme-toggle]')).toBeHidden();
+    await expect(page.locator('[data-drinks-dots]')).toBeHidden();
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(overflow).toBe(0);
+  });
 });

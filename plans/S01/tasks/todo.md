@@ -4,8 +4,8 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S01
-current: The final proof is done. An independent reviewer assesses the slice.
-next: The agent corrects the findings of the review. Then it closes the slice and gives the owner its choices.
+current: The reviewer found 2 defects and 4 smaller points. I correct them.
+next: The reviewer assesses the corrections. Then the agent closes the slice and gives the owner its choices.
 completed:
   - The owner agreed the specification, the plan and the weights. The slice is started.
   - D1 is done. The site package builds, and its checks run with the checks of the repository.
@@ -19,7 +19,7 @@ remaining:
 blockers:
   - None.
 verification:
-  - The build, the type check and 84 browser tests of the site pass.
+  - The build, the type check and 90 browser tests of the site pass.
   - The check of the repository passes with the site included.
   - The owner has not looked at the finished home page. The plan lists this limitation.
 candidate:
@@ -102,7 +102,7 @@ steps:
     name: Material corrections and contract updates
     class: substantive
     weight: 0
-    status: pending
+    status: active
   - id: 8
     name: Final proof and freeze
     class: substantive
@@ -112,7 +112,8 @@ steps:
     name: Independent assessments
     class: substantive
     weight: 4
-    status: active
+    status: paused
+    reason: The reviewer asked for corrections. It assesses them when step 7 is done.
   - id: 10
     name: Slice close
     class: supporting
@@ -204,7 +205,7 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 - [x] Move `index.astro` and `styleguide.astro` onto the layout.
 
 **Acceptance:** both pages render inside the layout; with the device in dark mode and no saved choice, the first paint is dark; the skip link moves the focus to the main content.
-**Verify:** a browser test with an emulated dark colour scheme that reads the class before load ends; a browser test of the skip link.
+**Verify:** a browser test with an emulated dark colour scheme and each script file refused, which shows that the script in the head alone sets the mode and stands before the first style sheet; a browser test of the skip link.
 **Depends on:** Task 6. **Files:** `src/layouts/BaseLayout.astro`, both pages, `public/favicon.svg`, `tests/layout.spec.ts`.
 
 ## Task 8 — Add the light and dark button
@@ -242,11 +243,11 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 ## Task 11 — Choose and add the hero photograph
 
 - [x] Find 2 or 3 candidate photographs on Unsplash that fit the coffee imagery rules of the site brief, with no recognisable face and no other brand.
-- [x] Show the candidates with their source pages to the owner; download only the one that the owner approves.
+- [x] Choose the photograph. The owner gave this choice to the agent with the autonomous mode, so the agent chose and downloaded it and did not show the candidates first.
 - [x] Store the file in `src/assets/images` and add its line to `CREDITS.md`: the photographer, the source page, the part that uses it.
 
-**Acceptance:** one approved hero photograph is in the package with its credit line.
-**Verify:** the file and the credit line exist; the owner approved the choice.
+**Acceptance:** one hero photograph is in the package with its credit line.
+**Verify:** the file and the credit line exist. The owner has not seen the choice; the plan lists it for the close.
 **Depends on:** Task 7. **Files:** `src/assets/images/`, `src/assets/images/CREDITS.md`.
 
 ## Task 12 — Build the hero
@@ -265,10 +266,10 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 ## Task 13 — Build the quick highlights
 
 - [x] Add the highlights as typed data in `src/content/home.ts`, with a Phosphor icon name each.
-- [x] Add `src/components/Highlights.astro` and a card component: the icon, the title, one line of text; the lift on hover and on focus under `motion-safe`.
+- [x] Add `src/components/Highlights.astro` and a card component: the icon, the title, one line of text; the lift on hover under `motion-safe`. A card holds no control, so it takes no keyboard focus.
 - [x] Lay the cards out as one column on a phone, two at tablet width and one row at desktop width.
 
-**Acceptance:** three or four cards render from the data; the layout matches at the three widths; no card states an unconfirmed fact as true.
+**Acceptance:** three or four cards render from the data; the layout matches at the three widths; no card states an unconfirmed fact as true. The line of text of each card is marked as a sample.
 **Verify:** the home browser test; by inspection with the owner.
 **Depends on:** Task 12. **Files:** `src/components/Highlights.astro`, `src/components/HighlightCard.astro`, `src/content/home.ts`, `src/pages/index.astro`.
 **Waits for:** open question 1; until the owner confirms “Open Late” and “Melbourne CBD”, those two cards are left out.
@@ -276,11 +277,11 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 ## Task 14 — Choose and add the drink, food and social photographs
 
 - [x] List the photographs that tasks 15 to 17 need, by part, and find candidates on Unsplash under the same rules as Task 11.
-- [x] Show the list with the source pages to the owner; download only the approved ones.
+- [x] Choose the photographs. The agent chose and downloaded them under the autonomous mode and did not show the list first.
 - [x] Store the files and add the credit lines.
 
-**Acceptance:** each photograph that tasks 15 to 17 use is approved, stored and credited.
-**Verify:** each file has its credit line; the owner approved the list.
+**Acceptance:** each photograph that tasks 15 to 17 use is stored and credited.
+**Verify:** each file has its credit line. The owner has not seen the list; the plan lists it for the close.
 **Depends on:** Task 11. **Files:** `src/assets/images/`, `CREDITS.md`.
 
 ## Task 15 — Build the signature drinks row
@@ -309,8 +310,8 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 17 — Build the social band
 
-- [x] Add `src/components/SocialBand.astro`: a row of square photographs and the hashtag in the script font.
-- [x] Add the light overlay on hover and on focus; a tile is a link only when the content data holds a destination.
+- [x] Add `src/components/SocialBand.astro`: a row of square photographs. The hashtag is left out, because the cafe has not confirmed it; a script line stands above the heading in its place.
+- [x] Add the caption overlay on hover. No tile is a link, because the content data holds no destination, so no tile takes the keyboard focus.
 - [x] Make the row wrap or scroll without sideways scroll of the page at 375 pixels.
 
 **Acceptance:** the section has the `id` that the header link targets; each photograph has a text alternative; no tile links to a made-up account.

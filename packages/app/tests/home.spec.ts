@@ -57,6 +57,18 @@ test('the signature drinks are a row with dots on a phone and a grid from the ta
   await expect(dots.nth(2)).toHaveAttribute('aria-current', 'true');
   await expect(dots.nth(0)).toHaveAttribute('aria-current', 'false');
 
+  // The last dot shows the last card, and only that dot is the current one.
+  const current = () => dots.evaluateAll((all) => all.map((dot) => dot.getAttribute('aria-current')).join());
+  await dots.nth(3).click();
+  await expect(cards.nth(3)).toBeInViewport({ ratio: 0.9 });
+  await expect.poll(current).toBe('false,false,false,true');
+
+  // A swipe to the end of the row and back to its start moves the current dot with it.
+  await row.evaluate((el) => el.scrollTo({ left: 0, behavior: 'instant' }));
+  await expect.poll(current).toBe('true,false,false,false');
+  await row.evaluate((el) => el.scrollTo({ left: el.scrollWidth, behavior: 'instant' }));
+  await expect.poll(current).toBe('false,false,false,true');
+
   // The row takes the keyboard focus, and an arrow key moves it.
   await row.evaluate((el) => el.scrollTo({ left: 0, behavior: 'instant' }));
   await row.focus();

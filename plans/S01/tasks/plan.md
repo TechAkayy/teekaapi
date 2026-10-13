@@ -52,7 +52,7 @@ The owner gave the user-facing choices of the rest of the slice to the agent on 
 - **Photographs.** Twelve photographs from Unsplash, chosen with no recognisable face and no brand of another business. The agent chose and downloaded them without showing the list first, under the autonomous mode; `CREDITS.md` in the images folder names each one.
 - **Hero words.** The flourish “Melbourne brewed” from the site brief; the headline “South Indian soul. Melbourne coffee.”; the line “Specialty coffee and fusion food, served with colour, craft and a little nostalgia.” Each uses only what the site brief states of the cafe. They are marked as samples.
 - **Hero look.** The words sit on an Espresso Noir overlay over the photograph, light in both modes, with a grain layer and three shapes in orange, pink and mint.
-- **Highlights.** Four cards: Specialty Coffee, Fusion Bites, South Indian Roots and Melbourne Made. “Open Late” and “Melbourne CBD” of the site brief are left out, because the cafe has not confirmed them. The icons are the two-tone Phosphor set.
+- **Highlights.** Four cards: Specialty Coffee, Fusion Bites, South Indian Roots and Melbourne Made, each with a sample line of text. “Open Late” and “Melbourne CBD” of the site brief are left out, because the cafe has not confirmed them. The icons are the two-tone Phosphor set.
 - **Card hover.** A card rises a little and gets an offset Teekaapi Orange shadow.
 
 - **Signature drinks.** Four sample drinks: Filter Kaapi, Jaggery Flat White, Iced Kaapi and Masala Latte. The row is a grid from the tablet width, two across and then four across. Each photograph has a tall rounded crop with an offset shadow, orange and mint in turn. The current dot is a wide filled bar. The small script line above the heading reads “House favourites”.
@@ -62,12 +62,29 @@ The owner gave the user-facing choices of the rest of the slice to the agent on 
 - **Entry animation.** Each heading and each card fades and slides up one time, in 220 milliseconds, with 60 milliseconds between the cards of one group. The drinks row enters as one piece: a card that waits outside a swipe row would stay hidden.
 - **Hero shapes.** A quarter disc in Teekaapi Orange in the top corner, a half disc in Fusion Pink at the bottom edge and a Mint Kulfi outline. They drift a little on scroll where the browser supports scroll-driven animation. They stay inside the hero and clear of its words.
 
+- **Accent text on dark surfaces.** The hero flourish and the footer tagline are Mint Kulfi text on dark surfaces in both modes, and the full stop of the logo is Teekaapi Orange decoration. The agent read the rule of the owner on accent colours as a rule for light surfaces, which is where the contrast fails, and the specification now says so.
+- **Phone header.** The menu button stands to the left of the theme button, so that the order on the screen is the order of the keyboard: the menu button, its links, the theme button.
+- **Dish tags and captions.** A dish carries a tag that names its kind (Toastie, Sides, Griddle, Bao), not a dietary claim. The captions of the social band are short neutral phrases.
+
 ### Findings of the accessibility scan, and their corrections
 
 - The drinks row and its section had the same accessible name. The row is now a group with a name of its own.
 - The first orange shape reached up behind the header, so the scanner read the header links as light text on orange. The shape is now a quarter disc inside the hero.
 - At the tablet width the headline ran onto the orange shape, which the scanner cannot see. The shape is smaller there and the headline is narrower; a test now fails if a line of hero text meets a shape.
 - A part that was in view at the first paint kept its entry mark, because no transition ran to end it. A timer now clears the mark too.
+
+### Findings of the independent review, and their corrections
+
+The reviewer returned FIX on the candidate of the final proof. Each finding keeps its identifier.
+
+- **R1, blocking.** The last dot of the drinks row never became the current dot, and a stale dot stayed current at the end of the row. The dots now follow the scroll position, with the last dot at the end of the row. A card keeps one width below the tablet width, so each dot has its own position. A test clicks the last dot and scrolls to both ends.
+- **R2, should fix.** With the phone menu open, the next stop of the keyboard was outside the panel. The menu button now stands before its links in the page, the panel closes when the focus or a click goes elsewhere, and the test uses the keyboard for each step.
+- **R3, should fix.** Lines of text, tags, chips and captions that the site brief does not state were not marked as samples. Each one is now marked in the content data, the lines are reworded so that they claim less, the dietary tags are gone, and the limitations below name all of them.
+- **R4, minor.** The task list ticked actions that a delegated choice had replaced. Those lines now say what was done.
+- **R5, minor.** Without scripts on a phone, the header links could not be reached and three controls did nothing. Without scripts the links now stay in the header, and the menu button, the theme button and the dots are not shown. A device in dark mode then gets the light mode; the mode needs the script.
+- **R6, minor, a choice.** Recorded above under the choices of the agent: accent text is permitted on dark surfaces.
+- **Suggestion taken.** The entry animation now hides a part only after its own script has started, so a script that fails to load hides nothing.
+- **Suggestions not taken.** The last drink card ends at the edge of the screen at the end of the row. The focus ring of the drinks row is cut at the two edges of the screen. No test measures the contrast of the hero words against the photograph; the reviewer measured it, and the thinnest margin was 4.83 against 4.5 at 768 pixels. The site brief asks for darker photographs in dark mode, and the specification does not.
 
 ### Contrast of the palette
 
@@ -159,7 +176,7 @@ All checks ran on Node 24.20.0 against the real local build, with no mock and no
 | `pnpm install --frozen-lockfile` from the root | Passed |
 | `pnpm check` from the root: the agent checks, the roadmap check, the freshness check of the progress report, the type and template check and the browser tests | Passed |
 | Type and template check of the site | Passed, with 0 errors, 0 warnings and 0 hints |
-| Browser tests: 28 tests, each at 375, 768 and 1280 pixels | 84 passed, and 84 passed again in 5 more runs |
+| Browser tests: 30 tests, each at 375, 768 and 1280 pixels | 90 passed after the corrections of the review. Before them, 84 of 84 passed in 6 runs. |
 
 How the success criteria of the specification are proven:
 
@@ -191,4 +208,6 @@ Limitations and checks that did not run:
 - The scan cannot judge text over a photograph. The hero keeps its words on an Espresso Noir overlay, and a test keeps them off the coloured shapes.
 - No performance measurement ran. The roadmap has no performance target.
 - One early run of `pnpm check` failed one time in the tests of the agents package, during D2. It did not fail again in more than 15 later runs, and its cause is not known.
-- The drinks, the dishes, the hero words and the tagline are sample content. The site is not ready to go public with them.
+- Sample content: the hero words; the line of text of each highlight card; the drinks with their descriptions and chips; the introduction, the dishes and the tags of the food teaser; the captions of the social band; and the tagline of the footer. The content data marks each one. The photographs, the logo and the icon of the site are stand-ins. The site is not ready to go public with them.
+- Without scripts the site shows the light mode on each device, and the drinks row has no dots.
+- The reviewer did not open the source pages of the photographs, so the names and the links of `CREDITS.md` come from the search results of Unsplash and no second person checked them.

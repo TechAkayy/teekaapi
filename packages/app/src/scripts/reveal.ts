@@ -1,6 +1,6 @@
 // A part of the page fades and slides up one time, when it enters the view.
-// The styles are in global.css. They apply only when the visitor allows motion,
-// so this script changes nothing for a visitor who asked for reduced motion.
+// The styles are in global.css. They apply only after this script has started and only
+// when the visitor allows motion, so a page without this script shows everything.
 
 const targets = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
 
@@ -39,4 +39,5 @@ if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-m
     { threshold: 0.15 },
   );
   targets.forEach((target) => observer.observe(target));
+  document.documentElement.classList.add('reveal-ready');
 }

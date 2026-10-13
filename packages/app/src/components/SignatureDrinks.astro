@@ -78,23 +78,48 @@ import SectionHeading from './SectionHeading.astro';
         const card = cards[index];
         if (!card) return;
         row.scrollTo({
-          left: card.offsetLeft - row.offsetLeft - parseFloat(getComputedStyle(row).paddingLeft),
+          left: card.offsetLeft - (cards[0]?.offsetLeft ?? 0),
           behavior: reduceMotion.matches ? 'auto' : 'smooth',
         });
       });
     });
 
-    // The dot of the card that fills most of the row is the current one.
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          const current = cards.indexOf(entry.target as HTMLElement);
-          dots.forEach((dot, index) => dot.setAttribute('aria-current', String(index === current)));
-        }
+    // The current dot follows the scroll position. At the end of the row it is the last dot,
+    // because the last card cannot reach the start of the row.
+    const syncDots = (): void => {
+      const start = row.scrollLeft;
+      const end = row.scrollWidth - row.clientWidth;
+      const first = cards[0]?.offsetLeft ?? 0;
+      let current = 0;
+      if (end > 0 && start >= end - 2) {
+        current = cards.length - 1;
+      } else {
+        let nearest = Infinity;
+        cards.forEach((card, index) => {
+          const distance = Math.abs(card.offsetLeft - first - start);
+          if (distance < nearest) {
+            nearest = distance;
+            current = index;
+          }
+        });
+      }
+      dots.forEach((dot, index) => dot.setAttribute('aria-current', String(index === current)));
+    };
+
+    let waiting = false;
+    row.addEventListener(
+      'scroll',
+      () => {
+        if (waiting) return;
+        waiting = true;
+        requestAnimationFrame(() => {
+          waiting = false;
+          syncDots();
+        });
       },
-      { root: row, rootMargin: '0px -45% 0px 0px', threshold: 0.6 },
+      { passive: true },
     );
-    cards.forEach((card) => observer.observe(card));
+    window.addEventListener('resize', syncDots);
+    syncDots();
   }
 </script>

@@ -30,15 +30,17 @@ export interface Highlight {
   icon: HighlightIcon;
   title: string;
   text: string;
+  sample: boolean;
 }
 
-// Only what the site brief states of the cafe. A card for late hours or for an
-// address waits until the cafe confirms it.
+// The titles use only what the site brief states of the cafe: specialty coffee, fusion food,
+// South Indian, Melbourne. The line under each title is sample text for the cafe to replace.
+// A card for late hours or for an address waits until the cafe confirms it.
 export const highlights: Highlight[] = [
-  { icon: 'coffee', title: 'Specialty Coffee', text: 'Carefully sourced, carefully pulled, never rushed.' },
-  { icon: 'bowl', title: 'Fusion Bites', text: 'Familiar plates with an unexpected twist.' },
-  { icon: 'flame', title: 'South Indian Roots', text: 'The flavours we grew up with, at the heart of the menu.' },
-  { icon: 'pin', title: 'Melbourne Made', text: 'A hangout for the city that takes its coffee seriously.' },
+  { icon: 'coffee', title: 'Specialty Coffee', text: 'The reason most people walk in.', sample: true },
+  { icon: 'bowl', title: 'Fusion Bites', text: 'Familiar plates with an unexpected twist.', sample: true },
+  { icon: 'flame', title: 'South Indian Roots', text: 'South Indian flavour, all through the menu.', sample: true },
+  { icon: 'pin', title: 'Melbourne Made', text: 'A cafe for a city that loves its coffee.', sample: true },
 ];
 
 export interface Drink {
@@ -50,7 +52,7 @@ export interface Drink {
   sample: boolean;
 }
 
-// Sample drinks. The cafe replaces them with its own.
+// Sample drinks, with sample chips. The cafe replaces them with its own.
 export const drinks: Drink[] = [
   {
     name: 'Filter Kaapi',
@@ -91,18 +93,20 @@ export interface Dish {
   sample: boolean;
 }
 
-// Sample dishes. The cafe replaces them with its own.
+// Sample dishes, a sample introduction and sample tags. The cafe replaces them with its own.
+// A tag names a kind of dish. It makes no dietary claim.
 export const food = {
   flourish: 'Chef’s pick',
   heading: 'Fusion food',
-  intro: 'South Indian classics, borrowed, bent and plated for brunch.',
+  intro: 'South Indian classics, borrowed and bent a little.',
+  sample: true,
   image: foodDosa,
   alt: 'A crisp dosa folded into a cone on a banana leaf, with chutneys beside it.',
   dishes: [
-    { name: 'Masala Dosa Toastie', description: 'Spiced potato and cheese, pressed until crisp.', tag: 'Veg', sample: true },
-    { name: 'Podi Fries', description: 'Hot chips tossed in gunpowder spice and ghee.', tag: 'Share', sample: true },
-    { name: 'Chilli Cheese Uttapam', description: 'A thick rice pancake with green chilli and melted cheese.', tag: 'Veg', sample: true },
-    { name: 'Curry Leaf Chicken Bao', description: 'Fried chicken, curry leaf mayo and a soft steamed bun.', tag: 'Spicy', sample: true },
+    { name: 'Masala Dosa Toastie', description: 'Spiced potato and cheese, pressed until crisp.', tag: 'Toastie', sample: true },
+    { name: 'Podi Fries', description: 'Hot chips tossed in gunpowder spice and ghee.', tag: 'Sides', sample: true },
+    { name: 'Chilli Cheese Uttapam', description: 'A thick rice pancake with green chilli and melted cheese.', tag: 'Griddle', sample: true },
+    { name: 'Curry Leaf Chicken Bao', description: 'Fried chicken, curry leaf mayo and a soft steamed bun.', tag: 'Bao', sample: true },
   ] satisfies Dish[],
 };
 
@@ -110,17 +114,19 @@ export interface Moment {
   image: ImageMetadata;
   alt: string;
   caption: string;
+  sample: boolean;
 }
 
+// Sample captions over stand-in photographs. The cafe replaces both.
 export const moments = {
   flourish: 'Come hang out',
   heading: 'Teekaapi moments',
   tiles: [
-    { image: socialLattes, alt: 'Four lattes with latte art on a round tray.', caption: 'Round for the table' },
-    { image: socialDosaLeaf, alt: 'A dosa with chutney and sambar on a banana leaf.', caption: 'Brunch, our way' },
-    { image: socialPour, alt: 'Hands pour steamed milk into a glass of coffee.', caption: 'The pour' },
-    { image: socialBooth, alt: 'A row of round tables beside a leather bench and a timber wall.', caption: 'Your corner' },
-    { image: socialEspresso, alt: 'Two espresso shots run into small glasses.', caption: 'Double trouble' },
-    { image: socialIced, alt: 'A tall glass of iced coffee.', caption: 'Summer in a glass' },
+    { image: socialLattes, alt: 'Four lattes with latte art on a round tray.', caption: 'Round for the table', sample: true },
+    { image: socialDosaLeaf, alt: 'A dosa with chutney and sambar on a banana leaf.', caption: 'Crisp and golden', sample: true },
+    { image: socialPour, alt: 'Hands pour steamed milk into a glass of coffee.', caption: 'The pour', sample: true },
+    { image: socialBooth, alt: 'A row of round tables beside a leather bench and a timber wall.', caption: 'A quiet corner', sample: true },
+    { image: socialEspresso, alt: 'Two espresso shots run into small glasses.', caption: 'Double trouble', sample: true },
+    { image: socialIced, alt: 'A tall glass of iced coffee.', caption: 'Over ice', sample: true },
   ] satisfies Moment[],
 };
