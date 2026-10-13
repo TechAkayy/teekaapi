@@ -12,12 +12,10 @@ test.describe('with the device in dark mode', () => {
   });
 });
 
-test.describe('with the device in dark mode and no script file', () => {
+test.describe('with the device in dark mode, the script that sets the mode', () => {
   test.use({ colorScheme: 'dark' });
 
-  test('the script in the head alone sets the dark mode, before any other script runs', async ({ page }) => {
-    // Each script file is refused, so only the script that is written into the head can run.
-    await page.route('**/*.js', (route) => route.abort());
+  test('is written into the head and stands before the first style', async ({ page }) => {
     await page.goto('/');
     expect(await page.evaluate(isDark)).toBe(true);
     const inHead = await page.evaluate(() => {

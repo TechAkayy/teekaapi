@@ -1,6 +1,6 @@
 # Teekaapi site roadmap
 
-**Delivery state:** No slice is closed. S01 is selected in the [project pointer](project-state.json); its specification and plan are agreed and no deliverable is built.
+**Delivery state:** S01 is closed. It is the last selected slice in the [project pointer](project-state.json). No other slice is started; S02 is the next planned slice.
 
 This roadmap delivers the website of Teekaapi. The [brief](#brief) below says what the project is; the numbered sections own the approach, the order of delivery and the acceptance of each slice.
 
@@ -10,11 +10,11 @@ Teekaapi is a South Indian cafe in Melbourne with specialty coffee and a fusion-
 
 The [site brief](../README.md) in the README of the repository owns the design concept, the colour palette, the typography, the page structure, the image rules, the interactions and the theme instruction. This roadmap does not repeat them; each slice reads the parts of the site brief that it builds.
 
-**Where the project is.** The repository holds the site brief, the agent skills and this roadmap. No site code exists: no package, no framework and no page.
+**Where the project is.** The site package exists in `packages/app` with the theme, the shared layout and the home page. The home page shows sample content and stand-in photographs. The other pages do not exist yet.
 
 ## 1. Implementation approach
 
-- **One package.** The site is `packages/app` in the pnpm workspace of this repository. The folder does not exist yet; S01 creates it.
+- **One package.** The site is `packages/app` in the pnpm workspace of this repository.
 - **Starting choice, confirmed in the specification of S01.** Astro builds the pages and Tailwind CSS holds the theme, as the site brief asks for a Tailwind theme. A small interactive component is added only where a page needs state: the menu tabs, the gallery filters and the booking steps.
 - **A static site.** It has no server and stores nothing.
 - **Theme tokens.** The Tailwind theme names each colour and font of the site brief. A page uses those names and no raw colour value.
@@ -29,7 +29,7 @@ Each slice is delivered through Lets Vibe: a specification, a plan, a task list,
 | Slice | Title | Disposition | Builds on | Outcome | Acceptance evidence |
 |---|---|---|---|---|---|
 | **Phase 1 — The Teekaapi site** | | | | | |
-| [S01](S01/SPEC.md) | Foundation and home page | Selected, planned | The site brief | The Astro and Tailwind project in a new `packages/app`; the theme with the palette and the fonts; the shared layout with the header, the footer, dark mode and reduced motion; the home page with its hero, highlights, signature drinks, fusion food teaser and social band | The build passes; the home page works at phone, tablet and desktop widths in light and dark mode; contrast, focus order and reduced motion checked in a browser |
+| [S01](S01/SPEC.md) | Foundation and home page | Closed; the [plan](S01/tasks/plan.md#completion) records the result and what waits for the owner | The site brief | The Astro and Tailwind project in a new `packages/app`; the theme with the palette and the fonts; the shared layout with the header, the footer, dark mode and reduced motion; the home page with its hero, highlights, signature drinks, fusion food teaser and social band | The build passes; the home page works at phone, tablet and desktop widths in light and dark mode; contrast, focus order and reduced motion checked in a browser |
 | S02 | Menu and Our Story | Planned | S01 | The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits | The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode |
 | S03 | Gallery, Visit Us and Order / Book | Planned | S01 | The gallery with overlays and filters; the visit page with the address, hours, map, transport notes and action buttons; the order and booking preview in three steps | The build passes; the filters and overlays work by keyboard and by touch; the booking preview states that it sends nothing; each page checked in light and dark mode |
 

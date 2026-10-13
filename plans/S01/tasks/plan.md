@@ -62,7 +62,7 @@ The owner gave the user-facing choices of the rest of the slice to the agent on 
 - **Entry animation.** Each heading and each card fades and slides up one time, in 220 milliseconds, with 60 milliseconds between the cards of one group. The drinks row enters as one piece: a card that waits outside a swipe row would stay hidden.
 - **Hero shapes.** A quarter disc in Teekaapi Orange in the top corner, a half disc in Fusion Pink at the bottom edge and a Mint Kulfi outline. They drift a little on scroll where the browser supports scroll-driven animation. They stay inside the hero and clear of its words.
 
-- **Accent text on dark surfaces.** The hero flourish and the footer tagline are Mint Kulfi text on dark surfaces in both modes, and the full stop of the logo is Teekaapi Orange decoration. The agent read the rule of the owner on accent colours as a rule for light surfaces, which is where the contrast fails, and the specification now says so.
+- **Accent text on dark surfaces. This one waits for the owner.** The hero flourish and the footer tagline are Mint Kulfi text on dark surfaces in both modes, and the full stop of the logo is Teekaapi Orange decoration. The decision of the owner in the specification says that in light mode the accents are never the colour of text. The agent read it as a rule for light surfaces, which is where the contrast fails. The reviewer holds that this reading is outside what the owner gave to the agent, so the specification keeps the words of the owner. The owner confirms the reading or asks for a change.
 - **Phone header.** The menu button stands to the left of the theme button, so that the order on the screen is the order of the keyboard: the menu button, its links, the theme button.
 - **Dish tags and captions.** A dish carries a tag that names its kind (Toastie, Sides, Griddle, Bao), not a dietary claim. The captions of the social band are short neutral phrases.
 
@@ -82,7 +82,11 @@ The reviewer returned FIX on the candidate of the final proof. Each finding keep
 - **R3, should fix.** Lines of text, tags, chips and captions that the site brief does not state were not marked as samples. Each one is now marked in the content data, the lines are reworded so that they claim less, the dietary tags are gone, and the limitations below name all of them.
 - **R4, minor.** The task list ticked actions that a delegated choice had replaced. Those lines now say what was done.
 - **R5, minor.** Without scripts on a phone, the header links could not be reached and three controls did nothing. Without scripts the links now stay in the header, and the menu button, the theme button and the dots are not shown. A device in dark mode then gets the light mode; the mode needs the script.
-- **R6, minor, a choice.** Recorded above under the choices of the agent: accent text is permitted on dark surfaces.
+- **R6, minor.** Accent text on dark surfaces. The reviewer accepted it in substance and held that the owner must confirm it. It is recorded above under the choices of the agent, as the one that waits for the owner.
+
+The reviewer assessed the corrections and returned PASS, with R1 to R5 resolved and one new minor finding:
+
+- **R7, minor.** A new test said that it refused each script file, but the built page has no script file to refuse, because Astro writes each script into the page. The test now claims only what it proves: the first load is dark, and the script that sets the mode is in the head before the first style.
 - **Suggestion taken.** The entry animation now hides a part only after its own script has started, so a script that fails to load hides nothing.
 - **Suggestions not taken.** The last drink card ends at the edge of the screen at the end of the row. The focus ring of the drinks row is cut at the two edges of the screen. No test measures the contrast of the hero words against the photograph; the reviewer measured it, and the thinnest margin was 4.83 against 4.5 at 768 pixels. The site brief asks for darker photographs in dark mode, and the specification does not.
 
@@ -165,6 +169,18 @@ Through D3 the owner reviewed each deliverable before its commit. From D4 the mo
 
 The [open questions of the specification](../SPEC.md#open-questions) stand. Tasks 12, 13, 15, 16 and 17 each name the one that they wait for; without an answer they use sample text.
 
+## Completion
+
+The slice is closed. It delivered the six deliverables of this plan: the site package with its checks, the theme and the fonts, the shared layout, and the home page with its five parts, its motion and its accessibility proof. Success criteria 1 to 10 of the specification are met. Criterion 11 is open: the owner has not yet looked at the finished home page.
+
+What the owner does next:
+
+1. Look at the home page at a phone, a tablet and a desktop width, in light and in dark mode.
+2. Read “Choices that the agent made for the owner” above, and confirm or change each one. The choice on accent text on dark surfaces needs a word from the owner.
+3. Answer the open questions of the specification, and supply the real content in place of the sample content that the limitations below name.
+
+A change that the owner asks for after the close is new work, as a sub-slice or inside the next slice.
+
 ## Verification record
 
 ### Final proof, 2026-10-13
@@ -177,6 +193,7 @@ All checks ran on Node 24.20.0 against the real local build, with no mock and no
 | `pnpm check` from the root: the agent checks, the roadmap check, the freshness check of the progress report, the type and template check and the browser tests | Passed |
 | Type and template check of the site | Passed, with 0 errors, 0 warnings and 0 hints |
 | Browser tests: 30 tests, each at 375, 768 and 1280 pixels | 90 passed after the corrections of the review. Before them, 84 of 84 passed in 6 runs. |
+| Independent review: one Review Vibe assessment by a reviewer that did not write the work | FIX on the candidate of the final proof, then PASS on the corrected candidate. The reviewer ran `pnpm check` and its own probes at 320 to 1920 pixels. |
 
 How the success criteria of the specification are proven:
 

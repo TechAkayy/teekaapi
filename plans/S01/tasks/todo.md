@@ -4,8 +4,8 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S01
-current: The reviewer found 2 defects and 4 smaller points. I correct them.
-next: The reviewer assesses the corrections. Then the agent closes the slice and gives the owner its choices.
+current: The slice is closed. I join it into the main line.
+next: The owner looks at the home page and reads the choices of the agent in the plan.
 completed:
   - The owner agreed the specification, the plan and the weights. The slice is started.
   - D1 is done. The site package builds, and its checks run with the checks of the repository.
@@ -15,15 +15,16 @@ completed:
   - D5 is done. The home page has its drinks, its food teaser and its social band.
   - D6 is done. The page has its motion, and it passes the accessibility scan in both modes.
 remaining:
-  - The independent review and the close.
+  - The join into the main line.
 blockers:
-  - None.
+  - None. One choice waits for the owner. It is the accent text on dark surfaces.
 verification:
   - The build, the type check and 90 browser tests of the site pass.
   - The check of the repository passes with the site included.
+  - The independent reviewer passed the slice after its corrections.
   - The owner has not looked at the finished home page. The plan lists this limitation.
 candidate:
-  - The slice with D1 to D6 complete.
+  - The closed slice, with D1 to D6 and the corrections of the review.
 steps:
   - id: 1
     name: Slice preflight
@@ -102,7 +103,7 @@ steps:
     name: Material corrections and contract updates
     class: substantive
     weight: 0
-    status: active
+    status: complete
   - id: 8
     name: Final proof and freeze
     class: substantive
@@ -112,18 +113,17 @@ steps:
     name: Independent assessments
     class: substantive
     weight: 4
-    status: paused
-    reason: The reviewer asked for corrections. It assesses them when step 7 is done.
+    status: complete
   - id: 10
     name: Slice close
     class: supporting
     weight: 1
-    status: pending
+    status: complete
   - id: 11
     name: Final state and successor handoff
     class: supporting
     weight: 1
-    status: pending
+    status: active
 ```
 
 The owner agreed the weights on 2026-10-13.
@@ -205,7 +205,7 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 - [x] Move `index.astro` and `styleguide.astro` onto the layout.
 
 **Acceptance:** both pages render inside the layout; with the device in dark mode and no saved choice, the first paint is dark; the skip link moves the focus to the main content.
-**Verify:** a browser test with an emulated dark colour scheme and each script file refused, which shows that the script in the head alone sets the mode and stands before the first style sheet; a browser test of the skip link.
+**Verify:** a browser test with an emulated dark colour scheme that the first load is dark; a browser test that the script that sets the mode is written into the head and stands before the first style; a browser test of the skip link.
 **Depends on:** Task 6. **Files:** `src/layouts/BaseLayout.astro`, both pages, `public/favicon.svg`, `tests/layout.spec.ts`.
 
 ## Task 8 — Add the light and dark button
