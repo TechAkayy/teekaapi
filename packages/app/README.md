@@ -6,7 +6,7 @@ The output is a static site in `dist/`, with no application server. The theme sw
 
 ## Commands
 
-Use a Node version of the range in the root `package.json`; the root `.nvmrc` names one. Run the commands from the root of the repository.
+Use the Node version in the root `.nvmrc` and the pnpm version in the root `package.json`. Run the commands from the root of the repository.
 
 ```sh
 pnpm install                    # install the workspace

@@ -1,6 +1,6 @@
 # Specification: S03 Gallery, Visit Us and Order / Book
 
-**Status:** released by the orchestrator on 2026-10-13, with the decisions and corrections below; the replacement independent draft read passed. The slice start and build are authorized. The [plan](tasks/plan.md) holds the start record, sources, delivery order and review results; the [task list](tasks/todo.md) owns progress.
+**Status:** closed on 2026-10-13 with the orchestrator's release. Local integration awaits its separate release. The [plan](tasks/plan.md#completion) holds the acceptance disposition, close decision and limits, alongside the start record, sources and review results; the [task list](tasks/todo.md) owns progress.
 
 ## Objective and baseline
 
@@ -23,7 +23,7 @@ The capability boundaries are gallery browsing, visit information, and the booki
 
 ## Decisions of the orchestrator
 
-The orchestrator released the following decisions on **2026-10-13** after reading the specification, plan, independent review, brief and affected navigation owners. The developer records the decisions from the orchestrator's message. This is a design and scope release, not a claim that the user inspected or approved a screen. Built screens still require the orchestrator's review before close.
+The orchestrator released the following decisions on **2026-10-13** after reading the specification, plan, independent review, brief and affected navigation owners. The developer records the decisions from the orchestrator's message. This first release was a design and scope release; subsequent built-screen inspection and acceptance are attributed separately below. No record claims that the user inspected or approved a screen.
 
 | Item | Released decision and reason | Other way considered |
 |---|---|---|
@@ -68,7 +68,7 @@ Draw the map card in local CSS/SVG, with a Teekaapi pin, abstract paths and no c
 
 Keep the three requested actions visible: “Get Directions,” “Call,” and “Add to Calendar.” **Use disabled native buttons while the required facts are unknown**, with nearby text “These actions will be available when the cafe confirms its visit details.” No fake address, `tel:` value, maps search for an unverified business, calendar download or geolocation request is allowed. The label and explanation remain readable even though disabled controls are not Tab stops.
 
-**Candidate-screen decision of the orchestrator, 2026-10-13:** put that explanation directly before the three buttons in reading and visual order. Give the unavailable state no fill, a dashed border, the ordinary full-contrast text colour, a not-allowed cursor and no hover or press effect in either theme. Preserve the native disabled state, labels, order and minimum 44-pixel height. Reason: the filled controls looked usable, and visitors need the explanation before trying them. Other ways: retain the fill, refused because it obscures the unavailable state; remove the buttons, already refused under U4. The orchestrator inspected the developer's captures, not the user. This change was held until the first candidate read ended and its responses were released; the new captures still require acceptance.
+**Candidate-screen decision of the orchestrator, 2026-10-13:** put that explanation directly before the three buttons in reading and visual order. Give the unavailable state no fill, a dashed border, the ordinary full-contrast text colour, a not-allowed cursor and no hover or press effect in either theme. Preserve the native disabled state, labels, order and minimum 44-pixel height. Reason: the filled controls looked usable, and visitors need the explanation before trying them. Other ways: retain the fill, refused because it obscures the unavailable state; remove the buttons, already refused under U4. The orchestrator inspected the developer's captures, not the user. This change was held until the first candidate read ended and its responses were released; the corrected captures were subsequently accepted as recorded under A11 below.
 
 The orchestrator released this acceptance split: this run proves the honest unavailable state; actual maps, telephone and calendar actions are **not met** until real details and calendar semantics are supplied. No close may call them passed. The plan's “Owed to the user” table names that follow-up. The alternative is to omit the actions completely, which conceals the intended affordances. The settled map-app behaviour remains the required outcome once a confirmed destination exists.
 
@@ -149,7 +149,7 @@ Product code stays in `packages/app`: pages in `src/pages`, small components/scr
 
 ## Acceptance and verification
 
-These sharpen the roadmap's acceptance without claiming implementation or proof yet. The orchestrator released U4's acceptance split and related owed work on 2026-10-13.
+These sharpen the roadmap's acceptance. The [plan's close record](tasks/plan.md#completion) gives each actual state and its evidence; the definitions here do not themselves constitute proof. The orchestrator released U4's acceptance split and related owed work on 2026-10-13.
 
 | ID | Acceptance the run can meet | Required evidence |
 |---|---|---|
@@ -167,7 +167,9 @@ These sharpen the roadmap's acceptance without claiming implementation or proof 
 
 For A11, changed shared chrome affects home, menu, story and styleguide as well as the three new pages. Screenshot artifacts are delivered in the conversation, never kept as repository evidence. The plan records actual inspection as dated sentences. The tests exercise real local browser behaviour; touch is emulated and does not claim a physical phone. No live service is required for this static preview.
 
-On **2026-10-13**, the orchestrator accepted A8's substitute after inspecting the developer's captures. Reason: a narrow viewport in CSS pixels exercises the static page layout produced by desktop zoom, while the doubled-text case supplies the harder text-layout check with retained tests. The other way is a native browser-zoom check, which remains not executed and is never called passed. Physical-phone and screen-reader checks remain not done. The orchestrator also accepted the gallery states, booking steps and standing notice, hero, shared navigation, header and heading wraps, and SVG map word shown in the candidate captures. A11 remains open for the two corrected screen states above and their independent read. The home Gallery underline was accepted as capture hover, verified by its absent current-page attribute and real pointer movement; no route correction is required. No statement here attributes those inspections to the user or releases close.
+On **2026-10-13**, the orchestrator accepted A8's substitute after inspecting the developer's captures. Reason: a narrow viewport in CSS pixels exercises the static page layout produced by desktop zoom, while the doubled-text case supplies the harder text-layout check with retained tests. The other way is a native browser-zoom check, which remains not executed and is never called passed. Physical-phone and screen-reader checks remain not executed. The orchestrator also accepted the gallery states, booking steps and standing notice, hero, shared navigation, header and heading wraps, and SVG map word shown in the candidate captures. A11 then remained open for the two corrected screen states and their independent read. The home Gallery underline was accepted as capture hover, verified by its absent current-page attribute and real pointer movement; the alternative of correcting a current-page mark was unnecessary because no such fault existed. No statement here attributes those inspections to the user or releases close.
+
+On **2026-10-13**, the orchestrator inspected and accepted all eight developer correction captures made with the installed Chromium after the host snapshot tool timed out: visit at 375 and 1280 pixels in light/dark, and date/time and service errors at 375 pixels in light/dark. Reason: the actions now visibly read as unavailable with their explanation before them, and the errors have the required icon and weight. It also read the independent correction PASS with no required defect and declared A11 met for every screen and the candidate reviews ended. The alternative of another product correction/read was not needed because no defect remained. The acceptance is the orchestrator's inspection of the developer's captures, not an inspection by the user; close and integration remain separate releases.
 
 ## Boundaries and open decisions
 
@@ -177,4 +179,4 @@ On **2026-10-13**, the orchestrator accepted A8's substitute after inspecting th
 - **Never in this run:** collect or submit booking data, invent cafe facts, change reusable instructions/checks, publish, push, open a pull request, or implement a provider.
 - **Out of scope:** real booking/ordering, payments, catering promises, CMS, analytics, newsletter/social accounts without supplied details, geolocation, real-content replacement and launch. Existing theme storage remains the owner's accepted exception to the site's broad “stores nothing” wording; booking choices add no storage.
 
-The [accepted weights](tasks/plan.md#deliverables-and-accepted-weights) govern progress. The cafe's missing facts and the blocked live actions are named in the [owed-work table](tasks/plan.md#owed-to-the-user). The next required stop is the completed candidate with real screens, or an unresolved screen decision or required review defect discovered earlier. The unavailable live actions remain owed at close.
+The [accepted weights](tasks/plan.md#deliverables-and-accepted-weights) govern progress. The cafe's missing facts and the blocked live actions are named in the [owed-work table](tasks/plan.md#owed-to-the-user). The next required stop is the separate integration release after the orchestrator verifies the close. The unavailable live actions remain owed at close.

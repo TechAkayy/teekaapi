@@ -2,7 +2,7 @@
   "currentSlice": {
     "id": "S03",
     "parent": null,
-    "status": "in-progress"
+    "status": "closed"
   },
   "documents": {
     "roadmap": "plans/roadmap.md",

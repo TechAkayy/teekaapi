@@ -1,6 +1,6 @@
 # Teekaapi site roadmap
 
-**Delivery state:** S01 and S02 are closed. S03 is selected in the [project pointer](project-state.json) and is in preparation in orchestrated mode. Its specification and plan are released, and the corrected draft passed independent review; the slice start and build are authorized.
+**Delivery state:** S01, S02 and S03 are closed. S03 remains selected in the [project pointer](project-state.json), with its orchestrated mode and sessions retained. Its [close record](S03/tasks/plan.md#completion) holds acceptance and limitations; local integration awaits a separate orchestrator release. The three live visit actions remain not met and owed.
 
 This roadmap delivers the website of Teekaapi. The [brief](#brief) below says what the project is; the numbered sections own the approach, the order of delivery and the acceptance of each slice.
 
@@ -10,13 +10,13 @@ Teekaapi is a South Indian cafe in Melbourne with specialty coffee and a fusion-
 
 The [site brief](../README.md) in the README of the repository owns the design concept, the colour palette, the typography, the page structure, the image rules, the interactions and the theme instruction. This roadmap does not repeat them; each slice reads the parts of the site brief that it builds.
 
-**Where the project is.** The site package exists in `packages/app` with the theme, the shared layout, the home page, the menu page and the story page. Each page shows sample content and stand-in photographs. The gallery, the visit page and the order and booking preview do not exist yet.
+**Where the project is.** The site package in `packages/app` has the theme, shared layout, home, menu and story pages, plus the gallery, visit page and three-step order and booking preview. The gallery has filters and native caption disclosures. Visit details are explicitly unknown, the map is a local illustration, and directions, call and calendar remain unavailable pending confirmed facts and later action work. The preview sends and saves nothing. Content and photographs remain samples; these pages do not establish readiness for public launch.
 
 ## 1. Implementation approach
 
 - **One package.** The site is `packages/app` in the pnpm workspace of this repository.
 - **Starting choice, confirmed in the specification of S01.** Astro builds the pages and Tailwind CSS holds the theme, as the site brief asks for a Tailwind theme. A small interactive component is added only where a page needs state: the menu tabs, the gallery filters and the booking steps.
-- **A static site.** It has no server and stores nothing.
+- **A static site.** It has no application server. Only the established theme preference is stored; page interactions and preview choices are not saved.
 - **Theme tokens.** The Tailwind theme names each colour and font of the site brief. A page uses those names and no raw colour value.
 - **Built in from the start.** Mobile-first layout, light and dark mode, reduced motion, focus states and WCAG contrast are part of each slice, not a later pass.
 - **Placeholder content.** The site uses placeholder photographs with the crops and treatments of the site brief, and placeholder menu items, prices, address and hours, until the cafe supplies its own. The plan of each slice names its placeholders.
@@ -26,14 +26,14 @@ The [site brief](../README.md) in the README of the repository owns the design c
 
 Each slice is delivered through Lets Vibe: a specification, a plan, a task list, the build, the checks, one independent review and a close. A slice gets its documents in `plans/<slice-id>/` when it is selected, and not before.
 
-**The autonomous run of S02.** On 2026-10-13 the owner authorized the delivery of S02 and then S03 in autonomous mode, with the user-facing choices given to the agent, in the session that delivered S01. Later on the same day, during S02, the owner ended that run at the close of S02. S03 is therefore not started and does not inherit the mode: it needs a new word of the owner. The choices that the owner made for S03 on that day stand and are recorded in the scope section below.
+**The autonomous run of S02.** On 2026-10-13 the owner authorized the delivery of S02 and then S03 in autonomous mode, with the user-facing choices given to the agent, in the session that delivered S01. Later on the same day, during S02, the owner ended that run at the close of S02. That authority did not start S03 or give it an inherited mode. The separate orchestrated start of S03 is recorded in its [plan](S03/tasks/plan.md#record-of-the-start). The choices that the owner made for S03 on that day stand and are recorded in the scope section below.
 
 | Slice | Title | Disposition | Builds on | Outcome | Acceptance evidence |
 |---|---|---|---|---|---|
 | **Phase 1 — The Teekaapi site** | | | | | |
 | [S01](S01/SPEC.md) | Foundation and home page | Closed; the [plan](S01/tasks/plan.md#completion) records the result and what waits for the owner | The site brief | The Astro and Tailwind project in a new `packages/app`; the theme with the palette and the fonts; the shared layout with the header, the footer, dark mode and reduced motion; the home page with its hero, highlights, signature drinks, fusion food teaser and social band | The build passes; the home page works at phone, tablet and desktop widths in light and dark mode; contrast, focus order and reduced motion checked in a browser |
 | [S02](S02/SPEC.md) | Menu and Our Story | Closed; the [plan](S02/tasks/plan.md#completion) records the result and what waits for the owner | S01 | The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits | The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode |
-| [S03](S03/SPEC.md) | Gallery, Visit Us and Order / Book | In preparation; the [plan](S03/tasks/plan.md) holds the start record and proposed delivery | S01 | The gallery with overlays and filters; the visit page with the address, hours, map, transport notes and action buttons; the order and booking preview in three steps | The build passes; the filters and overlays work by keyboard and by touch; the booking preview states that it sends nothing; each page checked in light and dark mode |
+| [S03](S03/SPEC.md) | Gallery, Visit Us and Order / Book | Closed; the [plan](S03/tasks/plan.md#completion) records acceptance and owed work. Local integration awaits separate release | S01 | The gallery with native overlays and filters; the visit page with explicit unknown facts, local illustrative map and explained unavailable actions; the order and booking preview in three steps | The build passes; filters and overlays work by keyboard and emulated touch; the preview states and proves locally that it sends and saves nothing; each page checked in light and dark. Live directions, call and calendar are not met and owed under the recorded acceptance split |
 
 ## 3. Product scope
 

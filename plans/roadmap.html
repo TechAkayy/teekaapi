@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="retro-source-sha256" content="995eef22f274dd1732257b467c6784ecc00c8b3deb3fb4a46ce5321e45eb109c">
+  <meta name="retro-source-sha256" content="ac4556547dae066dd2366050912ecb422374ff02adc1c0375bb2fc91ee706d53">
   <title>Teekaapi site roadmap</title>
   <style>
 :root {
@@ -182,7 +182,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
     <div class="report-header-inner">
       <p class="eyebrow">Derived review view</p>
       <h1 id="teekaapi-site-roadmap">Teekaapi site roadmap</h1>
-      <p class="header-meta">Markdown controls this pair. sha256 <code>995eef22f274dd1732257b467c6784ecc00c8b3deb3fb4a46ce5321e45eb109c</code></p>
+      <p class="header-meta">Markdown controls this pair. sha256 <code>ac4556547dae066dd2366050912ecb422374ff02adc1c0375bb2fc91ee706d53</code></p>
       <button class="toc-toggle" type="button" aria-expanded="true" aria-controls="contents">Hide contents</button>
     </div>
   </header>
@@ -236,20 +236,20 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 </li>
 </ol>
       </nav>
-<p><strong>Delivery state:</strong> S01 and S02 are closed. S03 is selected in the <a href="project-state.json">project pointer</a> and is in preparation in orchestrated mode. Its specification and plan are released, and the corrected draft passed independent review; the slice start and build are authorized.</p>
+<p><strong>Delivery state:</strong> S01, S02 and S03 are closed. S03 remains selected in the <a href="project-state.json">project pointer</a>, with its orchestrated mode and sessions retained. Its <a href="S03/tasks/plan.md#completion">close record</a> holds acceptance and limitations; local integration awaits a separate orchestrator release. The three live visit actions remain not met and owed.</p>
 <p>This roadmap delivers the website of Teekaapi. The <a href="#brief">brief</a> below says what the project is; the numbered sections own the approach, the order of delivery and the acceptance of each slice.</p>
 <section class="report-section" id="brief-section">
 <h2 id="brief">Brief</h2>
 <p>Teekaapi is a South Indian cafe in Melbourne with specialty coffee and a fusion-food menu. Its website presents the cafe as a playful, premium neo-retro experience: bold, welcoming, a little nostalgic and distinctly modern.</p>
 <p>The <a href="../README.md">site brief</a> in the README of the repository owns the design concept, the colour palette, the typography, the page structure, the image rules, the interactions and the theme instruction. This roadmap does not repeat them; each slice reads the parts of the site brief that it builds.</p>
-<p><strong>Where the project is.</strong> The site package exists in <code>packages/app</code> with the theme, the shared layout, the home page, the menu page and the story page. Each page shows sample content and stand-in photographs. The gallery, the visit page and the order and booking preview do not exist yet.</p>
+<p><strong>Where the project is.</strong> The site package in <code>packages/app</code> has the theme, shared layout, home, menu and story pages, plus the gallery, visit page and three-step order and booking preview. The gallery has filters and native caption disclosures. Visit details are explicitly unknown, the map is a local illustration, and directions, call and calendar remain unavailable pending confirmed facts and later action work. The preview sends and saves nothing. Content and photographs remain samples; these pages do not establish readiness for public launch.</p>
 </section>
 <section class="report-section" id="1-implementation-approach-section">
 <h2 id="1-implementation-approach">1. Implementation approach</h2>
 <ul>
 <li><strong>One package.</strong> The site is <code>packages/app</code> in the pnpm workspace of this repository.</li>
 <li><strong>Starting choice, confirmed in the specification of S01.</strong> Astro builds the pages and Tailwind CSS holds the theme, as the site brief asks for a Tailwind theme. A small interactive component is added only where a page needs state: the menu tabs, the gallery filters and the booking steps.</li>
-<li><strong>A static site.</strong> It has no server and stores nothing.</li>
+<li><strong>A static site.</strong> It has no application server. Only the established theme preference is stored; page interactions and preview choices are not saved.</li>
 <li><strong>Theme tokens.</strong> The Tailwind theme names each colour and font of the site brief. A page uses those names and no raw colour value.</li>
 <li><strong>Built in from the start.</strong> Mobile-first layout, light and dark mode, reduced motion, focus states and WCAG contrast are part of each slice, not a later pass.</li>
 <li><strong>Placeholder content.</strong> The site uses placeholder photographs with the crops and treatments of the site brief, and placeholder menu items, prices, address and hours, until the cafe supplies its own. The plan of each slice names its placeholders.</li>
@@ -259,7 +259,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 <section class="report-section" id="2-delivery-catalogue-section">
 <h2 id="2-delivery-catalogue">2. Delivery catalogue</h2>
 <p>Each slice is delivered through Lets Vibe: a specification, a plan, a task list, the build, the checks, one independent review and a close. A slice gets its documents in <code>plans/&lt;slice-id&gt;/</code> when it is selected, and not before.</p>
-<p><strong>The autonomous run of S02.</strong> On 2026-10-13 the owner authorized the delivery of S02 and then S03 in autonomous mode, with the user-facing choices given to the agent, in the session that delivered S01. Later on the same day, during S02, the owner ended that run at the close of S02. S03 is therefore not started and does not inherit the mode: it needs a new word of the owner. The choices that the owner made for S03 on that day stand and are recorded in the scope section below.</p>
+<p><strong>The autonomous run of S02.</strong> On 2026-10-13 the owner authorized the delivery of S02 and then S03 in autonomous mode, with the user-facing choices given to the agent, in the session that delivered S01. Later on the same day, during S02, the owner ended that run at the close of S02. That authority did not start S03 or give it an inherited mode. The separate orchestrated start of S03 is recorded in its <a href="S03/tasks/plan.md#record-of-the-start">plan</a>. The choices that the owner made for S03 on that day stand and are recorded in the scope section below.</p>
 <div class="table-wrap">
 <table class="dense columns-6 id-first">
 <thead>
@@ -268,7 +268,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 <tr class="table-section-row"><th scope="colgroup" colspan="6"><strong>Phase 1 — The Teekaapi site</strong></th></tr>
 <tr><td class="align-left nowrap"><a href="S01/SPEC.md">S01</a></td><td class="align-left">Foundation and home page</td><td class="align-left">Closed; the <a href="S01/tasks/plan.md#completion">plan</a> records the result and what waits for the owner</td><td class="align-left">The site brief</td><td class="align-left">The Astro and Tailwind project in a new <code>packages/<wbr>app</code>; the theme with the palette and the fonts; the shared layout with the header, the footer, dark mode and reduced motion; the home page with its hero, highlights, signature drinks, fusion food teaser and social band</td><td class="align-left">The build passes; the home page works at phone, tablet and desktop widths in light and dark mode; contrast, focus order and reduced motion checked in a browser</td></tr>
 <tr><td class="align-left nowrap"><a href="S02/SPEC.md">S02</a></td><td class="align-left">Menu and Our Story</td><td class="align-left">Closed; the <a href="S02/tasks/plan.md#completion">plan</a> records the result and what waits for the owner</td><td class="align-left">S01</td><td class="align-left">The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits</td><td class="align-left">The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode</td></tr>
-<tr><td class="align-left nowrap"><a href="S03/SPEC.md">S03</a></td><td class="align-left">Gallery, Visit Us and Order /<wbr> Book</td><td class="align-left">In preparation; the <a href="S03/tasks/plan.md">plan</a> holds the start record and proposed delivery</td><td class="align-left">S01</td><td class="align-left">The gallery with overlays and filters; the visit page with the address, hours, map, transport notes and action buttons; the order and booking preview in three steps</td><td class="align-left">The build passes; the filters and overlays work by keyboard and by touch; the booking preview states that it sends nothing; each page checked in light and dark mode</td></tr>
+<tr><td class="align-left nowrap"><a href="S03/SPEC.md">S03</a></td><td class="align-left">Gallery, Visit Us and Order /<wbr> Book</td><td class="align-left">Closed; the <a href="S03/tasks/plan.md#completion">plan</a> records acceptance and owed work. Local integration awaits separate release</td><td class="align-left">S01</td><td class="align-left">The gallery with native overlays and filters; the visit page with explicit unknown facts, local illustrative map and explained unavailable actions; the order and booking preview in three steps</td><td class="align-left">The build passes; filters and overlays work by keyboard and emulated touch; the preview states and proves locally that it sends and saves nothing; each page checked in light and dark. Live directions, call and calendar are not met and owed under the recorded acceptance split</td></tr>
 </tbody></table></div>
 </section>
 <section class="report-section" id="3-product-scope-section">

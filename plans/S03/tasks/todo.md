@@ -4,28 +4,27 @@ The [specification](../SPEC.md) owns released scope and acceptance. The [plan](p
 
 ```vibe-progress
 unit: S03
-current: The correction is ready for its independent read.
-next: Present the correction read and captures for screen acceptance.
+current: The slice is closed. Local integration waits for the orchestrator.
+next: The orchestrator verifies the close and gives the separate integration release.
 completed:
-  - The start records, specification, plan and weights were released.
-  - The replacement draft review resolved the required finding.
+  - The start records, specification, plan and weights were released. The draft review finding was resolved.
   - The gallery, visit page and booking preview are built and linked.
   - The released text-size corrections passed their checks.
   - The first candidate read found no required defect and resolved the focus finding.
-  - The orchestrator accepted the zoom substitute and the other candidate screens.
-  - The two screen corrections passed 54 focused tests and the root check.
+  - The orchestrator accepted the zoom substitute and every candidate screen, including the eight corrected captures.
+  - The two screen corrections passed 54 focused tests and the root check. The replacement correction read passed with no required finding.
+  - The orchestrator released the close after reading its acceptance, owed work and records.
 remaining:
-  - Receive the independent correction read and present the new captures.
-  - Obtain screen acceptance, then close and local integration releases.
+  - Obtain the separate local integration release, then join and verify the result.
 blockers:
-  - The corrected screens still need orchestrator acceptance before close.
+  - No technical blocker remains. Integration needs a separate orchestrator release.
 verification:
-  - The correction root check passed on Node 24.20.0 with 64 tooling tests and 285 browser tests.
+  - The close-preparation root check passed on Node 24.20.0 with 64 tooling tests and 285 browser tests.
   - Type checking and the seven-page build passed. No check timed out.
   - Native browser zoom, physical-device and screen-reader checks remain unexecuted.
   - The three live visit actions remain unmet and owed to the user.
 candidate:
-  - The corrected controls and errors passed their tests and have new captures.
+  - The reviewed product is unchanged. The pointer and completion records say closed; integration remains pending.
 steps:
   - id: 1
     name: Slice preflight
@@ -83,7 +82,7 @@ steps:
         children:
           - { id: d4-t9, task: 9, weight: 5, status: complete }
           - { id: d4-t10, task: 10, weight: 5, status: complete }
-          - { id: d4-t11, task: 11, weight: 5, status: awaiting-review, reason: The orchestrator must accept the corrected visit and error captures. }
+          - { id: d4-t11, task: 11, weight: 5, status: complete }
   - id: 7
     name: Material corrections and contract updates
     class: substantive
@@ -93,18 +92,17 @@ steps:
     name: Final proof and freeze
     class: substantive
     weight: 4
-    status: awaiting-review
-    reason: The corrected screens still need orchestrator acceptance.
+    status: complete
   - id: 9
     name: Independent assessments
     class: substantive
     weight: 4
-    status: active
+    status: complete
   - id: 10
     name: Slice close
     class: supporting
     weight: 1
-    status: pending
+    status: complete
   - id: 11
     name: Final state and successor handoff
     class: supporting
@@ -228,7 +226,8 @@ The accepted weights are in the plan and applied above. The structured state and
 ## Task 11 — Show the built screens to the orchestrator
 
 - [x] Run a bounded local server and capture the plan's phone/desktop, light/dark screen and state matrix through the host preview.
-- [ ] Give the orchestrator the real screenshots and resolve its concrete UI decisions before close.
+  - The final eight correction captures used installed Chromium after the host snapshot failed twice; the plan records that substitution.
+- [x] Give the orchestrator the real screenshots and resolve its concrete UI decisions before close.
 - [x] Stop the task-owned server and record the actual inspection and any limits in the plan.
 
 **Acceptance:** A11's visual review, including filter, open overlay, all booking steps, errors and the notice; no screenshot kept in the repository.

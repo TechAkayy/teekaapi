@@ -1,6 +1,6 @@
 # Implementation plan: S03 Gallery, Visit Us and Order / Book
 
-**Status:** the first candidate read found no required implementation defect; the orchestrator released its responses and two screen corrections. Those corrections passed their checks and have new captures; the independent correction read and screen acceptance remain. Close/integration are not released. The [specification](../SPEC.md) owns scope, dated decisions, reasons, alternatives and acceptance. The [task list](todo.md) owns task state, and [progress.md](progress.md) is generated from it.
+**Status:** closed with the orchestrator's release on 2026-10-13; local integration awaits its separate release. The [completion record](#completion) gives acceptance, the close decision and limits. The [specification](../SPEC.md) owns scope, dated product decisions, reasons, alternatives and acceptance. The [task list](todo.md) owns task state, and [progress.md](progress.md) is generated from it.
 
 ## Record of the start
 
@@ -50,7 +50,7 @@ These are the actual pre-delivery results of 2026-10-13. The four classification
 | Interrupt and continue | run for real | The orchestrator interrupted the developer through the host and continued the same conversation; it confirmed the sleep process had ended. |
 | Cleanup and unchanged state | run for real | No task-owned processes or test/preview listeners remained; the working tree and index were clean, with no new branch or commit. |
 
-The orchestrator reported that its own shell had Node 26.8.1 and an engine warning. The developer did not use that version. The pre-delivery check above ran on Node 24.11.0. On 2026-10-13 the orchestrator corrected its runtime instruction to Node 24.20.0, which `.nvmrc` declares and which is already installed. Delivery runs on 24.20.0 by that correction. No global install or runtime update is needed.
+The orchestrator reported that its own shell had Node 26.8.1 and an engine warning. The developer did not use that version. The pre-delivery check above ran on Node 24.11.0. On 2026-10-13 the orchestrator corrected its runtime instruction to Node 24.20.0, which `.nvmrc` declares and which is already installed. Delivery runs on 24.20.0 by that correction. Reason: the declared version takes precedence and matches the earlier slices' recorded runtime. Other way: continue with engine-compatible 24.11.0; superseded by the declared-version correction. No global install or runtime update is needed.
 
 | Additional baseline operation | Classification | Evidence |
 |---|---|---|
@@ -60,7 +60,7 @@ This checks the unchanged product baseline with draft planning records, not new 
 
 ## Owed to the user
 
-There is no refused permission operation. The following product obligations remain under U4's acceptance split, explicitly released by the orchestrator on 2026-10-13. No close may call the three live actions passed. The local preview does not establish readiness for public use.
+There is no refused permission operation. This is the maintained table of obligations at close, under U4's acceptance split explicitly released by the orchestrator on 2026-10-13. No close may call the three live actions passed. The local preview does not establish readiness for public use.
 
 | Slice | Step or check | How it is done | What depends on it |
 |---|---|---|---|
@@ -223,3 +223,90 @@ On 2026-10-13 the developer inspected the corrected built visit page at 375 and 
 The capture mechanism is explicit: T3 navigation worked but its snapshot operation twice timed out after 15 seconds; the alternate host-browser interface reported no available browser. The host instruction permits a switch after two failures, so the developer used the installed Playwright browser only for these local captures. This is real local browser evidence, not a mock or live service. Captures include the settled existing reveal animations. No screenshot, receipt or temporary path is kept here. Owned browser contexts, preview tabs and bounded servers were stopped. There was no permission refusal. The orchestrator still must inspect and accept these eight captures.
 
 Self-review of the complete correction and directly affected owners found no unrelated change or lost assertion. The installed Phosphor export supplies the warning SVG; each error update changes its text span and preserves that icon. The existing semi-bold declaration is retained and now asserted. No accent-colour exception, additional heading wrap, new dependency or submission behavior was added. The next replacement independent read receives the original assignment, complete round-one result and released responses, and covers only the two corrections, their directly affected consumers/tests and records. The candidate remains frozen during that read. S03-CANDIDATE-S1 stays scheduled for the authorized close update.
+
+
+### Independent correction disposition
+
+On 2026-10-13 the replacement independent Codex reviewer, gpt-6.1-sol at high effort with full-access/default independently read back from the host, returned **PASS** for candidate round two, limited to the combined correction and directly affected consumers/tests/records. It received the original assignment, complete round-one result and the orchestrator's released responses. It inspected all nine changed files and all eight original correction captures, verified the installed Phosphor mechanism, performed read-only Git and whitespace checks and confirmed the product stayed unchanged and the checkout clean during its assessment. It applied Review Vibe, code-review-and-quality and frontend-ui-engineering. It reused the supplied current build, 54 focused cases and root check with 285 browser cases; it did not rerun those commands or launch a browser/server.
+
+Both released screen corrections were satisfied, including visit reading/visual order and disabled appearance, warning-icon persistence through actual error recovery/reset, and unchanged focus/descriptions. S03-SPEC-R1 remains resolved for implementation. **Required findings: none. New optional suggestions: none.** The reviewer found no material evidence gap in this bounded assignment. At that read, S03-CANDIDATE-S1 remained scheduled for the authorized close record update, completed below. The reviewer's visual inspection is independent technical evidence, not orchestrator screen acceptance or a close/join release.
+
+The developer confirmed that the result names the actual frozen product and comparison. Only records and package documentation changed afterward; no product or test correction followed the independent read. T11 and Step 8 then awaited the orchestrator's acceptance of the new captures, received as recorded below. The accepted A8 substitute, unexecuted native zoom/physical-phone/screen-reader checks and unmet/owed live visit actions remain as recorded above.
+
+## Completion
+
+**Closed, 2026-10-13, by decision of the orchestrator.** The gallery, honest visit page and private three-step preview are implemented and linked from the shared site. The orchestrator read the proposed close record, acceptance and owed-work tables, decisions, faults, roadmap and package README changes, and released the close. Reason: every acceptance the run can meet has retained evidence, candidate reviews ended without a required defect, and unmet obligations are explicitly owed. Other way: continue product work or seek more candidate review; no unresolved requirement within this run justified that, and it would not supply the cafe's missing facts. This records the orchestrator's inspection, not a user inspection.
+
+Only completion markers and their generated documents changed after release. The pointer says closed and retains its document links, orchestrated mode and all session entries. The join has not run and requires a further release after the orchestrator verifies the close. This close neither starts another slice nor authorizes public use.
+
+On 2026-10-13 the orchestrator inspected and accepted the developer's eight correction captures of visit at 375/1280 pixels and date/time and service errors at 375 pixels, each in light/dark, made with installed Chromium after the host snapshot tool timed out; together with its earlier accepted captures, that completes its screen inspection for every changed screen and required state.
+
+The orchestrator's final acceptance and its reasons/alternatives are recorded under [A11 in the specification](../SPEC.md#acceptance-and-verification). It read the independent correction PASS and ended the candidate reviews: round one had no required implementation defect, and round two independently read the last corrections and found none. The draft's required S03-SPEC-R1 is resolved for specification and implementation. No unresolved required finding remains. These are independent reviewer results and orchestrator decisions, never a claim of user inspection. The current product/tests are unchanged since the correction read.
+
+### Acceptance at close
+
+The evidence class is **real local** unless stated otherwise: the built static site in installed Chromium, repeatable tests in [the app test directory](../../../packages/app/tests), and attributed inspection of actual local captures. Touch input is emulated. Fixed clocks supply deterministic Melbourne dates; aborted image requests and a throwing date-formatter stub simulate failures. These simulations establish recovery behaviour only. No mocked booking provider supplies success, and **no live service was exercised or changed**.
+
+| Acceptance | State | Evidence and its limits |
+|---|---|---|
+| A1 — checks, preserved behaviour and static routes | passed | Root `pnpm check` on Node 24.20.0 and pnpm 11.10.0 passed 64 tooling and 285 real local Chromium cases, agent validation/type checking, roadmap/progress checks, app checking with no diagnostics and a seven-route build. The close-preparation result is recorded below. |
+| A2 — nine images, categories and responsive grid | passed | `gallery.spec.ts` proves all entries, stable source order, layout and meaningful text at 375/768/1280; local images/crops/credits were inspected, and the orchestrator accepted the gallery captures. |
+| A3 — filters and native disclosures | passed | `gallery.spec.ts` operates mixed filters, All, actual open/close and filter reset with keyboard and emulated taps, including retained filter focus and hidden-card exclusion. Real local interaction, with no provider mock. |
+| A4 — unknown facts, local map and unavailable state | passed | `visit.spec.ts` and content-owner inspection verify explicit unknown values, meaningful illustration label, no external map request, disabled controls, explanation before them and preserved appearance/height in both themes. The orchestrator accepted the corrected phone/desktop captures. |
+| A4 — live directions, call and calendar | not met and owed | The three actions remain disabled. Confirmed visit facts, calendar semantics and later implementation/real handoff checks are required by the [owed-work table](#owed-to-the-user). A local map or inert-control test is no live-action pass. |
+| A5 — preview steps, validation, focus and reset | passed | `booking.spec.ts` uses actual Next/Back/Finish/Start again for both services by keyboard and emulated touch. It proves associated errors/icons, retained values, described result-heading focus, reset, a fixed-clock Melbourne boundary and recovery from Review. |
+| A6 — standing notice and nothing sent or saved | passed | `booking.spec.ts` observes requests, URL and browser storage through both full paths, Enter, repeated Finish, reset and reload. Choices clear; only the pre-existing theme preference remains. The notice and exact non-booking result were inspected at every step. This proves local preview behaviour, not a live reservation. |
+| A7 — no-script and failed-initialization use | passed | Script-disabled local contexts prove native gallery disclosures, visit information and preview explanation. Controls needing initialization stay absent. The deliberately throwing formatter is simulated platform failure, not live-service evidence. |
+| A8 — themes, layouts and accessible interaction | passed | Local layout, axe, focus, target-size and reduced-motion tests cover the pages and active states. Captures cover 320/375/768/1280 as applicable; doubled root text and CSS zoom are the orchestrator's accepted substitute. The substitute does not turn the three unexecuted checks below into passes. |
+| A9 — shared navigation and hero action | passed | `layout.spec.ts` and `home.spec.ts` verify actual routes/current-page marks, 1024-pixel breakpoint, no-script links, control order and the exact secondary action at 320/375. Shared chrome was inspected at phone/tablet/desktop sizes. The Gallery underline on home was real capture hover, not a current-page fault. |
+| A10 — no external requests, theme tokens and samples | passed | `privacy.spec.ts` and flow request observation use the real local pages; content/token inspection confirms local assets and explicit samples. No runtime service, credential, tracking, new dependency or submission path was introduced. |
+| A11 — screens and independent assessment | passed | The orchestrator accepted the full original state matrix and all eight correction captures. Independent candidate round one had no required defect; the last-correction read passed with none. Both reviewers used the selected Codex gpt-6.1-sol at high, read back from the host. |
+| A8 coverage — native browser zoom | not executed | Doubled root text, CSS zoom and narrow viewports are the expressly accepted substitute, not a native zoom execution. |
+| A8 coverage — a real phone | not executed | Chromium viewport/touch emulation does not establish physical-device behaviour. |
+| A8 coverage — a screen reader | not executed | Axe, focus and accessible-name/description checks do not establish a screen-reader session. |
+
+No acceptance is silently removed. The single owed-work table remains authoritative for confirmed cafe facts, the three live actions and sample-content approval/replacement. A real booking provider, deployment, analytics and newsletter remain outside scope, not tests that passed. No browser-profile sign-in or model credential use was necessary.
+
+### Decisions and remaining costs
+
+The [specification's decision table and U1–U7](../SPEC.md#decisions-of-the-orchestrator) own the orchestrator's 2026-10-13 decisions with their reasons and other ways: grid/page choices, native filters/disclosures, unknown facts and owed actions, completion focus, exact hero words/navigation, sample content, accepted plan/weights, A7 wording, reset-proof order, midnight recovery and stale map-option removal. U6 owns the subsequent header/hero/order wraps, SVG word and bounded advance wrap authority, including the boundary for untouched menu/story content. U4/U5 own the two candidate screen corrections. The acceptance section owns the zoom substitute, hover disposition and final screen/review acceptance. This plan owns the runtime correction, execution/start record, review responses and S03-CANDIDATE-S1. No older owner decision has been reopened.
+
+The orchestrator's 2026-10-13 instruction to keep the first candidate frozen and combine its two screen corrections after the review preserved a stable independent comparison; the other way, applying them during the read, would change its subject. The single correction and bounded replacement read with original context fulfilled that instruction. Its close-preparation decision keeps close and join as separate checkpoints so it can verify the close before integration; the alternative of combining them is not released.
+
+The choices with the largest later replacement cost are:
+
+- **Dedicated `/order/` route and three-step flow**, rather than a modal: changing this replaces navigation, focus/back behaviour and their tests. No external consumer or stored booking data needs migration today.
+- **Regular source-order grid and native captions**, rather than masonry or hover-led disclosure: replacing them changes layout/interaction and keyboard/touch proof, while the current choice fits the site's existing grids.
+- **Explicit unknown facts and unavailable actions**, rather than omitting actions: later delivery needs confirmed facts and real maps/telephone/calendar handoffs. This preserves the owner's local-map choice and avoids invented information; the current run cannot make those live promises.
+- **An honest local preview with sample words/services**, rather than presenting a real “Book a Table” action: a real booking service is separately scoped work, not a switch that makes this static flow transact. The current choice requires no personal-data migration.
+
+All current changes are local and reversible. The table identifies replacement work, not an irreversible publication or live-service change.
+
+### Existing faults and later work
+
+| Fault or boundary | Disposition |
+|---|---|
+| Pre-existing shared header overflow at 375 pixels with doubled root text | Fixed in `Header.astro` by the orchestrator's released outer-row wrap, keeping controls together and DOM/keyboard order. `layout.spec.ts` retains enlarged-text checks on home/menu/story; ordinary 375/768/1280 layouts remain covered and visually accepted. |
+| Pre-existing hero heading clipping “Melbourne” with doubled root text | Fixed in `Hero.astro` with the released `overflow-wrap: anywhere` on that heading only; `home.spec.ts` retains the text-bounds assertion. The ordinary and enlarged captures were accepted. |
+| New-page order heading and decorative map word at enlarged text | Fixed with the released order h1 wrap and SVG text placement; retained booking/visit bounds tests and accepted captures prove the corrections. These were not pre-existing-page defects. No further heading/label case used the advance wrap release. |
+| Untouched menu/story content at enlarged text | No additional fault was established, so none was repaired or deferred. The orchestrator's boundary remains: a future fault there needs later work, not expansion of this slice. |
+
+These enlarged-text checks simulate text size; none is native browser zoom. No other confirmed implementation defect is left for later work. The remaining product obligations and coverage limitations are those explicitly named above.
+
+### Documentation and final verification
+
+Applied the ship group's **git-workflow-and-versioning** and **documentation-and-adrs** methods to this local close. The existing specification and plan own decisions; no new ADR scheme, release version, tag, deployment, CI change or public artifact is needed. Repository record rules and the explicit release checkpoints take precedence over generic method examples.
+
+S03-CANDIDATE-S1 is addressed in the roadmap source: the delivery state, current-project paragraph and S03 row describe the delivered pages, completed close and pending integration truthfully. The obsolete historical mode wording is reconciled with the separate recorded start; the accepted theme-storage exception is explicit. The generated HTML follows the source. The package README describes all three new pages and their limits and directs commands to the declared runtime. The brief's remaining choice list stays as released; it is not silently reopened or reclassified.
+
+On 2026-10-13 root `pnpm check` during close preparation passed on **Node 24.20.0 and pnpm 11.10.0**: **64 tooling tests**, validation of 34 skills including repository record rules/local links, tooling type checking, roadmap/progress freshness, app checking of **56 files with zero errors/warnings/hints**, a **seven-route static build**, and **285 real local Chromium browser tests**. Every long command and nested suite was bounded; no verification step timed out. The browser runner stopped its server. No live-service result is implied.
+
+After saving that result and the review-ready task state, the final root aggregate passed on the exact close-proposal tree with the same counts and **285 browser tests in 40.3 seconds**. The tracked-file fingerprint remained unchanged through that final run, and owned processes/listeners were absent afterward. This repeat verified the final record edits; it was not new product or independent-review evidence. Record-rule validation checked repository commit/branch references and phase/slice numbers outside the permitted folder without modifying any rule or exemption. The complete seven-file proposal diff and whitespace were inspected; its index was empty, with no untracked files or product/test changes relative to the independently reviewed correction.
+
+The released completion update closes the pointer, completes Step 10 and sets the specification/plan/roadmap status to closed with integration still pending; the derived records are regenerated. Agent validation, roadmap freshness and progress freshness passed on Node 24.20.0. All eight intended documentation/record paths, their staged diff and whitespace were inspected before establishing the boundary. Acceptance, owed work, product and tests stay as proposed. No full product-suite repeat is needed for these completion-only changes; the final proposal's passing product evidence remains applicable.
+
+### Proposed local integration
+
+Read-only inspection of local history and the earlier completion records confirms that S01 and S02 used **fast-forward integration**, followed by a separate integration record. Propose the same ordinary operation, permitted only after a separate orchestrator join release. First verify the accepted close exists, the working tree/index are clean, the intended local target is still an ancestor, and no other work has appeared. If a fast-forward is no longer possible, stop and bring the changed state to the orchestrator; do not rewrite history or invent another merge strategy.
+
+After the authorized fast-forward, verify that the integration line contains the accepted close and has exactly its tree. Run bounded root `pnpm check` there on Node 24.20.0/pnpm 11.10.0, including agent record validation, tooling tests/type checking, roadmap and progress freshness, app checking, fresh static build and browser tests. Confirm the owned test server has stopped and the checkout is clean. Then record the actual integration result in the plan and task state, regenerate affected progress/roadmap documents and run their validators plus whitespace/staged-diff checks before the separate integration record, as in the earlier slices. No push, pull request, publication, tag, branch deletion, successor or handoff is proposed. Integration has not executed and is not reported passed.
