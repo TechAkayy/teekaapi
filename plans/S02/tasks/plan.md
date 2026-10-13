@@ -63,6 +63,21 @@ The agent adds each choice here as it makes it, and gives the list to the owner 
 - **A test that measures a layout waits for the entry animation.** A part slides into place as it enters the view, so a test reads positions only after the entry marks are gone.
 - **The tests of the first slice that named the old links were changed** to the new links, with the same assertions.
 
+## Completion
+
+The slice is closed. It delivered the menu page, the story page, the links to both, and the proof of both. Success criteria 1 to 10 of the specification are met, within the limitations of the verification record.
+
+The autonomous run that the owner started for two slices ended here, by the word of the owner on 2026-10-13. S03 is not started.
+
+What the owner does next:
+
+1. Look at `/menu` and `/story` at a phone, a tablet and a desktop width, in light and in dark mode.
+2. Read “Choices that the agent made for the owner” above, and confirm or change each one.
+3. Supply the real menu and the real story, in place of the sample content that the limitations name.
+4. Give a new word for S03 when it is to start. The roadmap holds the choices that the owner already made for it.
+
+A change that the owner asks for after the close is new work.
+
 ## Findings of the independent review, and their corrections
 
 The reviewer returned FIX on the candidate of the final proof, with nothing blocking. Each finding keeps its identifier.
@@ -89,6 +104,7 @@ All checks ran on Node 24.20.0 against the real local build, with no mock and no
 | `pnpm check` from the root | Passed |
 | Type and template check of the site | Passed, with 0 errors, 0 warnings and 0 hints |
 | Browser tests: 54 tests, each at 375, 768 and 1280 pixels | 162 passed after the corrections of both assessments, 4 runs in a row. Before the review, 144 of 144 passed in 4 runs. |
+| Independent review: one Review Vibe assessment by a reviewer that did not write the work | FIX, then FIX on the first corrections, then PASS on the second. The reviewer ran `pnpm check` at each assessment and its own probes from 320 to 1920 pixels, with a real wheel and an emulated touch. |
 
 How the success criteria of the specification are proven:
 
@@ -112,6 +128,8 @@ Checks by inspection:
 Limitations and checks that did not run:
 
 - The owner has not looked at either page. The choices above are the agent's.
+- A drag of the scroll bar does not end a choice in the category bar. After a press and such a drag to the end of a tall page, the chosen category can stay marked while it is in view.
+- When a press already puts a tall window at the end of the page, a further scroll down moves nothing, and the chosen category stays marked.
 - Sample content: the whole menu with its prices and its dietary marks, the special, the narrative, the milestones and the captions of the portraits. A dietary mark on a sample item is not a fact about food. The site is not ready to go public with them.
 - The browser tests run in Chromium only. No person tested the pages with a screen reader or on a real phone.
 - The site brief asks for a soft animated glow on the special card; no test judges how the glow looks.

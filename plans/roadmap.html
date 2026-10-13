@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="retro-source-sha256" content="34f2d9eeb77d9c18fc3a44f234b5e7bbbd57da5ffef88dd462a43a22b188d18a">
+  <meta name="retro-source-sha256" content="a2adfebdb6639faf3d7a4802726042b605fd3a9a29458262d6b31bfbe5c4fb1c">
   <title>Teekaapi site roadmap</title>
   <style>
 :root {
@@ -182,7 +182,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
     <div class="report-header-inner">
       <p class="eyebrow">Derived review view</p>
       <h1 id="teekaapi-site-roadmap">Teekaapi site roadmap</h1>
-      <p class="header-meta">Markdown controls this pair. sha256 <code>34f2d9eeb77d9c18fc3a44f234b5e7bbbd57da5ffef88dd462a43a22b188d18a</code></p>
+      <p class="header-meta">Markdown controls this pair. sha256 <code>a2adfebdb6639faf3d7a4802726042b605fd3a9a29458262d6b31bfbe5c4fb1c</code></p>
       <button class="toc-toggle" type="button" aria-expanded="true" aria-controls="contents">Hide contents</button>
     </div>
   </header>
@@ -236,13 +236,13 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 </li>
 </ol>
       </nav>
-<p><strong>Delivery state:</strong> S01 is closed. S02 is selected in the <a href="project-state.json">project pointer</a> and is started. S03 is planned.</p>
+<p><strong>Delivery state:</strong> S01 and S02 are closed. S02 is the last selected slice in the <a href="project-state.json">project pointer</a>. S03 is planned and is not started.</p>
 <p>This roadmap delivers the website of Teekaapi. The <a href="#brief">brief</a> below says what the project is; the numbered sections own the approach, the order of delivery and the acceptance of each slice.</p>
 <section class="report-section" id="brief-section">
 <h2 id="brief">Brief</h2>
 <p>Teekaapi is a South Indian cafe in Melbourne with specialty coffee and a fusion-food menu. Its website presents the cafe as a playful, premium neo-retro experience: bold, welcoming, a little nostalgic and distinctly modern.</p>
 <p>The <a href="../README.md">site brief</a> in the README of the repository owns the design concept, the colour palette, the typography, the page structure, the image rules, the interactions and the theme instruction. This roadmap does not repeat them; each slice reads the parts of the site brief that it builds.</p>
-<p><strong>Where the project is.</strong> The site package exists in <code>packages/app</code> with the theme, the shared layout and the home page. The home page shows sample content and stand-in photographs. The other pages do not exist yet.</p>
+<p><strong>Where the project is.</strong> The site package exists in <code>packages/app</code> with the theme, the shared layout, the home page, the menu page and the story page. Each page shows sample content and stand-in photographs. The gallery, the visit page and the order and booking preview do not exist yet.</p>
 </section>
 <section class="report-section" id="1-implementation-approach-section">
 <h2 id="1-implementation-approach">1. Implementation approach</h2>
@@ -267,7 +267,7 @@ figcaption { margin-top: 12px; color: var(--muted); font-size: 19.5px; text-alig
 </thead><tbody>
 <tr class="table-section-row"><th scope="colgroup" colspan="6"><strong>Phase 1 — The Teekaapi site</strong></th></tr>
 <tr><td class="align-left nowrap"><a href="S01/SPEC.md">S01</a></td><td class="align-left">Foundation and home page</td><td class="align-left">Closed; the <a href="S01/tasks/plan.md#completion">plan</a> records the result and what waits for the owner</td><td class="align-left">The site brief</td><td class="align-left">The Astro and Tailwind project in a new <code>packages/<wbr>app</code>; the theme with the palette and the fonts; the shared layout with the header, the footer, dark mode and reduced motion; the home page with its hero, highlights, signature drinks, fusion food teaser and social band</td><td class="align-left">The build passes; the home page works at phone, tablet and desktop widths in light and dark mode; contrast, focus order and reduced motion checked in a browser</td></tr>
-<tr><td class="align-left nowrap"><a href="S02/SPEC.md">S02</a></td><td class="align-left">Menu and Our Story</td><td class="align-left">Selected, started</td><td class="align-left">S01</td><td class="align-left">The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits</td><td class="align-left">The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode</td></tr>
+<tr><td class="align-left nowrap"><a href="S02/SPEC.md">S02</a></td><td class="align-left">Menu and Our Story</td><td class="align-left">Closed; the <a href="S02/tasks/plan.md#completion">plan</a> records the result and what waits for the owner</td><td class="align-left">S01</td><td class="align-left">The menu page with its four categories, grouped items, dietary icons, prices, the “Today’s Special” card and the sticky category navigation; the story page with the narrative, the timeline and the portraits</td><td class="align-left">The build passes; each category is reachable by keyboard and by touch; the sticky navigation works during scroll; both pages checked in light and dark mode</td></tr>
 <tr><td class="align-left nowrap"><span class="whole-word">S03</span></td><td class="align-left">Gallery, Visit Us and Order /<wbr> Book</td><td class="align-left">Planned</td><td class="align-left">S01</td><td class="align-left">The gallery with overlays and filters; the visit page with the address, hours, map, transport notes and action buttons; the order and booking preview in three steps</td><td class="align-left">The build passes; the filters and overlays work by keyboard and by touch; the booking preview states that it sends nothing; each page checked in light and dark mode</td></tr>
 </tbody></table></div>
 </section>

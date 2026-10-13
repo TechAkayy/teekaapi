@@ -4,21 +4,23 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S02
-current: The corrections of the review are done. The reviewer assesses them now.
-next: If the reviewer passes the slice, the agent closes it and stops. S03 is not started.
+current: The slice is closed. I join it into the main line.
+next: The owner looks at the menu page and the story page and reads the choices of the agent in the plan.
 completed:
   - The owner chose the mode, the content and the user-facing choices for this slice.
   - D1 is done. The menu page shows the sample menu, the special card and the category bar.
   - D2 is done. The story page shows the sample story, the timeline and the portraits.
   - D3 is done. The header and the footer link to both pages, and both pages pass their checks.
 remaining:
-  - The final proof, the independent review and the close.
+  - The join into the main line.
 blockers:
   - None.
 verification:
   - The build, the type check and 162 browser tests of the site pass.
+  - The independent reviewer passed the slice after 2 rounds of corrections.
+  - The owner has not looked at either page. The plan lists this limitation.
 candidate:
-  - The slice with D1 to D3 complete and the corrections of the review.
+  - The closed slice, with D1 to D3 and the corrections of the review.
 steps:
   - id: 1
     name: Slice preflight
@@ -85,17 +87,17 @@ steps:
     name: Independent assessments
     class: substantive
     weight: 4
-    status: active
+    status: complete
   - id: 10
     name: Slice close
     class: supporting
     weight: 1
-    status: pending
+    status: complete
   - id: 11
     name: Final state and successor handoff
     class: supporting
     weight: 1
-    status: pending
+    status: active
 ```
 
 The owner gave the agent the weights with the user-facing choices on 2026-10-13; the [plan](plan.md) lists them. All paths below are in `packages/app` unless they start at the root. Run each command with a Node version of the declared range.
