@@ -4,8 +4,8 @@ The [specification](../SPEC.md) owns released scope and acceptance. The [plan](p
 
 ```vibe-progress
 unit: S03
-current: The gallery passed its checks. The developer builds the visit page.
-next: Build and verify the visit page, then the preview.
+current: The visit page passed its checks. The developer builds the preview steps.
+next: Verify the preview, then link and inspect all pages.
 completed:
   - The delivery checks passed, including the host interrupt and continue test.
   - The developer read the settled choices and the existing pages.
@@ -15,7 +15,7 @@ completed:
   - The replacement reviewer resolved the required finding with no new finding.
   - The developer established the slice start with the released records.
 remaining:
-  - Build the visit page and booking preview.
+  - Build and prove the booking preview.
   - Link the pages, prove their behaviour and show the real screens.
   - Complete independent review, close and local integration.
 blockers:
@@ -23,8 +23,9 @@ blockers:
 verification:
   - The baseline root check passed on Node 24.20.0 with 64 tooling tests and 162 browser tests.
   - The gallery passed type checking, a five-page build and 18 browser tests.
+  - The visit page passed type checking, a six-page build and nine browser tests.
 candidate:
-  - The gallery is built. Visit, preview and shared links remain.
+  - Gallery and visit are built. Preview and shared links remain.
 steps:
   - id: 1
     name: Slice preflight
@@ -67,13 +68,13 @@ steps:
         name: Visit information
         weight: 15
         children:
-          - { id: d2-t4, task: 4, weight: 9, status: active }
-          - { id: d2-t5, task: 5, weight: 6, status: pending }
+          - { id: d2-t4, task: 4, weight: 9, status: complete }
+          - { id: d2-t5, task: 5, weight: 6, status: complete }
       - id: D3
         name: Booking preview
         weight: 30
         children:
-          - { id: d3-t6, task: 6, weight: 12, status: pending }
+          - { id: d3-t6, task: 6, weight: 12, status: active }
           - { id: d3-t7, task: 7, weight: 10, status: pending }
           - { id: d3-t8, task: 8, weight: 8, status: pending }
       - id: D4
@@ -147,9 +148,9 @@ The accepted weights are in the plan and applied above. The structured state and
 
 ## Task 4 — Show visit details and the map card
 
-- [ ] Add one visit content module with explicit unknown facts and transport notes; derive the page's unknown presentation from it without invented values or speculative infrastructure.
-- [ ] Build `/visit/` with the labelled local schematic and Teekaapi marker in the approved responsive layout.
-- [ ] Test content, image/map accessibility, layout and absence of external map requests.
+- [x] Add one visit content module with explicit unknown facts and transport notes; derive the page's unknown presentation from it without invented values or speculative infrastructure.
+- [x] Build `/visit/` with the labelled local schematic and Teekaapi marker in the approved responsive layout.
+- [x] Test content, image/map accessibility, layout and absence of external map requests.
 
 **Acceptance:** visit presentation in A4 and A8; the map never represents a confirmed geographical location.
 **Verify:** type check, current build and `playwright test tests/visit.spec.ts`.
@@ -158,9 +159,9 @@ The accepted weights are in the plan and applied above. The structured state and
 
 ## Task 5 — Explain unavailable visit actions
 
-- [ ] Show the approved disabled Directions, Call and Calendar controls with their visible explanation.
-- [ ] Prove that activating the unavailable area creates no navigation, download, invented destination or request.
-- [ ] Keep live actions explicitly unmet in the plan's owed-work table and document the current page behaviour.
+- [x] Show the approved disabled Directions, Call and Calendar controls with their visible explanation.
+- [x] Prove that activating the unavailable area creates no navigation, download, invented destination or request.
+- [x] Keep live actions explicitly unmet in the plan's owed-work table and document the current page behaviour.
 
 **Acceptance:** unavailable-state part of A4 under the orchestrator's released acceptance split; no live action is claimed.
 **Verify:** current build and `playwright test tests/visit.spec.ts`, plus focused text inspection.

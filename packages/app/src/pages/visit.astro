@@ -1,0 +1,42 @@
+---
+import VisitMap from '../components/VisitMap.astro';
+import { actionsNotice, facts, travelNotes, unknownFact, unknownTravel, visit } from '../content/visit';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={visit.heading} description={visit.line}>
+  <div class="mx-auto max-w-6xl px-4 pb-16 pt-10 md:px-6 md:pb-24 md:pt-16">
+    <p class="font-script text-2xl text-espresso-noir dark:text-mint-kulfi">{visit.flourish}</p>
+    <h1 class="text-5xl md:text-7xl">{visit.heading}</h1>
+    <p class="mt-3 max-w-prose text-xl">{visit.line}</p>
+    <div class="mt-10 grid gap-12 lg:grid-cols-2">
+      <div class="min-w-0">
+        <dl class="space-y-6" data-visit-facts>
+          {facts.map((fact) => (
+            <div>
+              <dt class="font-heading text-2xl font-bold">{fact.label}</dt>
+              <dd class="mt-1 text-lg">{fact.value ?? unknownFact}</dd>
+            </div>
+          ))}
+        </dl>
+        <dl class="mt-10 space-y-6" data-travel-notes>
+          {travelNotes.map((note) => (
+            <div>
+              <dt class="font-heading text-xl font-bold">{note.label}</dt>
+              <dd class="mt-1">{note.value ?? unknownTravel}</dd>
+            </div>
+          ))}
+        </dl>
+        <div class="mt-10" data-visit-actions>
+          <div class="flex flex-wrap gap-3">
+            {['Get Directions', 'Call', 'Add to Calendar'].map((label) => (
+              <button type="button" disabled aria-describedby="visit-actions-notice" class="min-h-11 rounded-full border-2 border-espresso-noir bg-filter-beige px-5 py-3 font-heading font-semibold text-espresso-noir">{label}</button>
+            ))}
+          </div>
+          <p id="visit-actions-notice" class="mt-4">{actionsNotice}</p>
+        </div>
+      </div>
+      <VisitMap />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,20 @@
+---
+import { mapCaption } from '../content/visit';
+---
+
+<figure class="min-w-0 pr-2 pb-2">
+  <div class="relative overflow-hidden rounded-[2rem] rounded-tr-none border-4 border-espresso-noir bg-mint-kulfi shadow-[8px_8px_0_0_var(--color-teekaapi-orange)] dark:border-text-light">
+    <svg viewBox="0 0 480 400" class="w-full text-espresso-noir" role="img" aria-labelledby="map-title">
+      <title id="map-title">{mapCaption}</title>
+      <path d="M-30 110 Q150 0 240 130 T510 200 M100 -30 Q200 130 110 220 T200 430" fill="none" stroke="var(--color-cream-foam)" stroke-width="45" />
+      <path d="M-20 340 Q200 170 490 310" fill="none" stroke="var(--color-cream-foam)" stroke-width="25" />
+      <circle cx="390" cy="70" r="38" fill="var(--color-teekaapi-orange)" />
+      <circle cx="55" cy="295" r="20" fill="var(--color-teekaapi-orange)" />
+      <path d="M240 255 C222 233 195 204 195 177 A45 45 0 0 1 285 177 C285 204 258 233 240 255Z" fill="var(--color-teekaapi-orange)" stroke="currentColor" stroke-width="5" />
+      <circle cx="240" cy="177" r="14" fill="var(--color-cream-foam)" stroke="currentColor" stroke-width="5" />
+    </svg>
+    <p class="absolute bottom-8 inset-x-4 text-center font-heading text-3xl font-bold text-espresso-noir" aria-hidden="true">Teekaapi.</p>
+    <div class="grain pointer-events-none absolute inset-0" aria-hidden="true"></div>
+  </div>
+  <figcaption class="mt-5 font-heading font-semibold">{mapCaption}</figcaption>
+</figure>

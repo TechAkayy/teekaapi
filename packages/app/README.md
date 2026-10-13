@@ -21,6 +21,8 @@ pnpm --dir packages/app test    # build, then run the browser tests
 
 The gallery at `/gallery/` uses local, credited sample photographs. Its category filters keep the source order and close open captions. Native caption disclosures also work without scripts; filters appear only after initialization. No gallery choice is saved or sent.
 
+The visit page at `/visit/` derives its unknown facts from `src/content/visit.ts`. The map is a local illustration, not a confirmed location. Directions, telephone and calendar buttons stay disabled with an explanation until the cafe supplies real details and those actions are implemented.
+
 The tests in `tests/` run the built site in Chromium through [Playwright](https://playwright.dev), at a phone, a tablet and a desktop width. Download the browser once on each machine:
 
 ```sh
