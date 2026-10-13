@@ -1,7 +1,7 @@
 ---
 import List from '@phosphor-icons/core/bold/list-bold.svg';
 import X from '@phosphor-icons/core/bold/x-bold.svg';
-import { navLinks } from '../content/site';
+import { isCurrent, navLinks } from '../content/site';
 import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
 ---
@@ -31,6 +31,7 @@ import ThemeToggle from './ThemeToggle.astro';
               <li>
                 <a
                   href={link.href}
+                  aria-current={isCurrent(link.href, Astro.url.pathname) ? 'page' : undefined}
                   class="nav-link block rounded-full px-4 py-3 font-heading font-semibold no-underline md:py-2"
                 >
                   {link.label}
@@ -76,6 +77,10 @@ import ThemeToggle from './ThemeToggle.astro';
   /* The underline of the site brief, in Fusion Pink. The text keeps its own colour. */
   .nav-link {
     @apply underline-offset-8 decoration-fusion-pink decoration-4 hover:underline;
+  }
+  /* The link of the current page keeps its underline. */
+  .nav-link[aria-current='page'] {
+    @apply underline;
   }
 
   .menu-icon-close,

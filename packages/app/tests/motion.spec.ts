@@ -3,21 +3,23 @@ import { expect, test } from '@playwright/test';
 test.describe('with reduced motion asked for', () => {
   test.use({ reducedMotion: 'reduce' });
 
-  test('nothing is hidden, nothing animates and no transition takes time', async ({ page }) => {
-    await page.goto('/');
-    const state = await page.evaluate(() => {
-      const elements = [...document.querySelectorAll<HTMLElement>('body *')];
-      return {
-        waiting: document.querySelectorAll('[data-reveal]').length,
-        hidden: elements.filter((el) => el.matches('main section *') && getComputedStyle(el).opacity === '0' && !el.matches('figcaption')).length,
-        animations: document.getAnimations().length,
-        slow: elements.filter((el) =>
-          getComputedStyle(el).transitionDuration.split(',').some((duration) => parseFloat(duration) > 0),
-        ).length,
-      };
+  for (const path of ['/', '/menu/', '/story/']) {
+    test(`on ${path} nothing is hidden, nothing animates and no transition takes time`, async ({ page }) => {
+      await page.goto(path);
+      const state = await page.evaluate(() => {
+        const elements = [...document.querySelectorAll<HTMLElement>('body *')];
+        return {
+          waiting: document.querySelectorAll('[data-reveal]').length,
+          hidden: elements.filter((el) => el.matches('main *') && getComputedStyle(el).opacity === '0' && !el.matches('figcaption')).length,
+          animations: document.getAnimations().length,
+          slow: elements.filter((el) =>
+            getComputedStyle(el).transitionDuration.split(',').some((duration) => parseFloat(duration) > 0),
+          ).length,
+        };
+      });
+      expect(state).toEqual({ waiting: 0, hidden: 0, animations: 0, slow: 0 });
     });
-    expect(state).toEqual({ waiting: 0, hidden: 0, animations: 0, slow: 0 });
-  });
+  }
 });
 
 test.describe('with motion allowed', () => {
@@ -40,6 +42,17 @@ test.describe('with motion allowed', () => {
 
 test.describe('without scripts', () => {
   test.use({ javaScriptEnabled: false });
+
+  test('the whole content of the menu page and of the story page can be read', async ({ page }) => {
+    await page.goto('/menu/');
+    await expect(page.locator('[data-menu-item]')).toHaveCount(22);
+    for (const item of await page.locator('[data-menu-item]').all()) await expect(item).toHaveCSS('opacity', '1');
+    await expect(page.locator('[data-category-bar]').getByRole('link')).toHaveCount(4);
+    await page.goto('/story/');
+    for (const part of await page.locator('[data-narrative] section, [data-timeline] li, [data-portraits] li').all()) {
+      await expect(part).toHaveCSS('opacity', '1');
+    }
+  });
 
   test('each part of the page is visible', async ({ page }) => {
     await page.goto('/');

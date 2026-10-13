@@ -18,12 +18,15 @@ export const site = {
   tagline: { text: 'Coffee, fusion, and a little rule-breaking.', sample: true },
 };
 
-// Only the parts that exist. A later page adds its link here.
+// Only the pages that exist. A later page adds its link here. The logo leads to the home page.
 export const navLinks: NavLink[] = [
-  { label: 'Drinks', href: '/#drinks' },
-  { label: 'Food', href: '/#food' },
-  { label: 'Moments', href: '/#moments' },
+  { label: 'Menu', href: '/menu/' },
+  { label: 'Our Story', href: '/story/' },
 ];
+
+// True when a link leads to the page at this path.
+export const isCurrent = (href: string, pathname: string): boolean =>
+  href.replace(/\/$/, '') === pathname.replace(/\/$/, '');
 
 // The accounts that the cafe names. The footer shows no icon row while this list is empty.
 export const socialAccounts: SocialAccount[] = [];

@@ -18,7 +18,7 @@ export const hero = {
   flourish: 'Melbourne brewed',
   headline: 'South Indian soul. Melbourne coffee.',
   line: 'Specialty coffee and fusion food, served with colour, craft and a little nostalgia.',
-  cta: { label: 'View Menu', href: '/#drinks' },
+  cta: { label: 'View Menu', href: '/menu/' },
   image: heroEspresso,
   alt: 'Espresso runs from the machine into a cup.',
   sample: true,

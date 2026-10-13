@@ -11,7 +11,7 @@ test('a visit to each page makes no request to another host', async ({ page, bas
     if (url.protocol.startsWith('http') && url.host !== own) others.add(url.host);
   });
 
-  for (const path of ['/', '/styleguide/']) {
+  for (const path of ['/', '/menu/', '/story/', '/styleguide/']) {
     await page.goto(path);
     await page.evaluate(async () => {
       for (let y = 0; y < document.documentElement.scrollHeight; y += window.innerHeight / 2) {
