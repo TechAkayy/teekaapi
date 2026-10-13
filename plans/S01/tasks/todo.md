@@ -4,8 +4,8 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S01
-current: I am building D6. I prove accessibility and privacy over the whole page.
-next: The agent builds D4 to D6 and closes the slice. The owner gets the list of choices at the close.
+current: The final proof is done. An independent reviewer assesses the slice.
+next: The agent corrects the findings of the review. Then it closes the slice and gives the owner its choices.
 completed:
   - The owner agreed the specification, the plan and the weights. The slice is started.
   - D1 is done. The site package builds, and its checks run with the checks of the repository.
@@ -13,16 +13,17 @@ completed:
   - D3 is done. Each page has the header, the footer and the light and dark button.
   - D4 is done. The home page has its hero and its highlights.
   - D5 is done. The home page has its drinks, its food teaser and its social band.
+  - D6 is done. The page has its motion, and it passes the accessibility scan in both modes.
 remaining:
-  - The deliverable D6.
-  - The final proof, the independent review and the close.
+  - The independent review and the close.
 blockers:
   - None.
 verification:
-  - The build, the type check and 51 browser tests of the site pass.
+  - The build, the type check and 84 browser tests of the site pass.
   - The check of the repository passes with the site included.
+  - The owner has not looked at the finished home page. The plan lists this limitation.
 candidate:
-  - D1 to D5 are committed. The changes of D6 are not committed.
+  - The slice with D1 to D6 complete.
 steps:
   - id: 1
     name: Slice preflight
@@ -96,7 +97,7 @@ steps:
         weight: 12
         children:
           - { id: d6-motion, task: 18, weight: 6, status: complete }
-          - { id: d6-access, task: 19, weight: 6, status: active }
+          - { id: d6-access, task: 19, weight: 6, status: complete }
   - id: 7
     name: Material corrections and contract updates
     class: substantive
@@ -106,12 +107,12 @@ steps:
     name: Final proof and freeze
     class: substantive
     weight: 4
-    status: pending
+    status: complete
   - id: 9
     name: Independent assessments
     class: substantive
     weight: 4
-    status: pending
+    status: active
   - id: 10
     name: Slice close
     class: supporting
@@ -330,11 +331,11 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 19 — Prove accessibility and privacy over the whole page
 
-- [ ] Add the axe scan of the home page and of the style reference page, in light and in dark mode, at phone and desktop width; correct each violation in its component.
-- [ ] Add a focus-order test: Tab from the top reaches the skip link, the header controls, the hero button, the drinks row and its dots, and the footer links, in the order of the page.
-- [ ] Add a test that fails when the page makes a request to a host other than its own.
-- [ ] Add a check that fails when a component or a page holds a raw colour value.
-- [ ] Review each focus ring by eye in both modes with the owner.
+- [x] Add the axe scan of the home page and of the style reference page, in light and in dark mode, at phone and desktop width; correct each violation in its component.
+- [x] Add a focus-order test: Tab from the top reaches the skip link, the header controls, the hero button, the drinks row and its dots, and the footer links, in the order of the page.
+- [x] Add a test that fails when the page makes a request to a host other than its own.
+- [x] Add a check that fails when a component or a page holds a raw colour value.
+- [x] Review each focus ring by eye in both modes. The agent did this from screenshots, in the place of the owner, under the autonomous mode.
 
 **Acceptance:** success criteria 5, 7, 8 and 9 of the specification hold.
 **Verify:** `pnpm check` from the root; the dated sentence of the inspection.

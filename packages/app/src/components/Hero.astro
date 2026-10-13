@@ -5,7 +5,7 @@ import Button from './Button.astro';
 ---
 
 <section class="hero relative isolate overflow-hidden bg-espresso-noir text-text-light" aria-labelledby="hero-heading">
-  <!-- Image component: https://docs.astro.build/en/reference/modules/astro-assets/ -->
+  {/* Image component: https://docs.astro.build/en/reference/modules/astro-assets/ */}
   <Image
     src={hero.image}
     alt={hero.alt}
@@ -14,7 +14,7 @@ import Button from './Button.astro';
     priority
     class="absolute inset-0 -z-30 size-full object-cover"
   />
-  <!-- The overlay keeps the words readable over the photograph in both modes. -->
+  {/* The overlay keeps the words readable over the photograph in both modes. */}
   <div
     class="absolute inset-0 -z-20 bg-linear-to-t from-espresso-noir via-espresso-noir/85 to-espresso-noir/40 md:bg-linear-to-r md:from-espresso-noir md:via-espresso-noir/85 md:to-espresso-noir/10"
     aria-hidden="true"
@@ -22,8 +22,8 @@ import Button from './Button.astro';
   </div>
   <div class="grain absolute inset-0 -z-10" aria-hidden="true"></div>
 
-  <!-- Background shapes. They are decoration only. -->
-  <!-- A quarter disc in the corner. It stays inside the hero, so that it never sits behind the header. -->
+  {/* Background shapes. They are decoration only. */}
+  {/* A quarter disc in the corner. It stays inside the hero, so that it never sits behind the header. */}
   <div class="hero-shape absolute right-0 top-0 -z-10 size-32 rounded-bl-full bg-teekaapi-orange/80 md:size-36 lg:size-64" aria-hidden="true"></div>
   <div class="hero-shape hero-shape-slow absolute -bottom-10 right-1/4 -z-10 hidden h-40 w-80 rounded-t-full bg-fusion-pink/70 md:block" aria-hidden="true"></div>
   <div class="hero-shape absolute bottom-24 right-10 -z-10 hidden size-24 rounded-3xl border-4 border-mint-kulfi md:block" aria-hidden="true"></div>

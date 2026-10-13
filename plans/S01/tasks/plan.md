@@ -18,7 +18,7 @@ The slice creates the site package, gives it the theme of the [site brief](../..
 2. **Theme in CSS.** `src/styles/global.css` imports Tailwind, declares the `dark` variant on a class of the root element, and defines the palette and the fonts in `@theme`. Semantic pairs for surfaces and text are plain utilities with a `dark:` partner at the place of use; no second layer of alias tokens is added until a page shows the need.
 3. **Fonts.** The `fonts` option of the Astro configuration with the Fontsource provider, one entry each for Space Grotesk, DM Sans and Pacifico, each with a CSS variable. `@theme inline` maps the variables to `--font-heading`, `--font-body` and `--font-script`. The `<Font />` component in the layout head emits them; only the heading and body fonts are preloaded.
 4. **Theme switch.** A short inline script in the head sets the `dark` class before the first paint, from the saved choice or from the device. The button writes the choice to `localStorage` and toggles the class. While no choice is saved, a listener follows a change of the device setting.
-5. **Scripts, not a framework.** The theme button, the phone menu, the dots of the drinks row and the entry animations are `<script>` blocks in their Astro components. The entry animation uses one `IntersectionObserver`; the scroll movement of the hero shapes uses CSS where the browser supports scroll-driven animation and is absent elsewhere.
+5. **Scripts, not a framework.** The theme button, the phone menu and the dots of the drinks row are `<script>` blocks in their Astro components; the entry animation is one script that the layout loads. The entry animation uses one `IntersectionObserver`; the scroll movement of the hero shapes uses CSS where the browser supports scroll-driven animation and is absent elsewhere.
 6. **Phone menu.** A `<button>` with `aria-expanded` and `aria-controls` that shows a navigation panel. Escape closes it and returns the focus to the button. At desktop width the links are always visible and the button is not rendered as a control.
 7. **Drinks row.** A scroll container with CSS scroll snap, an accessible name and keyboard focus, so that arrow keys move it. The dots are buttons that scroll to a card and show the current card. At desktop width the same markup is a grid and the dots are hidden.
 8. **Icons.** Phosphor, by the choice of the owner. The needed icons are imported as SVG components from the Phosphor core package, so that only the used icons reach the page and none is loaded from another site.
@@ -58,6 +58,16 @@ The owner gave the user-facing choices of the rest of the slice to the agent on 
 - **Signature drinks.** Four sample drinks: Filter Kaapi, Jaggery Flat White, Iced Kaapi and Masala Latte. The row is a grid from the tablet width, two across and then four across. Each photograph has a tall rounded crop with an offset shadow, orange and mint in turn. The current dot is a wide filled bar. The small script line above the heading reads “House favourites”.
 - **Fusion food.** Four sample dishes, each with a dotted leader to a short tag in place of a price. The photograph has one square corner, a dark border and an offset mint shadow. The script line is “Chef’s pick” from the site brief.
 - **Social band.** Six square photographs, two across on a phone and six across on a desktop. A caption appears over a photograph under the pointer. The heading is “Teekaapi moments” with the script line “Come hang out”. The hashtag is left out until the cafe confirms it, and no photograph is a link.
+
+- **Entry animation.** Each heading and each card fades and slides up one time, in 220 milliseconds, with 60 milliseconds between the cards of one group. The drinks row enters as one piece: a card that waits outside a swipe row would stay hidden.
+- **Hero shapes.** A quarter disc in Teekaapi Orange in the top corner, a half disc in Fusion Pink at the bottom edge and a Mint Kulfi outline. They drift a little on scroll where the browser supports scroll-driven animation. They stay inside the hero and clear of its words.
+
+### Findings of the accessibility scan, and their corrections
+
+- The drinks row and its section had the same accessible name. The row is now a group with a name of its own.
+- The first orange shape reached up behind the header, so the scanner read the header links as light text on orange. The shape is now a quarter disc inside the hero.
+- At the tablet width the headline ran onto the orange shape, which the scanner cannot see. The shape is smaller there and the headline is narrower; a test now fails if a line of hero text meets a shape.
+- A part that was in view at the first paint kept its entry mark, because no transition ran to end it. A timer now clears the mark too.
 
 ### Contrast of the palette
 
@@ -140,7 +150,45 @@ The [open questions of the specification](../SPEC.md#open-questions) stand. Task
 
 ## Verification record
 
-The checks of the whole slice, their results and the checks that were omitted are recorded here at the final proof. Checks by inspection so far:
+### Final proof, 2026-10-13
+
+All checks ran on Node 24.20.0 against the real local build, with no mock and no outside service.
+
+| Check | Result |
+|---|---|
+| `pnpm install --frozen-lockfile` from the root | Passed |
+| `pnpm check` from the root: the agent checks, the roadmap check, the freshness check of the progress report, the type and template check and the browser tests | Passed |
+| Type and template check of the site | Passed, with 0 errors, 0 warnings and 0 hints |
+| Browser tests: 28 tests, each at 375, 768 and 1280 pixels | 84 passed, and 84 passed again in 5 more runs |
+
+How the success criteria of the specification are proven:
+
+| Criterion | Proof |
+|---|---|
+| 1. Install and check pass | The first two rows above |
+| 2. The five parts, the header and the footer | `tests/home.spec.ts`, `tests/layout.spec.ts` |
+| 3. No sideways scroll at the three widths; the layouts of the parts | `tests/home.spec.ts` |
+| 4. The theme, with no flash of the wrong mode | `tests/theme.spec.ts`; the head script sets the mode before the first paint |
+| 5. No accessibility violation in light and in dark mode | `tests/a11y.spec.ts`, the axe scan with the WCAG 2 A and AA rules and the best-practice rules |
+| 6. No nonessential animation with reduced motion | `tests/motion.spec.ts` |
+| 7. Each control by keyboard, in order, with a focus ring | `tests/a11y.spec.ts`, `tests/layout.spec.ts`, `tests/home.spec.ts` |
+| 8. No raw colour value in a component or a page | `tests/privacy.spec.ts` |
+| 9. No request to another host | `tests/privacy.spec.ts` |
+| 10. Each photograph is credited and has a text alternative | The tests of each part for the alternatives; an inspection on 2026-10-13 found each of the 12 files in `CREDITS.md` and in use |
+| 11. The owner accepts the page in a browser | Not met as written. See the limitations. |
+
+Checks by inspection:
 
 - On 2026-10-13 the owner accepted the style reference page from screenshots at a desktop and a phone width, in light and in dark mode.
 - On 2026-10-13 the owner received screenshots of the header, the phone menu, the footer and the focus ring at a desktop and a phone width in both modes, and raised no change.
+- On 2026-10-13 the agent compared the whole home page with the site brief from screenshots at 375, 768 and 1280 pixels in both modes, in the place of the owner. It corrected one fault that it found: the headline ran onto a hero shape at the tablet width.
+
+Limitations and checks that did not run:
+
+- **Criterion 11.** The owner gave the user-facing choices of D4 to D6 to the agent and has not looked at the finished home page. The agent lists its choices for the owner at the close; a change that the owner then asks for is new work.
+- The browser tests run in Chromium only. Safari and Firefox were not tested.
+- The accessibility scan finds what a tool can find. No person tested the page with a screen reader.
+- The scan cannot judge text over a photograph. The hero keeps its words on an Espresso Noir overlay, and a test keeps them off the coloured shapes.
+- No performance measurement ran. The roadmap has no performance target.
+- One early run of `pnpm check` failed one time in the tests of the agents package, during D2. It did not fail again in more than 15 later runs, and its cause is not known.
+- The drinks, the dishes, the hero words and the tagline are sample content. The site is not ready to go public with them.
