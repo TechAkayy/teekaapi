@@ -22,6 +22,9 @@ export const site = {
 export const navLinks: NavLink[] = [
   { label: 'Menu', href: '/menu/' },
   { label: 'Our Story', href: '/story/' },
+  { label: 'Gallery', href: '/gallery/' },
+  { label: 'Visit Us', href: '/visit/' },
+  { label: 'Order / Book', href: '/order/' },
 ];
 
 // True when a link leads to the page at this path.

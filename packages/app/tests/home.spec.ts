@@ -31,6 +31,38 @@ test('the highlights show three or four cards, each with a title and a line', as
   }
 });
 
+test('the outlined booking preview link fits narrow phones and reaches the honest preview', async ({ page }) => {
+  for (const width of [320, 375]) {
+    await page.setViewportSize({ width, height: 812 });
+    await page.goto('/');
+    const link = page.getByRole('link', { name: 'Try the booking preview', exact: true });
+    await expect(link).toBeVisible();
+    const box = (await link.boundingBox())!;
+    expect(box.x).toBeGreaterThanOrEqual(0);
+    expect(box.x + box.width).toBeLessThanOrEqual(width);
+    expect(await link.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
+    await link.click();
+    await expect(page).toHaveURL(/\/order\/$/);
+    await expect(page.getByText('Preview only. Nothing is sent or saved. This is not a booking or an order.')).toBeVisible();
+  }
+});
+
+test('the hero headline stays inside its frame with doubled text', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/');
+  // Text-size simulation, not native browser zoom.
+  await page.addStyleTag({ content: 'html { font-size: 200%; }' });
+  const heading = page.getByRole('heading', { level: 1 });
+  await expect(heading).toHaveText('South Indian soul. Melbourne coffee.');
+  const fits = await heading.evaluate((el) => {
+    const box = el.getBoundingClientRect();
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    return [...range.getClientRects()].every((line) => line.left >= box.left - 1 && line.right <= box.right + 1);
+  });
+  expect(fits).toBe(true);
+});
+
 test('the signature drinks are a row with dots on a phone and a grid from the tablet width', async ({ page, viewport }) => {
   await page.goto('/');
   const row = page.locator('[data-drinks-row]');

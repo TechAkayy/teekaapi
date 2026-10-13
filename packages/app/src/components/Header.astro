@@ -7,32 +7,32 @@ import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header class="relative text-espresso-noir dark:text-text-light">
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 md:px-6">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4 md:px-6">
     <Logo />
 
     {/* The order here is the order of the keyboard: the menu button, its links, then the theme button. */}
-    <div class="flex items-center gap-3">
+    <div class="flex max-w-full items-center gap-3">
       <button
         type="button"
         data-menu-button
         aria-label="Menu"
         aria-expanded="false"
         aria-controls="site-nav"
-        class="menu-button grid size-11 place-items-center rounded-full bg-teekaapi-orange text-espresso-noir md:hidden"
+        class="menu-button grid size-11 shrink-0 place-items-center rounded-full bg-teekaapi-orange text-espresso-noir lg:hidden"
       >
         <List class="menu-icon-open size-5" fill="currentColor" aria-hidden="true" />
         <X class="menu-icon-close size-5" fill="currentColor" aria-hidden="true" />
       </button>
 
       <nav id="site-nav" aria-label="Main" data-site-nav class="site-nav">
-        <ul class="flex flex-wrap gap-1 md:flex-nowrap md:items-center md:gap-2">
+        <ul class="flex flex-wrap gap-1 lg:items-center lg:gap-2">
           {
             navLinks.map((link) => (
               <li>
                 <a
                   href={link.href}
                   aria-current={isCurrent(link.href, Astro.url.pathname) ? 'page' : undefined}
-                  class="nav-link block rounded-full px-4 py-3 font-heading font-semibold no-underline md:py-2"
+                  class="nav-link block rounded-full px-4 py-3 font-heading font-semibold no-underline lg:py-2"
                 >
                   {link.label}
                 </a>
@@ -50,7 +50,7 @@ import ThemeToggle from './ThemeToggle.astro';
 <style>
   @reference "../styles/global.css";
 
-  /* Below the tablet width the links are a panel that the menu button opens. The panel needs
+  /* Below desktop width the links are a panel that the menu button opens. The panel needs
      scripts: without them the links stay in the header and the button is not shown. */
   :global(.js) .site-nav {
     @apply absolute inset-x-4 top-full z-20 hidden rounded-3xl border-2 border-espresso-noir bg-cream-foam p-3 dark:border-text-light dark:bg-charcoal-steam;
@@ -64,7 +64,7 @@ import ThemeToggle from './ThemeToggle.astro';
   :global(html:not(.js)) .menu-button {
     display: none;
   }
-  @media (width >= 48rem) {
+  @media (width >= 64rem) {
     :global(.js) .site-nav,
     :global(.js) .site-nav[data-open] {
       @apply static block border-0 bg-transparent p-0;

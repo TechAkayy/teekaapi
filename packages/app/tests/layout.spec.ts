@@ -10,7 +10,8 @@ test('the skip link is the first stop and moves the focus to the main content', 
   await expect(page.locator('main')).toBeFocused();
 });
 
-const pages = ['/', '/menu/', '/story/', '/styleguide/'];
+const pages = ['/', '/menu/', '/story/', '/gallery/', '/visit/', '/order/', '/styleguide/'];
+const destinations = [['/menu/', 'Menu'], ['/story/', 'Our Story'], ['/gallery/', 'Gallery'], ['/visit/', 'Visit Us'], ['/order/', 'Order / Book']] as const;
 
 test('each page has the header, the footer, a title and a description', async ({ page }) => {
   for (const path of pages) {
@@ -29,7 +30,8 @@ test('the footer has no form, and each link of the header and the footer leads t
   const hrefs = await page.locator('header a, footer a').evaluateAll((links) =>
     links.map((link) => link.getAttribute('href') ?? ''),
   );
-  expect(hrefs).toEqual(['/', '/menu/', '/story/', '/', '/menu/', '/story/']);
+  const regionLinks = ['/', ...destinations.map(([path]) => path)];
+  expect(hrefs).toEqual([...regionLinks, ...regionLinks]);
   for (const href of new Set(hrefs)) {
     const response = await request.get(href);
     expect(response.status(), href).toBe(200);
@@ -37,7 +39,7 @@ test('the footer has no form, and each link of the header and the footer leads t
 });
 
 test('the link of the current page is marked in the header and in the footer, and no other link is', async ({ page }) => {
-  for (const [path, label] of [['/menu/', 'Menu'], ['/story/', 'Our Story']] as const) {
+  for (const [path, label] of destinations) {
     await page.goto(path);
     for (const region of [page.getByRole('banner'), page.getByRole('contentinfo')]) {
       const marked = region.locator('a[aria-current="page"]');
@@ -55,8 +57,8 @@ test('the phone menu opens and closes by keyboard, and a link in it reaches its 
   const button = page.getByRole('button', { name: 'Menu' });
   const nav = page.getByRole('navigation', { name: 'Main' });
 
-  if ((viewport?.width ?? 0) >= 768) {
-    // From the tablet width the links are always visible and no menu button is offered.
+  if ((viewport?.width ?? 0) >= 1024) {
+    // From desktop width the links are always visible and no menu button is offered.
     await expect(button).toBeHidden();
     await expect(nav.getByRole('link', { name: 'Menu' })).toBeVisible();
     return;
@@ -97,7 +99,7 @@ test.describe('without scripts', () => {
   test('the links of the header are in view, and no control that needs scripts is shown', async ({ page }) => {
     await page.goto('/');
     const nav = page.getByRole('navigation', { name: 'Main' });
-    for (const name of ['Menu', 'Our Story']) await expect(nav.getByRole('link', { name })).toBeVisible();
+    for (const [, name] of destinations) await expect(nav.getByRole('link', { name, exact: true })).toBeVisible();
     await expect(page.locator('[data-menu-button]')).toBeHidden();
     await expect(page.locator('[data-theme-toggle]')).toBeHidden();
     await expect(page.locator('[data-drinks-dots]')).toBeHidden();
@@ -106,4 +108,24 @@ test.describe('without scripts', () => {
     );
     expect(overflow).toBe(0);
   });
+});
+
+test('the shared header preserves a single ordinary row and wraps safely with doubled text', async ({ page }) => {
+  for (const path of ['/', '/menu/', '/story/']) {
+    await page.goto(path);
+    const logo = page.locator('header a').first();
+    const theme = page.locator('[data-theme-toggle]');
+    const logoBox = (await logo.boundingBox())!;
+    const themeBox = (await theme.boundingBox())!;
+    expect(Math.abs((logoBox.y + logoBox.height / 2) - (themeBox.y + themeBox.height / 2))).toBeLessThan(1);
+    // This simulates text enlargement, not browser zoom.
+    await page.addStyleTag({ content: 'html { font-size: 200%; }' });
+    for (const control of [logo, theme, page.locator('[data-menu-button]')]) {
+      if (!await control.isVisible()) continue;
+      const box = (await control.boundingBox())!;
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+    }
+    expect(await page.locator('header').evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
+  }
 });

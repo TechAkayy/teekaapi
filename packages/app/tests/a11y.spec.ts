@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
-const pages = ['/', '/menu/', '/story/'];
+const pages = ['/', '/menu/', '/story/', '/gallery/', '/visit/', '/order/'];
 
 // Scrolls through the page, so that each part has entered and each photograph has loaded.
 async function settle(page: Page): Promise<void> {
@@ -41,6 +41,33 @@ for (const scheme of ['light', 'dark'] as const) {
       const results = await new AxeBuilder({ page }).withTags(tags).exclude('[aria-labelledby="contrast"]').analyze();
       expect(summary(results.violations)).toEqual([]);
     });
+
+    test('selected gallery captions and every preview state have no accessibility violation or page overflow', async ({ page }) => {
+      const check = async () => {
+        expect(summary((await new AxeBuilder({ page }).withTags(tags).analyze()).violations)).toEqual([]);
+        expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBe(0);
+      };
+      await page.goto('/gallery/');
+      await page.getByRole('button', { name: 'People', exact: true }).click();
+      await page.locator('[data-gallery-title]:visible').first().click();
+      await check();
+      await page.clock.setFixedTime(new Date('2026-10-13T01:00:00Z'));
+      await page.goto('/order/');
+      await page.getByRole('button', { name: 'Next', exact: true }).click();
+      await check();
+      await page.getByLabel('Date', { exact: true }).fill('2026-10-14');
+      await page.getByLabel('Time', { exact: true }).fill('10:30');
+      await page.getByRole('button', { name: 'Next', exact: true }).click();
+      await page.getByRole('button', { name: 'Next', exact: true }).click();
+      await check();
+      await page.getByRole('radio', { name: 'Pickup', exact: true }).check();
+      await page.getByRole('button', { name: 'Next', exact: true }).click();
+      await check();
+      await page.getByRole('button', { name: 'Finish preview', exact: true }).click();
+      await check();
+      await page.getByRole('button', { name: 'Start again', exact: true }).click();
+      await check();
+    });
   });
 }
 
@@ -65,7 +92,10 @@ async function tabStops(page: Page): Promise<Stop[]> {
         order: [...document.querySelectorAll('*')].indexOf(el),
       };
     });
-    if (!stop || stops.some((seen) => seen.order === stop.order)) break;
+    if (!stop) break;
+    // Native date/time controls can take several Tab presses within the same input.
+    if (stops.at(-1)?.order === stop.order) continue;
+    if (stops.some((seen) => seen.order === stop.order)) break;
     stops.push(stop);
   }
   return stops;
@@ -78,15 +108,17 @@ for (const path of pages) {
     const stops = await tabStops(page);
     const labels = stops.map((stop) => stop.label);
     const phone = (viewport?.width ?? 0) < 768;
+    const compactHeader = (viewport?.width ?? 0) < 1024;
 
     // Each page starts with the skip link and the header, and ends with the links of the footer.
     expect(labels[0]).toBe('Skip to main content');
-    expect(labels.slice(-2)).toEqual(['Menu', 'Our Story']);
-    if (phone) expect(labels.filter((label) => label === 'Menu')).toHaveLength(2);
+    expect(labels.slice(-5)).toEqual(['Menu', 'Our Story', 'Gallery', 'Visit Us', 'Order / Book']);
+    if (compactHeader) expect(labels.filter((label) => label === 'Menu')).toHaveLength(2);
     else expect(labels.filter((label) => label === 'Our Story')).toHaveLength(2);
 
     if (path === '/') {
       expect(labels).toContain('View Menu');
+      expect(labels).toContain('Try the booking preview');
       if (phone) {
         expect(labels).toContain('Signature drinks, in a row');
         expect(labels.filter((label) => label.startsWith('Show drink'))).toHaveLength(4);

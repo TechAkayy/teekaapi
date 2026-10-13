@@ -24,6 +24,23 @@ test('visit facts remain unknown and the local schematic makes no location claim
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBe(0);
 });
 
+test('the map word stays inside the drawing and below the pin when text is enlarged', async ({ page }) => {
+  await page.goto('/visit/');
+  await page.evaluate(() => document.fonts.ready);
+  const map = page.getByRole('img', { name: 'Illustrative map — location to be confirmed' });
+  for (const size of ['100%', '200%']) {
+    // Text-size simulation, not native browser zoom.
+    await page.evaluate((value) => { document.documentElement.style.fontSize = value; }, size);
+    const frame = (await map.boundingBox())!;
+    const word = (await map.locator('text').boundingBox())!;
+    const pin = (await map.locator('path').last().boundingBox())!;
+    expect(word.x).toBeGreaterThanOrEqual(frame.x);
+    expect(word.x + word.width).toBeLessThanOrEqual(frame.x + frame.width);
+    expect(word.y).toBeGreaterThan(pin.y + pin.height);
+    expect(word.y + word.height).toBeLessThanOrEqual(frame.y + frame.height);
+  }
+});
+
 for (const javaScriptEnabled of [true, false]) {
   test.describe(javaScriptEnabled ? 'with scripts' : 'without scripts', () => {
     test.use({ javaScriptEnabled });

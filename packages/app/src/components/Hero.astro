@@ -30,12 +30,13 @@ import Button from './Button.astro';
 
   <div class="mx-auto flex min-h-[34rem] max-w-6xl flex-col justify-end gap-5 px-4 pb-14 pt-40 md:min-h-[40rem] md:justify-center md:px-6 md:py-24">
     <p class="font-script text-2xl text-mint-kulfi md:text-3xl">{hero.flourish}</p>
-    <h1 id="hero-heading" class="max-w-xl text-5xl leading-[0.95] text-text-light md:text-7xl lg:max-w-3xl lg:text-8xl">
+    <h1 id="hero-heading" class="max-w-xl wrap-anywhere text-5xl leading-[0.95] text-text-light md:text-7xl lg:max-w-3xl lg:text-8xl">
       {hero.headline}
     </h1>
     <p class="max-w-xl text-lg text-text-light md:text-xl">{hero.line}</p>
-    <div class="pt-2">
+    <div class="flex flex-wrap items-center gap-4 pt-2">
       <Button href={hero.cta.href}>{hero.cta.label}</Button>
+      <a href="/order/" class="inline-block rounded-full border-2 border-text-light px-6 py-3 font-heading text-lg font-semibold text-text-light no-underline">Try the booking preview</a>
     </div>
   </div>
 </section>

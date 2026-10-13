@@ -4,28 +4,26 @@ The [specification](../SPEC.md) owns released scope and acceptance. The [plan](p
 
 ```vibe-progress
 unit: S03
-current: The preview passed its checks. The developer links the pages and adapts the header.
-next: Run the shared checks and show the built screens.
+current: The candidate passed the root check. Its independent assessment is in progress.
+next: Receive the independent assessment and the orchestrator's screen decision.
 completed:
-  - The delivery checks passed, including the host interrupt and continue test.
-  - The developer read the settled choices and the existing pages.
-  - The independent reviewer read the drafts and returned one required finding.
-  - The orchestrator released the decisions, review responses, plan and weights.
-  - The developer applied the released contract corrections and regenerated the roadmap.
-  - The replacement reviewer resolved the required finding with no new finding.
-  - The developer established the slice start with the released records.
+  - The start records, specification, plan and weights were released.
+  - The replacement draft review resolved the required finding.
+  - The gallery, visit page and booking preview are built and linked.
+  - The released text-size corrections passed their checks.
+  - The real screens were captured. All task-owned servers and tabs are stopped.
 remaining:
-  - Link the pages, prove their behaviour and show the real screens.
-  - Complete independent review, close and local integration.
+  - Receive the screen review and the independent candidate assessment.
+  - Resolve any findings, then obtain close and local integration releases.
 blockers:
-  - None. The start and build are authorized.
+  - Screen acceptance and the zoom evidence decision remain with the orchestrator.
 verification:
-  - The baseline root check passed on Node 24.20.0 with 64 tooling tests and 162 browser tests.
-  - The gallery passed type checking, a five-page build and 18 browser tests.
-  - The visit page passed type checking, a six-page build and nine browser tests.
-  - All 30 preview cases passed across the full run and the six-case correction run.
+  - The final root check passed on Node 24.20.0 with 64 tooling tests and 276 browser tests.
+  - Type checking and the seven-page build passed. No check timed out.
+  - Native browser zoom, physical-device and screen-reader checks remain unexecuted.
+  - The three live visit actions remain unmet and owed to the user.
 candidate:
-  - All three pages are built. Shared links and the complete screen review remain.
+  - The pages and shared links are built. The real screens await acceptance.
 steps:
   - id: 1
     name: Slice preflight
@@ -81,24 +79,25 @@ steps:
         name: Site links and screen checks
         weight: 15
         children:
-          - { id: d4-t9, task: 9, weight: 5, status: active }
-          - { id: d4-t10, task: 10, weight: 5, status: pending }
-          - { id: d4-t11, task: 11, weight: 5, status: pending }
+          - { id: d4-t9, task: 9, weight: 5, status: complete }
+          - { id: d4-t10, task: 10, weight: 5, status: complete }
+          - { id: d4-t11, task: 11, weight: 5, status: awaiting-review, reason: The orchestrator must accept the screens and decide the zoom evidence gap. }
   - id: 7
     name: Material corrections and contract updates
     class: substantive
     weight: 0
-    status: pending
+    status: complete
   - id: 8
     name: Final proof and freeze
     class: substantive
     weight: 4
-    status: pending
+    status: awaiting-review
+    reason: The orchestrator must accept the screens and decide the native zoom evidence gap.
   - id: 9
     name: Independent assessments
     class: substantive
     weight: 4
-    status: pending
+    status: active
   - id: 10
     name: Slice close
     class: supporting
@@ -203,10 +202,10 @@ The accepted weights are in the plan and applied above. The structured state and
 
 ## Task 9 — Link the pages from the site
 
-- [ ] Add the three approved links in the existing navigation owner and adapt the header breakpoint/no-script wrap.
-- [ ] Add the outlined “Try the booking preview” hero link without changing the primary menu action; show any broken 320/375-pixel layout to the orchestrator for a new decision.
-- [ ] Update the direct navigation assertions for all routes and the current-page mark.
-- [ ] Apply the released outer-row wrap for enlarged text, keep controls together and add the permanent text-size simulation test; preserve ordinary-size header appearance.
+- [x] Add the three approved links in the existing navigation owner and adapt the header breakpoint/no-script wrap.
+- [x] Add the outlined “Try the booking preview” hero link without changing the primary menu action; show any broken 320/375-pixel layout to the orchestrator for a new decision.
+- [x] Update the direct navigation assertions for all routes and the current-page mark.
+- [x] Apply the released outer-row wrap for enlarged text, keep controls together and add the permanent text-size simulation test; preserve ordinary-size header appearance.
 
 **Acceptance:** A9; all three destinations exist before their links appear.
 **Verify:** current build and focused layout/home tests; inspect the header at 768 and 1024 pixels.
@@ -215,9 +214,9 @@ The accepted weights are in the plan and applied above. The structured state and
 
 ## Task 10 — Check the pages in both themes
 
-- [ ] Extend the existing axe/focus, no-script, reduced-motion and request checks to the three new pages and active preview states.
-- [ ] Update shared focus assertions for the new navigation, retaining tests of all surviving behaviour.
-- [ ] Run the root aggregate on the current product and diagnose any failure with the narrowest useful check.
+- [x] Extend the existing axe/focus, no-script, reduced-motion and request checks to the three new pages and active preview states.
+- [x] Update shared focus assertions for the new navigation, retaining tests of all surviving behaviour.
+- [x] Run the root aggregate on the current product and diagnose any failure with the narrowest useful check.
 
 **Acceptance:** A1/A7/A8/A9/A10; count actual executions and distinguish emulator coverage from a physical device.
 **Verify:** bounded `pnpm check` from the root; no additional framework or broad unrelated tests.
@@ -226,9 +225,9 @@ The accepted weights are in the plan and applied above. The structured state and
 
 ## Task 11 — Show the built screens to the orchestrator
 
-- [ ] Run a bounded local server and capture the plan's phone/desktop, light/dark screen and state matrix through the host preview.
+- [x] Run a bounded local server and capture the plan's phone/desktop, light/dark screen and state matrix through the host preview.
 - [ ] Give the orchestrator the real screenshots and resolve its concrete UI decisions before close.
-- [ ] Stop the task-owned server and record the actual inspection and any limits in the plan.
+- [x] Stop the task-owned server and record the actual inspection and any limits in the plan.
 
 **Acceptance:** A11's visual review, including filter, open overlay, all booking steps, errors and the notice; no screenshot kept in the repository.
 **Verify:** actual host-browser inspection and attributed orchestrator response; no build result stands in for looking at a screen.

@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test.describe('with reduced motion asked for', () => {
   test.use({ reducedMotion: 'reduce' });
 
-  for (const path of ['/', '/menu/', '/story/']) {
+  for (const path of ['/', '/menu/', '/story/', '/gallery/', '/visit/', '/order/']) {
     test(`on ${path} nothing is hidden, nothing animates and no transition takes time`, async ({ page }) => {
       await page.goto(path);
       const state = await page.evaluate(() => {

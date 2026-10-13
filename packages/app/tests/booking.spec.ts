@@ -78,6 +78,21 @@ test('the date boundary is Melbourne midnight, independent of the visitor timezo
   } finally { await context.close(); }
 });
 
+test('the page heading remains inside its frame with doubled text', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/order/');
+  // Text-size simulation, not native browser zoom.
+  await page.addStyleTag({ content: 'html { font-size: 200%; }' });
+  const heading = page.getByRole('heading', { level: 1 });
+  await expect(heading).toHaveText('Order / Book preview');
+  expect(await heading.evaluate((el) => {
+    const box = el.getBoundingClientRect();
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    return [...range.getClientRects()].every((line) => line.left >= box.left - 1 && line.right <= box.right + 1);
+  })).toBe(true);
+});
+
 test('date and service choices accept actual taps', async ({ browser, baseURL, viewport }) => {
   const context = await browser.newContext({ baseURL, viewport: viewport ?? undefined, hasTouch: true });
   const page = await context.newPage();
