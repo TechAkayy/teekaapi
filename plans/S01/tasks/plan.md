@@ -8,7 +8,7 @@ The slice creates the site package, gives it the theme of the [site brief](../..
 
 ## Execution
 
-- **Mode.** Supervised from the start of the slice through D1, then copilot from D2, each by the word of the owner on 2026-10-13. In copilot mode the agent selects its methods without a pause and stops for the review of the owner before each commit. The [project pointer](../../project-state.json) holds the current selection.
+- **Mode.** Supervised from the start of the slice through D1, copilot for D2 and D3, and autonomous for the rest of the slice from D4, each by the word of the owner on 2026-10-13. With the autonomous mode the owner also gave the agent the user-facing choices of the rest of the slice: the agent makes them, records each one in this plan, and lists them for the owner at the close. A fact about the cafe is not such a choice and still waits for the owner. The [project pointer](../../project-state.json) holds the current selection.
 - **Where the slice is worked and joined.** The slice is worked on a line of its own and is joined into the main line of the repository at its close. The main line starts with the workflow adaptation, which the owner committed; the slice start follows it.
 - **Independent review.** One Review Vibe assessment of the complete candidate before the close. Independent testing is not selected.
 
@@ -36,6 +36,12 @@ The slice creates the site package, gives it the theme of the [site brief](../..
 
 - **Space Grotesk stops at weight 700.** The site brief asks for an extra-bold first heading. The font has no heavier weight, so the first heading uses 700.
 - **Only the Latin subset and the normal style of each font are loaded.** DM Sans carries the weights 400 to 700 and Pacifico its one weight.
+
+- **The icons come straight from the Phosphor core package.** Astro turns an imported SVG file of the package into a component, so no icon file is copied into the site. The site uses the bold weight.
+- **The home page has three stand-in sections** with the identifiers that the links of the header use, until D4 and D5 replace them.
+- **The icon of the site is a stand-in**, a letter T on Teekaapi Orange, until the cafe supplies a logo.
+- **The footer tagline is the example of the site brief**, marked as a sample in the content data.
+- **The header is not fixed to the top of the window.** The site brief asks for a fixed bar only on the menu page.
 
 ### Contrast of the palette
 
@@ -100,10 +106,7 @@ Preflight, inputs, scope, the start candidate and the slice start are supporting
 
 ## Review checkpoints
 
-- Before each commit: the slice start, each of D1 to D6, each correction after an accepted commit, and the close.
-- Before each download of photographs: the owner sees the list with the source pages.
-- Before any text that states a fact about the cafe.
-- At D2, D3, D4 and D5 the owner looks at the result in a browser; the look of the site is the owner's to accept.
+Through D3 the owner reviewed each deliverable before its commit. From D4 the mode is autonomous: the agent commits each deliverable when its checks pass, runs the independent review, closes the slice and joins it into the main line, with no pause. It stops only for a required check that it cannot make pass, a blocking review finding that it cannot correct inside the scope, or a need outside the scope. Nothing is pushed or published.
 
 ## Risks
 
@@ -124,3 +127,4 @@ The [open questions of the specification](../SPEC.md#open-questions) stand. Task
 The checks of the whole slice, their results and the checks that were omitted are recorded here at the final proof. Checks by inspection so far:
 
 - On 2026-10-13 the owner accepted the style reference page from screenshots at a desktop and a phone width, in light and in dark mode.
+- On 2026-10-13 the owner received screenshots of the header, the phone menu, the footer and the focus ring at a desktop and a phone width in both modes, and raised no change.

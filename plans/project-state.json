@@ -12,7 +12,7 @@
     "tasks": "plans/S01/tasks/todo.md"
   },
   "execution": {
-    "mode": "copilot",
+    "mode": "autonomous",
     "scope": {
       "slice": "S01"
     }

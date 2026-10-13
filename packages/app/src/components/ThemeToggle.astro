@@ -1,0 +1,55 @@
+---
+import Moon from '@phosphor-icons/core/bold/moon-bold.svg';
+import Sun from '@phosphor-icons/core/bold/sun-bold.svg';
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-label="Switch to dark mode"
+  class="grid size-11 place-items-center rounded-full border-2 border-espresso-noir text-espresso-noir motion-safe:transition-transform motion-safe:hover:scale-105 dark:border-text-light dark:text-text-light"
+>
+  <Moon class="size-5 dark:hidden" fill="currentColor" aria-hidden="true" />
+  <Sun class="hidden size-5 dark:block" fill="currentColor" aria-hidden="true" />
+</button>
+
+<script>
+  // The head script of the layout sets the mode before the first paint. This script changes it.
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+  const device = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function savedTheme(): string | null {
+    try {
+      return localStorage.getItem('theme');
+    } catch {
+      return null;
+    }
+  }
+
+  function label(): void {
+    const next = root.classList.contains('dark') ? 'light' : 'dark';
+    for (const button of buttons) button.setAttribute('aria-label', `Switch to ${next} mode`);
+  }
+
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      const dark = root.classList.toggle('dark');
+      try {
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+      } catch {
+        // The choice then lasts for this page only.
+      }
+      label();
+    });
+  }
+
+  // Without a saved choice, the site follows the device when its setting changes.
+  device.addEventListener('change', (event) => {
+    if (savedTheme() !== null) return;
+    root.classList.toggle('dark', event.matches);
+    label();
+  });
+
+  label();
+</script>

@@ -27,6 +27,21 @@
 }
 
 @layer base {
+  /* The focus ring: Mint Kulfi with an Espresso Noir edge in light mode, because mint alone
+     cannot be seen on Cream Foam. In dark mode the mint band is enough. */
+  :focus-visible {
+    outline: 2px solid var(--color-espresso-noir);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--color-mint-kulfi);
+  }
+  .dark :focus-visible {
+    outline-color: transparent;
+  }
+  main:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
   body {
     @apply bg-cream-foam font-body text-text-dark leading-relaxed antialiased dark:bg-charcoal-steam dark:text-text-light;
   }

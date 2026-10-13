@@ -1,0 +1,44 @@
+---
+import { navLinks, site, socialAccounts } from '../content/site';
+import Logo from './Logo.astro';
+---
+
+<footer class="border-t border-text-light/15 bg-charcoal-steam text-text-light">
+  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-[1fr_auto] md:items-end md:px-6">
+    <div class="space-y-3">
+      <Logo />
+      <p class="max-w-sm font-script text-xl text-mint-kulfi">{site.tagline.text}</p>
+    </div>
+
+    <nav aria-label="Footer">
+      <ul class="flex flex-wrap gap-x-2 gap-y-1">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="block rounded-full px-4 py-3 font-heading font-semibold no-underline decoration-fusion-pink decoration-4 underline-offset-8 hover:underline"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    {
+      socialAccounts.length > 0 && (
+        <ul class="flex flex-wrap gap-3 md:col-span-2">
+          {socialAccounts.map((account) => (
+            <li>
+              <a href={account.href} class="block rounded-full px-4 py-3 font-heading font-semibold">
+                {account.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</footer>

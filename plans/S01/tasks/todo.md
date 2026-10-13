@@ -4,8 +4,8 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S01
-current: D2 is done and accepted. No deliverable is in work.
-next: The agent builds D3, the shared layout. The owner reviews D3 before its commit.
+current: D3 is done. No deliverable is in work.
+next: The agent builds D4 to D6 and closes the slice. The owner gets the list of choices at the close.
 completed:
   - The owner accepted the specification.
   - The owner chose the framework, the fonts, the test tool and the icons.
@@ -13,16 +13,17 @@ completed:
   - The owner committed the workflow adaptation. The slice start follows it.
   - D1 is done. The site package builds, and its checks run with the checks of the repository.
   - D2 is done. The theme has the colours and the fonts of the site brief.
+  - D3 is done. Each page has the header, the footer and the light and dark button.
 remaining:
-  - The 4 deliverables D3 to D6.
+  - The 3 deliverables D4 to D6.
   - The final proof, the independent review and the close.
 blockers:
   - None.
 verification:
-  - The build, the type check and 9 browser tests of the site pass.
+  - The build, the type check and 36 browser tests of the site pass.
   - The check of the repository passes with the site included.
 candidate:
-  - The slice with D1 and D2 complete.
+  - The slice with D1 to D3 complete.
 steps:
   - id: 1
     name: Slice preflight
@@ -72,10 +73,10 @@ steps:
         name: Shared layout
         weight: 18
         children:
-          - { id: d3-layout, task: 7, weight: 5, status: pending }
-          - { id: d3-theme, task: 8, weight: 4, status: pending }
-          - { id: d3-header, task: 9, weight: 5, status: pending }
-          - { id: d3-footer, task: 10, weight: 4, status: pending }
+          - { id: d3-layout, task: 7, weight: 5, status: complete }
+          - { id: d3-theme, task: 8, weight: 4, status: complete }
+          - { id: d3-header, task: 9, weight: 5, status: complete }
+          - { id: d3-footer, task: 10, weight: 4, status: complete }
       - id: D4
         name: "Home: hero and highlights"
         weight: 16
@@ -197,10 +198,10 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 7 — Build the page frame that each page shares
 
-- [ ] Add `src/layouts/BaseLayout.astro` with typed `title` and `description`, the language, the viewport, the icon of the site, the `<Font />` components and the global style sheet.
-- [ ] Add the inline head script that sets the `dark` class before the first paint from the saved choice or the device.
-- [ ] Add the skip link as the first focusable element, and the `main` landmark with its target.
-- [ ] Move `index.astro` and `styleguide.astro` onto the layout.
+- [x] Add `src/layouts/BaseLayout.astro` with typed `title` and `description`, the language, the viewport, the icon of the site, the `<Font />` components and the global style sheet.
+- [x] Add the inline head script that sets the `dark` class before the first paint from the saved choice or the device.
+- [x] Add the skip link as the first focusable element, and the `main` landmark with its target.
+- [x] Move `index.astro` and `styleguide.astro` onto the layout.
 
 **Acceptance:** both pages render inside the layout; with the device in dark mode and no saved choice, the first paint is dark; the skip link moves the focus to the main content.
 **Verify:** a browser test with an emulated dark colour scheme that reads the class before load ends; a browser test of the skip link.
@@ -208,9 +209,9 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 8 — Add the light and dark button
 
-- [ ] Add `src/components/ThemeToggle.astro`: a `button` with an accessible name that says the action, a Phosphor sun and moon icon, and `aria-pressed` or an equal state.
-- [ ] On click, toggle the class and save the choice; while no choice is saved, follow a change of the device setting.
-- [ ] Add browser tests: first load follows the device; the button changes the mode; the choice outlasts a reload.
+- [x] Add `src/components/ThemeToggle.astro`: a `button` with an accessible name that says the action, a Phosphor sun and moon icon, and `aria-pressed` or an equal state.
+- [x] On click, toggle the class and save the choice; while no choice is saved, follow a change of the device setting.
+- [x] Add browser tests: first load follows the device; the button changes the mode; the choice outlasts a reload.
 
 **Acceptance:** the three theme tests pass; the button is reachable by keyboard and has a visible focus ring.
 **Verify:** `pnpm --dir packages/app test`.
@@ -218,10 +219,10 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 9 — Build the header with its phone menu
 
-- [ ] Verify SVG files as components in Astro 7, and add the Phosphor core package for the icons.
-- [ ] Add `src/components/Header.astro`: the text logo, the links to the drinks, food and moments sections, and the theme button.
-- [ ] Below the desktop breakpoint, put the links behind a menu button with `aria-expanded` and `aria-controls`; Escape closes the panel and returns the focus.
-- [ ] Add a browser test at 375 pixels: the button opens and closes the panel by keyboard, and a link in it reaches its section.
+- [x] Verify SVG files as components in Astro 7, and add the Phosphor core package for the icons.
+- [x] Add `src/components/Header.astro`: the text logo, the links to the drinks, food and moments sections, and the theme button.
+- [x] Below the desktop breakpoint, put the links behind a menu button with `aria-expanded` and `aria-controls`; Escape closes the panel and returns the focus.
+- [x] Add a browser test at 375 pixels: the button opens and closes the panel by keyboard, and a link in it reaches its section.
 
 **Acceptance:** at 1280 pixels the links are visible and no menu button is offered; at 375 pixels the menu works by touch and by keyboard; no link leads to a page that does not exist.
 **Verify:** the browser test; by inspection with the owner.
@@ -229,9 +230,9 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 10 — Build the footer
 
-- [ ] Add `src/components/Footer.astro` on Charcoal Steam in both modes: the text logo, the section links and the tagline.
-- [ ] Render a social icon only for an account in the content data; with none, render no icon row.
-- [ ] Do not add a newsletter field.
+- [x] Add `src/components/Footer.astro` on Charcoal Steam in both modes: the text logo, the section links and the tagline.
+- [x] Render a social icon only for an account in the content data; with none, render no icon row.
+- [x] Do not add a newsletter field.
 
 **Acceptance:** the footer is on each page; its text passes contrast on Charcoal Steam; it holds no form.
 **Verify:** build; the layout browser tests; by inspection with the owner.

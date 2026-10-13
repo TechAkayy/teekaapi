@@ -1,0 +1,102 @@
+---
+import List from '@phosphor-icons/core/bold/list-bold.svg';
+import X from '@phosphor-icons/core/bold/x-bold.svg';
+import { navLinks } from '../content/site';
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="relative text-espresso-noir dark:text-text-light">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 md:px-6">
+    <Logo />
+
+    <div class="flex items-center gap-3">
+      <nav id="site-nav" aria-label="Main" data-site-nav class="site-nav">
+        <ul class="flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
+          {
+            navLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="nav-link block rounded-full px-4 py-3 font-heading font-semibold no-underline md:py-2"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <ThemeToggle />
+
+      <button
+        type="button"
+        data-menu-button
+        aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        class="grid size-11 place-items-center rounded-full bg-teekaapi-orange text-espresso-noir md:hidden"
+      >
+        <List class="menu-icon-open size-5" fill="currentColor" aria-hidden="true" />
+        <X class="menu-icon-close size-5" fill="currentColor" aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  @reference "../styles/global.css";
+
+  /* Below the desktop width the links are a panel that the menu button opens. */
+  .site-nav {
+    @apply absolute inset-x-4 top-full z-20 hidden rounded-3xl border-2 border-espresso-noir bg-cream-foam p-3 dark:border-text-light dark:bg-charcoal-steam;
+  }
+  .site-nav[data-open] {
+    @apply block;
+  }
+  @media (width >= 48rem) {
+    .site-nav,
+    .site-nav[data-open] {
+      @apply static block border-0 bg-transparent p-0;
+    }
+  }
+
+  /* The underline of the site brief, in Fusion Pink. The text keeps its own colour. */
+  .nav-link {
+    @apply underline-offset-8 decoration-fusion-pink decoration-4 hover:underline;
+  }
+
+  .menu-icon-close,
+  [aria-expanded='true'] .menu-icon-open {
+    display: none;
+  }
+  [aria-expanded='true'] .menu-icon-close {
+    display: block;
+  }
+</style>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-menu-button]');
+  const nav = document.querySelector<HTMLElement>('[data-site-nav]');
+
+  if (button && nav) {
+    const setOpen = (open: boolean): void => {
+      nav.toggleAttribute('data-open', open);
+      button.setAttribute('aria-expanded', String(open));
+    };
+
+    button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+
+    // A link in the panel goes to its section and closes the panel.
+    nav.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || button.getAttribute('aria-expanded') !== 'true') return;
+      setOpen(false);
+      button.focus();
+    });
+  }
+</script>
