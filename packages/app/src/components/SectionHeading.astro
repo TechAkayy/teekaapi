@@ -1,0 +1,13 @@
+---
+interface Props {
+  id: string;
+  flourish?: string;
+}
+
+const { id, flourish } = Astro.props;
+---
+
+<div>
+  {flourish && <p class="font-script text-2xl text-espresso-noir dark:text-mint-kulfi">{flourish}</p>}
+  <h2 id={id} class="text-4xl tracking-tight md:text-5xl"><slot /></h2>
+</div>

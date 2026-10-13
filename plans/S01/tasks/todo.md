@@ -4,27 +4,25 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S01
-current: D4 is done. No deliverable is in work.
+current: I am building D6. I add the entry animations and the scroll movement.
 next: The agent builds D4 to D6 and closes the slice. The owner gets the list of choices at the close.
 completed:
-  - The owner accepted the specification.
-  - The owner chose the framework, the fonts, the test tool and the icons.
-  - The owner agreed the plan, the task list and the weights.
-  - The owner committed the workflow adaptation. The slice start follows it.
+  - The owner agreed the specification, the plan and the weights. The slice is started.
   - D1 is done. The site package builds, and its checks run with the checks of the repository.
   - D2 is done. The theme has the colours and the fonts of the site brief.
   - D3 is done. Each page has the header, the footer and the light and dark button.
   - D4 is done. The home page has its hero and its highlights.
+  - D5 is done. The home page has its drinks, its food teaser and its social band.
 remaining:
-  - The 2 deliverables D5 and D6.
+  - The deliverable D6.
   - The final proof, the independent review and the close.
 blockers:
   - None.
 verification:
-  - The build, the type check and 42 browser tests of the site pass.
+  - The build, the type check and 51 browser tests of the site pass.
   - The check of the repository passes with the site included.
 candidate:
-  - The slice with D1 to D4 complete.
+  - D1 to D5 are committed. The changes of D6 are not committed.
 steps:
   - id: 1
     name: Slice preflight
@@ -90,14 +88,14 @@ steps:
         weight: 20
         children:
           - { id: d5-photos, task: 14, weight: 4, status: complete }
-          - { id: d5-drinks, task: 15, weight: 7, status: pending }
-          - { id: d5-food, task: 16, weight: 5, status: pending }
-          - { id: d5-social, task: 17, weight: 4, status: pending }
+          - { id: d5-drinks, task: 15, weight: 7, status: complete }
+          - { id: d5-food, task: 16, weight: 5, status: complete }
+          - { id: d5-social, task: 17, weight: 4, status: complete }
       - id: D6
         name: Motion and accessibility
         weight: 12
         children:
-          - { id: d6-motion, task: 18, weight: 6, status: pending }
+          - { id: d6-motion, task: 18, weight: 6, status: active }
           - { id: d6-access, task: 19, weight: 6, status: pending }
   - id: 7
     name: Material corrections and contract updates
@@ -286,11 +284,11 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 15 — Build the signature drinks row
 
-- [ ] Add the drinks as typed data: name, description, photograph, optional chip, the sample field.
-- [ ] Add `src/components/SignatureDrinks.astro` and a drink card with the rounded crop, the offset shadow and the Mint Kulfi chip.
-- [ ] On a phone, make the row a labelled, focusable scroll container with scroll snap; add the dots as buttons that scroll to a card and mark the current one.
-- [ ] From the desktop breakpoint, lay the same cards out as a grid and hide the dots.
-- [ ] Add browser tests: at 375 pixels a dot moves the row and the current dot changes; arrow keys move the row; at 1280 pixels all cards are visible with no scroll.
+- [x] Add the drinks as typed data: name, description, photograph, optional chip, the sample field.
+- [x] Add `src/components/SignatureDrinks.astro` and a drink card with the rounded crop, the offset shadow and the Mint Kulfi chip.
+- [x] On a phone, make the row a labelled, focusable scroll container with scroll snap; add the dots as buttons that scroll to a card and mark the current one.
+- [x] From the desktop breakpoint, lay the same cards out as a grid and hide the dots.
+- [x] Add browser tests: at 375 pixels a dot moves the row and the current dot changes; arrow keys move the row; at 1280 pixels all cards are visible with no scroll.
 
 **Acceptance:** the section has the `id` that the header link and the hero button target; the row works by touch, by dots and by keyboard; the grid shows at desktop width.
 **Verify:** the browser tests; by inspection with the owner.
@@ -299,9 +297,9 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 16 — Build the fusion food teaser
 
-- [ ] Add the dishes as typed data, three to five entries.
-- [ ] Add `src/components/FusionFood.astro`: the photograph beside the list on a desktop, stacked on a phone, on the Filter Beige alternate surface.
-- [ ] Style the list as menu lines with the name, the description and the dotted leader of the site brief; no price in this slice.
+- [x] Add the dishes as typed data, three to five entries.
+- [x] Add `src/components/FusionFood.astro`: the photograph beside the list on a desktop, stacked on a phone, on the Filter Beige alternate surface.
+- [x] Style the list as menu lines with the name, the description and the dotted leader of the site brief; no price in this slice.
 
 **Acceptance:** the section has the `id` that the header link targets; the two layouts match the widths; the text passes contrast on the alternate surface in both modes.
 **Verify:** the home browser test; by inspection with the owner.
@@ -310,9 +308,9 @@ Manual Astro setup inside the workspace, as the Astro documentation describes, w
 
 ## Task 17 — Build the social band
 
-- [ ] Add `src/components/SocialBand.astro`: a row of square photographs and the hashtag in the script font.
-- [ ] Add the light overlay on hover and on focus; a tile is a link only when the content data holds a destination.
-- [ ] Make the row wrap or scroll without sideways scroll of the page at 375 pixels.
+- [x] Add `src/components/SocialBand.astro`: a row of square photographs and the hashtag in the script font.
+- [x] Add the light overlay on hover and on focus; a tile is a link only when the content data holds a destination.
+- [x] Make the row wrap or scroll without sideways scroll of the page at 375 pixels.
 
 **Acceptance:** the section has the `id` that the header link targets; each photograph has a text alternative; no tile links to a made-up account.
 **Verify:** the home browser test; by inspection with the owner.

@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import { moments } from '../content/home';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="moments" class="scroll-mt-4 py-16 md:py-24" aria-labelledby="moments-heading">
+  <div class="mx-auto max-w-6xl px-4 md:px-6">
+    <SectionHeading id="moments-heading" flourish={moments.flourish}>{moments.heading}</SectionHeading>
+
+    <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+      {
+        moments.tiles.map((tile) => (
+          <li>
+            <figure class="tile group relative overflow-hidden rounded-3xl">
+              <Image
+                src={tile.image}
+                alt={tile.alt}
+                widths={[240, 400, 600]}
+                sizes="(min-width: 64rem) 11rem, (min-width: 40rem) 30vw, 46vw"
+                class="aspect-square w-full object-cover motion-safe:transition-transform motion-safe:duration-200 motion-safe:group-hover:scale-105"
+              />
+              <figcaption class="absolute inset-x-0 bottom-0 bg-espresso-noir/85 px-3 py-2 text-sm font-semibold text-text-light opacity-0 motion-safe:transition-opacity motion-safe:duration-200 group-hover:opacity-100">
+                {tile.caption}
+              </figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

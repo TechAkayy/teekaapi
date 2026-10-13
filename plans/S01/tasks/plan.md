@@ -55,6 +55,10 @@ The owner gave the user-facing choices of the rest of the slice to the agent on 
 - **Highlights.** Four cards: Specialty Coffee, Fusion Bites, South Indian Roots and Melbourne Made. “Open Late” and “Melbourne CBD” of the site brief are left out, because the cafe has not confirmed them. The icons are the two-tone Phosphor set.
 - **Card hover.** A card rises a little and gets an offset Teekaapi Orange shadow.
 
+- **Signature drinks.** Four sample drinks: Filter Kaapi, Jaggery Flat White, Iced Kaapi and Masala Latte. The row is a grid from the tablet width, two across and then four across. Each photograph has a tall rounded crop with an offset shadow, orange and mint in turn. The current dot is a wide filled bar. The small script line above the heading reads “House favourites”.
+- **Fusion food.** Four sample dishes, each with a dotted leader to a short tag in place of a price. The photograph has one square corner, a dark border and an offset mint shadow. The script line is “Chef’s pick” from the site brief.
+- **Social band.** Six square photographs, two across on a phone and six across on a desktop. A caption appears over a photograph under the pointer. The heading is “Teekaapi moments” with the script line “Come hang out”. The hashtag is left out until the cafe confirms it, and no photograph is a link.
+
 ### Contrast of the palette
 
 The ratios are computed from the colour values of the site brief, by the WCAG 2 formula. Body text needs 4.5 to 1; large text and the outline of a control need 3 to 1. The style reference page shows the same table.

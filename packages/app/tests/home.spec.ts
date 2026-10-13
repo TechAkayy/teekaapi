@@ -30,3 +30,73 @@ test('the highlights show three or four cards, each with a title and a line', as
     await expect(card.locator('p')).toHaveText(/.+/);
   }
 });
+
+test('the signature drinks are a row with dots on a phone and a grid from the tablet width', async ({ page, viewport }) => {
+  await page.goto('/');
+  const row = page.locator('[data-drinks-row]');
+  const cards = row.locator('[data-drink]');
+  const dots = page.locator('[data-drinks-dot]');
+  await expect(cards).toHaveCount(4);
+
+  if ((viewport?.width ?? 0) >= 768) {
+    // A grid: each card is in the row without a scroll, and no dot is offered.
+    expect(await row.evaluate((el) => el.scrollWidth - el.clientWidth)).toBe(0);
+    await expect(dots.first()).toBeHidden();
+    await expect(row).not.toHaveAttribute('tabindex');
+    for (const card of await cards.all()) await expect(card).toBeVisible();
+    return;
+  }
+
+  await expect(dots).toHaveCount(4);
+  await expect(dots.nth(0)).toHaveAttribute('aria-current', 'true');
+  await page.locator('#drinks').evaluate((el) => el.scrollIntoView({ block: 'start', behavior: 'instant' }));
+
+  // A dot moves the row to its card and becomes the current dot.
+  await dots.nth(2).click();
+  await expect(cards.nth(2)).toBeInViewport({ ratio: 0.9 });
+  await expect(dots.nth(2)).toHaveAttribute('aria-current', 'true');
+  await expect(dots.nth(0)).toHaveAttribute('aria-current', 'false');
+
+  // The row takes the keyboard focus, and an arrow key moves it.
+  await row.evaluate((el) => el.scrollTo({ left: 0, behavior: 'instant' }));
+  await row.focus();
+  await expect(row).toBeFocused();
+  await page.keyboard.press('ArrowRight');
+  await expect.poll(() => row.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
+});
+
+test('the fusion food teaser shows its photograph beside three to five dishes', async ({ page, viewport }) => {
+  await page.goto('/');
+  const section = page.locator('#food');
+  const image = section.getByRole('img');
+  const dishes = section.locator('ul > li');
+  await expect(image).toHaveAttribute('alt', /.+/);
+  const count = await dishes.count();
+  expect(count).toBeGreaterThanOrEqual(3);
+  expect(count).toBeLessThanOrEqual(5);
+
+  await section.scrollIntoViewIfNeeded();
+  const imageBox = await image.boundingBox();
+  const listBox = await section.locator('ul').boundingBox();
+  if (!imageBox || !listBox) throw new Error('The teaser has no layout.');
+  if ((viewport?.width ?? 0) >= 768) {
+    // Side by side: the list starts to the right of the photograph.
+    expect(listBox.x).toBeGreaterThan(imageBox.x + imageBox.width - 1);
+  } else {
+    // Stacked: the list starts below the photograph.
+    expect(listBox.y).toBeGreaterThan(imageBox.y + imageBox.height - 1);
+  }
+});
+
+test('the social band shows square photographs with text alternatives and links to no account', async ({ page }) => {
+  await page.goto('/');
+  const section = page.locator('#moments');
+  const images = section.getByRole('img');
+  await expect(images).toHaveCount(6);
+  for (const image of await images.all()) {
+    await expect(image).toHaveAttribute('alt', /.+/);
+    const box = await image.evaluate((el) => el.getBoundingClientRect().toJSON());
+    expect(Math.abs(box.width - box.height)).toBeLessThan(1);
+  }
+  await expect(section.getByRole('link')).toHaveCount(0);
+});

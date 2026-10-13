@@ -1,0 +1,98 @@
+---
+import { drinks } from '../content/home';
+import DrinkCard from './DrinkCard.astro';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="drinks" class="scroll-mt-4 py-16 md:py-24" aria-labelledby="drinks-heading">
+  <div class="mx-auto max-w-6xl px-4 md:px-6">
+    <SectionHeading id="drinks-heading" flourish="House favourites">Signature drinks</SectionHeading>
+
+    <!-- On a phone this is a row that the visitor swipes. From the tablet width it is a grid. -->
+    <div
+      data-drinks-row
+      role="region"
+      aria-labelledby="drinks-heading"
+      tabindex="0"
+      class="drinks-row -mx-4 mt-8 overflow-x-auto px-4 pb-4 pt-1 md:mx-0 md:overflow-visible md:px-0"
+    >
+      <ul class="flex gap-5 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+        {drinks.map((drink, index) => <DrinkCard drink={drink} accent={index % 2 === 0 ? 'orange' : 'mint'} />)}
+      </ul>
+    </div>
+
+    <div data-drinks-dots class="mt-2 flex justify-center gap-1 md:hidden">
+      {
+        drinks.map((drink, index) => (
+          <button
+            type="button"
+            data-drinks-dot
+            aria-label={`Show drink ${index + 1}: ${drink.name}`}
+            aria-current={index === 0 ? 'true' : 'false'}
+            class="dot grid size-11 place-items-center rounded-full"
+          >
+            <span class="dot-mark block size-3 rounded-full border-2 border-espresso-noir dark:border-text-light" />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "../styles/global.css";
+
+  .drinks-row {
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
+    scrollbar-width: none;
+  }
+  .dot[aria-current='true'] .dot-mark {
+    @apply w-7 bg-espresso-noir dark:bg-text-light;
+  }
+  .dot-mark {
+    @apply motion-safe:transition-all motion-safe:duration-200;
+  }
+</style>
+
+<script>
+  const row = document.querySelector<HTMLElement>('[data-drinks-row]');
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-drink]')];
+  const dots = [...document.querySelectorAll<HTMLButtonElement>('[data-drinks-dot]')];
+
+  if (row && cards.length > 0) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // The row takes the keyboard focus only while it scrolls, so that arrow keys can move it.
+    const syncFocus = (): void => {
+      if (row.scrollWidth > row.clientWidth) row.setAttribute('tabindex', '0');
+      else row.removeAttribute('tabindex');
+    };
+    syncFocus();
+    window.addEventListener('resize', syncFocus);
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        const card = cards[index];
+        if (!card) return;
+        row.scrollTo({
+          left: card.offsetLeft - row.offsetLeft - parseFloat(getComputedStyle(row).paddingLeft),
+          behavior: reduceMotion.matches ? 'auto' : 'smooth',
+        });
+      });
+    });
+
+    // The dot of the card that fills most of the row is the current one.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const current = cards.indexOf(entry.target as HTMLElement);
+          dots.forEach((dot, index) => dot.setAttribute('aria-current', String(index === current)));
+        }
+      },
+      { root: row, rootMargin: '0px -45% 0px 0px', threshold: 0.6 },
+    );
+    cards.forEach((card) => observer.observe(card));
+  }
+</script>
