@@ -1,0 +1,59 @@
+---
+import Bean from '@phosphor-icons/core/duotone/coffee-bean-duotone.svg';
+import Pot from '@phosphor-icons/core/duotone/cooking-pot-duotone.svg';
+import Sparkle from '@phosphor-icons/core/duotone/sparkle-duotone.svg';
+import Store from '@phosphor-icons/core/duotone/storefront-duotone.svg';
+import { milestones } from '../content/story';
+import SectionHeading from './SectionHeading.astro';
+
+const icons = { bean: Bean, pot: Pot, store: Store, sparkle: Sparkle };
+---
+
+<section
+  class="bg-filter-beige py-16 text-text-dark dark:bg-espresso-noir dark:text-text-light md:py-24"
+  aria-labelledby="timeline-heading"
+>
+  <div class="mx-auto max-w-6xl px-4 md:px-6">
+    <SectionHeading id="timeline-heading" flourish="Step by step">The road so far</SectionHeading>
+
+    {/* The joining line runs down the side on a phone and across the top from the tablet width. */}
+    <ol data-timeline class="timeline mt-10 grid gap-8 md:grid-cols-4 md:gap-6">
+      {
+        milestones.map((milestone) => {
+          const Icon = icons[milestone.icon];
+          return (
+            <li data-reveal class="timeline-step relative pl-16 md:pl-0 md:pt-16">
+              <span class="timeline-icon absolute left-0 top-0 grid size-12 place-items-center rounded-full border-4 border-espresso-noir bg-teekaapi-orange text-espresso-noir dark:border-text-light">
+                <Icon class="size-6" fill="currentColor" aria-hidden="true" />
+              </span>
+              <h3 class="text-xl">{milestone.title}</h3>
+              <p class="mt-1">{milestone.text}</p>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  @reference "../styles/global.css";
+
+  /* The line is drawn from each step to the next one, behind the icons. */
+  .timeline-step::before {
+    content: '';
+    @apply absolute left-6 top-12 -bottom-8 w-0 border-l-4 border-dotted border-espresso-noir;
+  }
+  /* The dark variant of Tailwind cannot follow a pseudo-element, so the dark colour is set here. */
+  :global(.dark) .timeline-step::before {
+    border-color: var(--color-text-light);
+  }
+  .timeline-step:last-child::before {
+    content: none;
+  }
+  @media (width >= 48rem) {
+    .timeline-step::before {
+      @apply -right-6 bottom-auto left-12 top-6 h-0 w-auto border-l-0 border-t-4;
+    }
+  }
+</style>

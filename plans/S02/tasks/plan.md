@@ -41,6 +41,9 @@ The agent adds each choice here as it makes it, and gives the list to the owner 
 - **Dietary marks.** Mint Kulfi discs with a letter: V, VG, GF and S, with a key at the foot of the page.
 - **Special card.** A Teekaapi Orange card with a dark border above the bar, with a glow that moves between orange and pink.
 - **Sample menu.** Twenty-two items in four categories, with prices in dollars, and the special “Ghee Roast Dosa Waffle”. All of it is sample content.
+- **Story narrative.** Three short parts side by side from the tablet width: where it comes from, why Melbourne, how we cook and pour. All of it is sample text, with no year, no founder and no named person.
+- **Timeline.** Four milestones without years, each with a two-tone Phosphor icon in an orange disc, joined by a dotted line: down the side on a phone, across from the tablet width.
+- **Portraits.** Three square photographs with one square corner, a dark border and grain, with a script caption: a hand that holds a cup, a steel tumbler, and a bright corner of a room. No portrait shows a face.
 - **Page words.** The script line “Pull up a chair” and the line “Specialty coffee and fusion food, from the first cup to the last bite.”
 
 ## Risks

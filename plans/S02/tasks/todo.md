@@ -4,20 +4,21 @@ The [specification](../SPEC.md) owns the scope; the [plan](plan.md) owns the app
 
 ```vibe-progress
 unit: S02
-current: I am building D2. I write the sample story and choose its photographs.
+current: I am building D3. I link the pages from the header, the footer and the home page.
 next: The agent builds D1 to D3 and closes the slice. The owner gets the list of choices at the close.
 completed:
   - The owner chose the mode, the content and the user-facing choices for this slice.
   - D1 is done. The menu page shows the sample menu, the special card and the category bar.
+  - D2 is done. The story page shows the sample story, the timeline and the portraits.
 remaining:
-  - The 2 deliverables D2 and D3.
+  - The deliverable D3.
   - The final proof, the independent review and the close.
 blockers:
   - None.
 verification:
-  - The build, the type check and 102 browser tests of the site pass.
+  - The build, the type check and 114 browser tests of the site pass.
 candidate:
-  - D1 is committed. The changes of D2 are not committed.
+  - D1 and D2 are committed. The changes of D3 are not committed.
 steps:
   - id: 1
     name: Slice preflight
@@ -61,14 +62,14 @@ steps:
         name: "Story page"
         weight: 25
         children:
-          - { id: d2-t5, task: 5, weight: 8, status: active }
-          - { id: d2-t6, task: 6, weight: 10, status: pending }
-          - { id: d2-t7, task: 7, weight: 7, status: pending }
+          - { id: d2-t5, task: 5, weight: 8, status: complete }
+          - { id: d2-t6, task: 6, weight: 10, status: complete }
+          - { id: d2-t7, task: 7, weight: 7, status: complete }
       - id: D3
         name: "Navigation and proof"
         weight: 25
         children:
-          - { id: d3-t8, task: 8, weight: 9, status: pending }
+          - { id: d3-t8, task: 8, weight: 9, status: active }
           - { id: d3-t9, task: 9, weight: 16, status: pending }
   - id: 7
     name: Material corrections and contract updates
@@ -140,18 +141,18 @@ The owner gave the agent the weights with the user-facing choices on 2026-10-13;
 
 ## Task 5 — Write the sample story and choose its photographs
 
-- [ ] Add `src/content/story.ts`: the narrative, the milestones and the portraits, each marked as a sample, with no year and no named person.
-- [ ] Choose the portraits: photographs of hands at work and of the room, with no recognisable face; store new files and credit them.
+- [x] Add `src/content/story.ts`: the narrative, the milestones and the portraits, each marked as a sample, with no year and no named person.
+- [x] Choose the portraits: photographs of hands at work and of the room, with no recognisable face; store new files and credit them.
 
 **Acceptance:** success criterion 10 for this page.
 **Verify:** each file has its credit line; `pnpm --dir packages/app check`.
 
 ## Task 6 — Build the story page with its narrative and timeline
 
-- [ ] Add `src/pages/story.astro` on the shared layout.
-- [ ] Add the narrative in a readable measure.
-- [ ] Add the timeline as an ordered list with an icon for each milestone and a joining line, down the side on a phone and across on a desktop.
-- [ ] Add browser tests of the narrative and of the order and the count of the milestones.
+- [x] Add `src/pages/story.astro` on the shared layout.
+- [x] Add the narrative in a readable measure.
+- [x] Add the timeline as an ordered list with an icon for each milestone and a joining line, down the side on a phone and across on a desktop.
+- [x] Add browser tests of the narrative and of the order and the count of the milestones.
 
 **Acceptance:** success criterion 4 without the portraits.
 **Verify:** the browser tests.
@@ -159,8 +160,8 @@ The owner gave the agent the weights with the user-facing choices on 2026-10-13;
 
 ## Task 7 — Add the portraits
 
-- [ ] Add the portraits as figures with captions, with the offset shadow and the grain of the site brief.
-- [ ] Add a browser test of the count and of the text alternatives.
+- [x] Add the portraits as figures with captions, with the offset shadow and the grain of the site brief.
+- [x] Add a browser test of the count and of the text alternatives.
 
 **Acceptance:** success criterion 4.
 **Verify:** the browser tests.

@@ -16,3 +16,6 @@ Each photograph of the site comes from [Unsplash](https://unsplash.com) under th
 | `social-pour.jpg` | Social band | Andreas Behr | <https://unsplash.com/photos/hqqC5uZn6PA> |
 | `social-espresso.jpg` | Social band | Kevin Butz | <https://unsplash.com/photos/BBFRIGifYQ8> |
 | `social-iced.jpg` | Social band | Eiliv Aceron | <https://unsplash.com/photos/_tSgUmeYMm8> |
+| `story-hands.jpg` | Our Story | Fahmi Fakhrudin | <https://unsplash.com/photos/nzyzAUsbV0M> |
+| `story-room.jpg` | Our Story | Coffee with Joshua | <https://unsplash.com/photos/mrZS86BKk0E> |
+| `story-tumbler.jpg` | Our Story | Dhruv Pulipaka | <https://unsplash.com/photos/Gi7G-zkWaOA> |

@@ -1,0 +1,28 @@
+---
+import StoryPortraits from '../components/StoryPortraits.astro';
+import StoryTimeline from '../components/StoryTimeline.astro';
+import { intro, narrative } from '../content/story';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Our Story" description="Where Teekaapi comes from, why it is in Melbourne and how it thinks about coffee and fusion food.">
+  <div class="mx-auto max-w-6xl px-4 pb-16 pt-10 md:px-6 md:pb-24 md:pt-16">
+    <p class="font-script text-2xl text-espresso-noir dark:text-mint-kulfi">{intro.flourish}</p>
+    <h1 class="text-5xl md:text-7xl">{intro.heading}</h1>
+    <p class="mt-3 max-w-prose text-xl">{intro.line}</p>
+
+    <div data-narrative class="mt-10 grid gap-10 md:grid-cols-3">
+      {
+        narrative.map((part) => (
+          <section data-reveal>
+            <h2 class="border-b-2 border-espresso-noir pb-2 text-sm uppercase tracking-widest dark:border-text-light">{part.heading}</h2>
+            <p class="mt-4 max-w-prose text-lg">{part.text}</p>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+
+  <StoryTimeline />
+  <StoryPortraits />
+</BaseLayout>
